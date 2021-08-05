@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/08/05 19:03:30 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/08/05 22:41:31 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,15 @@ DIR_LIBFT		=	libft
 
 DIR_SRCS		=	srcs
 
-SRCS			=	$(DIR_SRCS)/minishell.c 
+DIR_INCLUDE		=	includes
 
-OBJSDIR			=	Temporary
+SRCS			=	$(DIR_SRCS)/minishell.c
+ 
+HEADERS			=	$(DIR_INCLUDE)/minishell.h
 
-OBJS			=	$(subst srcs/, $(OBJSDIR)/, $(SRCS:.c=.o))
+OBJSDIR			=	temporary
+
+OBJS			=	$(subst ${DIR_SRCS}/, $(OBJSDIR)/, $(SRCS:.c=.o))
 
 INCLUDES		=	-I ./includes
 
@@ -38,7 +42,7 @@ $(OBJSDIR):
 $(OBJSDIR)/%.o: $(DIR_SRCS)/%.c | $(OBJSDIR)
 	gcc -g $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) -c $< -o $@
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HEADERS)
 	make -C ./${DIR_LIBFT}
 	gcc -g $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) ${L_LIBFT} $(OBJS) -o $@
 
