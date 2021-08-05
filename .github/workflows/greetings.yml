@@ -1,0 +1,23 @@
+name: Greetings
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+
+  greeting:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Say Hello
+      run: echo "Hello, cool programmer)"
+    
+    - name: Git clone repo
+      uses: actions/checkout@v1
+      
+    - name: List of files
+      run: ls -la
+    
+    - name: Try to make
+      run: make
