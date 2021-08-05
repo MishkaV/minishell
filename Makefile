@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/08/03 16:36:07 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/08/05 19:03:30 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,34 +14,33 @@ NAME			=	minishell
 
 CFLAGS			=	-Wall -Wextra -Werror
 
-SRCS			=	srcs/minishell.c 
+DIR_LIBFT		=	libft
+
+DIR_SRCS		=	srcs
+
+SRCS			=	$(DIR_SRCS)/minishell.c 
 
 OBJSDIR			=	Temporary
 
 OBJS			=	$(subst srcs/, $(OBJSDIR)/, $(SRCS:.c=.o))
 
-INCLUDES		=	-I./includes
+INCLUDES		=	-I ./includes
 
-DIR_LIBFT		=	./libft
+INCLUDES_LIBFT	=	-I ./libft
 
-INCLUDES_LIBFT	=	-I./libft
+L_LIBFT			=  ./libft/libft.a
 
 all: $(NAME) 
-
-# FORCE: 		;
-
-$(LIBFT): 
-	make -C ${DIR_LIBFT}
 
 $(OBJSDIR):
 	mkdir $@
 
-$(OBJSDIR)/%.o: srcs/%.c | $(OBJSDIR)
-# .с.o:
+$(OBJSDIR)/%.o: $(DIR_SRCS)/%.c | $(OBJSDIR)
 	gcc -g $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) -c $< -o $@
 
-$(NAME): $(OBJS) $(LIBFT) $(INCLUDES)
-	gcc -g $(OBJS) $(INCLUDES) $(INCLUDES_LIBFT) -o $@
+$(NAME): $(OBJS)
+	make -C ./${DIR_LIBFT}
+	gcc -g $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) ${L_LIBFT} $(OBJS) -o $@
 
 clean:
 	rm -rf $(OBJSDIR)
