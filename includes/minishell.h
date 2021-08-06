@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/05 19:00:29 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/06 15:52:43 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include "../libft/libft.h"
+# include <readline/readline.h>
+# include <readline/history.h>
 
 #endif

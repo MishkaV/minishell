@@ -6,13 +6,15 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/08/05 22:41:31 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/08/06 15:55:05 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	minishell
 
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -g
+
+RFLAGS			=	-lreadline
 
 DIR_LIBFT		=	libft
 
@@ -40,11 +42,11 @@ $(OBJSDIR):
 	mkdir $@
 
 $(OBJSDIR)/%.o: $(DIR_SRCS)/%.c | $(OBJSDIR)
-	gcc -g $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) -c $< -o $@
+	gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) -c $< -o $@
 
 $(NAME): $(OBJS) $(HEADERS)
 	make -C ./${DIR_LIBFT}
-	gcc -g $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) ${L_LIBFT} $(OBJS) -o $@
+	gcc $(RFLAGS) $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) ${L_LIBFT} $(OBJS) -o $@
 
 clean:
 	rm -rf $(OBJSDIR)
