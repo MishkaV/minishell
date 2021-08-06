@@ -19,5 +19,5 @@ jobs:
     - name: List of files
       run: ls -la
     
-    - name: Try to make
-      run: make
+#     - name: Try to make
+#       run: make
