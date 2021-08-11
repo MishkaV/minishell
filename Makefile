@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/08/06 15:55:05 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/08/11 15:31:47 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ DIR_SRCS		=	srcs
 
 DIR_INCLUDE		=	includes
 
-SRCS			=	$(DIR_SRCS)/minishell.c
+SRCS			=	$(DIR_SRCS)/minishell.c \
+					$(DIR_SRCS)/main_loop.c
  
 HEADERS			=	$(DIR_INCLUDE)/minishell.h
 
