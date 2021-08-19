@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/06 15:26:44 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/19 21:20:56 by jbenjy           ###   ########.fr       */
+/*   Created: 2021/08/19 20:32:33 by jbenjy            #+#    #+#             */
+/*   Updated: 2021/08/19 20:35:01 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef STRUCTURES_H
+# define STRUCTURES_H
 
-int main(int argc, char **argv, char **envp)
+typedef struct  t_vars
 {
-	(void)argc;
-	(void)argv;
-	s_vars vars;
-	
-	init_envp(&vars, envp);
-	main_loop();
-	
-	free_all(&vars); // не чистить, тк бесконечный цикл выше
-	return (0);
-}
+    char        **envp;   
+}               s_vars;
+
+
+
+#endif

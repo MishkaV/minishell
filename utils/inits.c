@@ -1,26 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   inits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/06 15:26:44 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/19 21:20:56 by jbenjy           ###   ########.fr       */
+/*   Created: 2021/08/19 20:38:21 by jbenjy            #+#    #+#             */
+/*   Updated: 2021/08/19 21:16:37 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int argc, char **argv, char **envp)
+static int  find_len_envp(char **envp)
 {
-	(void)argc;
-	(void)argv;
-	s_vars vars;
+	int count;
+
+	count = 0;
+	while (envp[count])
+		count++;
+	return (count);
+}
+
+int init_envp(s_vars *vars, char **envp)
+{
+	int	len;
+	int	i;
+
+	len = find_len_envp(envp);
+	i = 0;
 	
-	init_envp(&vars, envp);
-	main_loop();
+	vars->envp = malloc(sizeof(char *) * (len + 1));
+	if (!vars->envp)
+		return (1);
 	
-	free_all(&vars); // не чистить, тк бесконечный цикл выше
+	while (envp[i])
+	{
+		vars->envp[i] = ft_strdup(envp[i]);
+		if (!vars->envp[i])
+			return (1);
+		i++;
+	}
+	envp[i] = 0;
 	return (0);
 }

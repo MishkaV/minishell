@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/06 15:26:44 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/19 21:20:56 by jbenjy           ###   ########.fr       */
+/*   Created: 2021/08/19 21:16:07 by jbenjy            #+#    #+#             */
+/*   Updated: 2021/08/19 21:17:52 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int argc, char **argv, char **envp)
+void    free_all(s_vars *vars)
 {
-	(void)argc;
-	(void)argv;
-	s_vars vars;
-	
-	init_envp(&vars, envp);
-	main_loop();
-	
-	free_all(&vars); // не чистить, тк бесконечный цикл выше
-	return (0);
+    int i;
+
+    i = 0;
+    while (vars->envp[i])
+        free(vars->envp[i++]);
+    free(vars->envp);   
 }
