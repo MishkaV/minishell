@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/08/19 21:15:23 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/08/23 14:14:15 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,9 @@ SRCS			=	$(DIR_SRCS)/minishell.c \
 
 UTILS			=	$(DIR_UTILS)/inits.c \
 					$(DIR_UTILS)/free_all.c \
+					$(DIR_UTILS)/envp_list.c \
+					$(DIR_UTILS)/libft_more.c
+					
  
 HEADERS			=	$(DIR_INCLUDE)/minishell.h
 
