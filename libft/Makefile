@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/10 14:00:29 by jbenjy            #+#    #+#              #
-#    Updated: 2020/11/11 16:54:19 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/08/25 13:22:48 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,21 +27,45 @@ OBJSB = $(SRCS_B:.c=.o)
 HEADER = libft.h
 CFLAGS = -Wall -Wextra -Werror
 
+
+RED				=	\033[0;31m
+GREEN			=	\033[0;32m
+YELLOW			=	\033[0;33m
+MAGENTA			=	\033[0;35m
+NORMAL			=	\033[0m
+
+
+WORD_COMILE_LIBFT	=	████─████─█───█─████─███─█───███ \t	█───███─████──███─███\n\
+						█──█─█──█─██─██─█──█──█──█───█ \t	█────█──█──██─█────█\n\
+						█────█──█─█─█─█─████──█──█───███ \t	█────█──████──███──█\n\
+						█──█─█──█─█───█─█─────█──█───█ \t	█────█──█──██─█────█\n\
+						████─████─█───█─█────███─███─███ \t	███─███─████──█────█\n
+
+WORD_COMPLETE_LIBFT	=		████─████─█───█─████─█───███─███─███ \t	█───███─████──███─███\n\
+							█──█─█──█─██─██─█──█─█───█────█──█ \t	█────█──█──██─█────█\n\
+							█────█──█─█─█─█─████─█───███──█──███ \t	█────█──████──███──█\n\
+							█──█─█──█─█───█─█────█───█────█──█ \t	█────█──█──██─█────█\n\
+							████─████─█───█─█────███─███──█──███ \t	███─███─████──█────█\n
+
+
+
 .c.o:
-		gcc $(CFLAGS) -g -c $<
+		@gcc $(CFLAGS) -g -c $<
 
 $(NAME): $(OBJS) $(HEADER)
-		ar rcs $(NAME) ${OBJS}
+		@echo "${YELLOW} ${WORD_COMILE_LIBFT}${NORMAL}"
+		@ar rcs $(NAME) ${OBJS}
+		@echo "${GREEN} ${WORD_COMPLETE_LIBFT}${NORMAL}"
 
 bonus: $(OBJS) $(OBJSB)
-		ar rcs $(NAME) $(OBJS) $(OBJSB)
+		@ar rcs $(NAME) $(OBJS) $(OBJSB)
 
 all:	${NAME}
 
 clean:
-		rm -f $(OBJS) ${OBJSB}
+		@rm -f $(OBJS) ${OBJSB}
 
 fclean:	clean
-		rm -f ${NAME}
+		@rm -f ${NAME}
 
 re:		fclean all
