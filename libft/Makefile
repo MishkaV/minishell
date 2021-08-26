@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/10 14:00:29 by jbenjy            #+#    #+#              #
-#    Updated: 2021/08/25 13:22:48 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/08/26 11:20:45 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,18 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c 
 						ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
 						ft_putchar_fd.c  ft_putstr_fd.c ft_putendl_fd.c \
 						ft_putnbr_fd.c
+						
 SRCS_B = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 			ft_lstdelone.c ft_lstclear.c ft_lstmap.c ft_lstiter.c
-OBJS = $(SRCS:.c=.o)
-OBJSB = $(SRCS_B:.c=.o)
-HEADER = libft.h
-CFLAGS = -Wall -Wextra -Werror
+
+
+OBJSDIR			=	temporary
+
+OBJS			=	$(addprefix ${OBJSDIR}/, $(SRCS:.c=.o))
+OBJSB			=	$(addprefix ${OBJSDIR}/, $(SRCS_B:.c=.o))
+
+HEADER			=	libft.h
+CFLAGS			=	-Wall -Wextra -Werror
 
 
 RED				=	\033[0;31m
@@ -47,22 +53,35 @@ WORD_COMPLETE_LIBFT	=		████─████─█───█─███
 							█──█─█──█─█───█─█────█───█────█──█ \t	█────█──█──██─█────█\n\
 							████─████─█───█─█────███─███──█──███ \t	███─███─████──█────█\n
 
+WORD_COMPILE_BONUS	=		████─████─█───█─████─███─█───███ \t	████──████─█──█─█─█─███\n\
+							█──█─█──█─██─██─█──█──█──█───█ \t	█──██─█──█─██─█─█─█─█\n\
+							█────█──█─█─█─█─████──█──█───███ \t	████──█──█─█─██─█─█─███\n\
+							█──█─█──█─█───█─█─────█──█───█ \t	█──██─█──█─█──█─█─█───█\n\
+							████─████─█───█─█────███─███─███ \t	████──████─█──█─███─███\n
 
 
-.c.o:
-		@gcc $(CFLAGS) -g -c $<
+
+
+all:	${NAME}
+
+$(OBJSDIR):
+		@mkdir $@
+
+$(OBJSDIR)/%.o: %.c | $(OBJSDIR)
+		@gcc $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS) $(HEADER)
 		@echo "${YELLOW} ${WORD_COMILE_LIBFT}${NORMAL}"
 		@ar rcs $(NAME) ${OBJS}
 		@echo "${GREEN} ${WORD_COMPLETE_LIBFT}${NORMAL}"
 
-bonus: $(OBJS) $(OBJSB)
+bonus: $(OBJS) $(OBJSB) $(HEADER)
+		@echo "${YELLOW} ${WORD_COMPILE_BONUS}${NORMAL}"
 		@ar rcs $(NAME) $(OBJS) $(OBJSB)
-
-all:	${NAME}
+		@echo "${GREEN} ${WORD_COMPLETE_LIBFT}${NORMAL}"
 
 clean:
+		@rm -rf $(OBJSDIR)
 		@rm -f $(OBJS) ${OBJSB}
 
 fclean:	clean
