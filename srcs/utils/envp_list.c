@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 13:09:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/23 15:17:35 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/26 20:47:22 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ t_envp_list *envp_pop_by_key(t_envp_list *root, char *key)
 					to_return = curr->next;
 				else
 					prev->next = curr->next;
-				
 				envp_free_node(curr);
 				return (to_return);
 			}
