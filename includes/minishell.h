@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/23 15:16:20 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/26 12:30:48 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 # include "structures.h"
 # include "../libft/libft.h"
+
 
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_find_chr(char *str, char c);
