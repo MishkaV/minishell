@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+         #
+#    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/08/27 22:48:34 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/08/28 14:48:40 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ DIR_LIBFT		=	libft
 
 DIR_SRCS		=	srcs
 
-DIR_INCLUDE		=	includes
+DIR_INCLUDE		=	./includes
 
 DIR_UTILS		=	$(DIR_SRCS)/utils
 DIR_MAIN_RT		=	$(DIR_SRCS)/main_routine
@@ -47,7 +47,7 @@ OBJSDIR			=	temporary
 
 OBJS			=	$(subst ${DIR_MAIN_RT}/, $(OBJSDIR)/, $(SRCS:.c=.o)) \
 					$(subst ${DIR_UTILS}/, $(OBJSDIR)/, $(UTILS:.c=.o)) \
-					$(subst ${DIR_MY_FUNCTION}/, $(OBJSDIR)/, $(UTILS:.c=.o))
+					$(subst ${DIR_MY_FUNCTION}/, $(OBJSDIR)/, $(MY_FUNCTION:.c=.o))
 
 INCLUDES		=	-I ./includes
 
@@ -118,14 +118,12 @@ $(OBJSDIR)/%.o: $(DIR_UTILS)/%.c | $(OBJSDIR)
 $(OBJSDIR)/%.o: $(DIR_MY_FUNCTION)/%.c | $(OBJSDIR)
 	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) -c $< -o $@
 
-$(NAME): $(OBJS) $(OBJS_UTILS) $(HEADERS)
+$(NAME): $(OBJS) $(HEADERS)
 	@echo "${MAGENTA} ${WORD_MINISHELL}${NORMAL}"
 	@echo "${YELLOW} ${WORD_LOADING}${NORMAL}"
 	@make -C ./${DIR_LIBFT}
 	@gcc $(RFLAGS) $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) ${L_LIBFT} $(OBJS) $(OBJS_UTILS) -o $@
 	@echo "${GREEN} ${WORD_COMPl_MIN}${NORMAL}"
-
-
 
 clean:
 	@echo "${YELLOW} ${WORD_CLEANING}${NORMAL}"

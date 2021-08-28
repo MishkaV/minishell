@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/27 22:49:46 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/28 14:42:36 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <dirent.h>
+
 # include "defines.h"
 # include "structures.h"
 # include "my_function.h"
@@ -48,6 +49,5 @@ void	envp_print_list(t_envp_list	*root);
 
 void	main_loop();
 int		init_envp(t_vars *vars, char **envp);
-// void    free_all(t_vars *vars);
 
 #endif
