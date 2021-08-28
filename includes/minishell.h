@@ -6,7 +6,7 @@
 /*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/27 21:39:17 by lsinistr         ###   ########.fr       */
+/*   Updated: 2021/08/27 22:49:46 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <dirent.h>
+# include "defines.h"
 # include "structures.h"
 # include "my_function.h"
 # include "../libft/libft.h"
@@ -32,8 +33,7 @@
 
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_find_chr(char *str, char c);
-int 	ft_min(int n1, int n2);
-int 	ft_max(int n1, int n2);
+char	*ft_concat(char *s1, char *s2);
 char	*ft_strndup(const char *s1, int n);
 
 t_envp_list *envp_new_node(char *key, char *data);

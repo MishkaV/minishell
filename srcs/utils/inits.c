@@ -6,21 +6,11 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:38:21 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/23 15:15:34 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/27 22:49:02 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// static int  find_len_envp(char **envp)
-// {
-// 	int count;
-
-// 	count = 0;
-// 	while (envp[count])
-// 		count++;
-// 	return (count);
-// }
 
 int init_envp(t_vars *vars, char **envp)
 {

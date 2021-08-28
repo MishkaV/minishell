@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/06 15:26:44 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/26 11:57:07 by jbenjy           ###   ########.fr       */
+/*   Created: 2021/08/27 22:45:43 by jbenjy            #+#    #+#             */
+/*   Updated: 2021/08/27 22:47:22 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef DEFINES_H
+# define DEFINES_H
 
-int main(int argc, char **argv, char **envp)
-{
-	(void)argc;
-	(void)argv;
-	t_vars vars;
-	
-	init_envp(&vars, envp);
-	main_loop();
-	// free_all(&vars); // не чистить, тк бесконечный цикл выше
-	return (0);
-}
+# define READLINE_WORDS "\033[0;32mcool_bash \033[0m>> "
+# define ERROR_SYNTAX "\033[0;31mError syntax:\033[0m "
+
+#endif

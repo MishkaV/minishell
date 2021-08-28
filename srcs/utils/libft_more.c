@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:12:24 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/23 14:25:08 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/27 22:49:30 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,6 @@ int		ft_find_chr(char *str, char c)
 	return (-1);
 }
 
-int ft_min(int n1, int n2)
-{
-    if (n1 < n2)
-        return (n1);
-    return (n2);
-}
-
-int ft_max(int n1, int n2)
-{
-    if (n1 < n2)
-        return (n2);
-    return (n1);
-}
-
 char	*ft_strndup(const char *s1, int n)
 {
 	char    *str;
@@ -68,5 +54,24 @@ char	*ft_strndup(const char *s1, int n)
 	    i++;
     }
 	*str = '\0';
+	return (begin);
+}
+
+char	*ft_concat(char *s1, char *s2)
+{
+	char	*str;
+	char	*begin;
+
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (0);
+
+	begin = str;
+	while(*s1)
+		*str++ = *s1++;
+	while(*s2)
+		*str++ = *s2++;
+	*str = '\0';
+	 
 	return (begin);
 }
