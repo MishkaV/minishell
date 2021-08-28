@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inits.c                                            :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 20:38:21 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/27 22:49:02 by jbenjy           ###   ########.fr       */
+/*   Created: 2021/08/27 22:45:43 by jbenjy            #+#    #+#             */
+/*   Updated: 2021/08/27 22:47:22 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef DEFINES_H
+# define DEFINES_H
 
-int init_envp(t_vars *vars, char **envp)
-{
-	int		i;
-	char	*key;
-	char	*data;
-	i = 0;
-	vars->envp = 0;
-	
-	while (envp[i])
-	{
-		key = ft_strndup(envp[i], ft_find_chr(envp[i], '='));
-		data = ft_strdup(ft_strchr(envp[i], '=') + 1);
-		if (!key || !data)
-			return (0);
-		vars->envp = envp_push_node(vars->envp, key, data);
-		i++;
-	}
-	envp[i] = 0;
-	return (0);
-}
+# define READLINE_WORDS "\033[0;32mcool_bash \033[0m>> "
+# define ERROR_SYNTAX "\033[0;31mError syntax:\033[0m "
+
+#endif

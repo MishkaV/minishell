@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/08/25 19:37:02 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/08/27 22:48:34 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ UTILS			=	$(DIR_UTILS)/inits.c \
  
 HEADERS			=	$(DIR_INCLUDE)/minishell.h \
 					$(DIR_INCLUDE)/structures.h \
-					$(DIR_LIBFT)/libft.h \
+					$(DIR_INCLUDE)/defines.h \
+					$(DIR_LIBFT)/libft.h 
 
 OBJSDIR			=	temporary
 
