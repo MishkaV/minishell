@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
 /*   Updated: 2021/08/27 22:49:46 by jbenjy           ###   ########.fr       */
@@ -24,10 +24,12 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <dirent.h>
-
 # include "defines.h"
 # include "structures.h"
+# include "my_function.h"
 # include "../libft/libft.h"
+# include <errno.h>
+# include <sys/stat.h>
 
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_find_chr(char *str, char c);
