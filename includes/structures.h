@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:32:33 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/30 11:33:09 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/30 17:38:54 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ typedef	struct		s_raw
 	char			*command;
 	char			*flags;
 	char			*argument;
-	struct s_token	*next;
+	char			*in;
+	char			*out;
+	int				type_redirect;
+	struct s_raw	*next;
 }					t_raw;
 
 

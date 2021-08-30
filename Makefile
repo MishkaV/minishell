@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/08/28 14:48:40 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/08/30 16:45:22 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS			=	$(DIR_MAIN_RT)/minishell.c \
 UTILS			=	$(DIR_UTILS)/inits.c \
 					$(DIR_UTILS)/free_all.c \
 					$(DIR_UTILS)/envp_list.c \
+					$(DIR_UTILS)/raw_list.c \
 					$(DIR_UTILS)/libft_more.c
 
 MY_FUNCTION		=	$(DIR_MY_FUNCTION)/my_echo.c \

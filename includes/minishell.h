@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/28 14:42:36 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/30 17:01:58 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ int			envp_free_list(t_envp_list *root);
 t_envp_list	*envp_pop_front(t_envp_list *root);
 t_envp_list *envp_pop_by_key(t_envp_list *root, char *key);
 void	envp_print_list(t_envp_list	*root);
+
+t_raw	*raw_get_last(t_raw *root);
+t_raw	*raw_new_node();
+t_raw	*raw_push(t_raw *root, t_raw *new_node);
+void	raw_free_node(t_raw *node);
+void	raw_free_list(t_raw *root);
+void	raw_print_list(t_raw *root);
 
 void	main_loop();
 int		init_envp(t_vars *vars, char **envp);

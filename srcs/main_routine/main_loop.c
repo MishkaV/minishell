@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/30 13:32:31 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/30 18:42:00 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ int	is_space(char c)
 			c == '\f' || c == '\b' || c == ' ');
 }
 
+char	*skip_spaces(char *str)
+{
+	while (*str && is_space(*str))
+		str++;
+	return (str);
+}
+
 char	*find_command(char *str, t_raw *commands)
 {
 	int i;
@@ -61,14 +68,13 @@ char	*find_command(char *str, t_raw *commands)
 char	*find_flags(char *str, t_raw *command)
 {
 	int i;
-	
+
 	i = 0;
-	while (str[i] && is_space(str[i]))
-		i++;
-	if (!ft_strncmp("-n", str + i, 2))
+	str = skip_spaces(str);
+	if (!ft_strncmp("-n", str, 2))
 	{
 		command->flags = ft_strndup("-n", 2);
-		i += 3;	
+		i += 3;
 	}
 	return (str + i);
 }
@@ -78,40 +84,67 @@ char	*find_arg(char *str, t_raw *commands)
 	int	curr;
 
 	curr = 0;
-	while (str[curr] && str[curr] != '|' && str[curr] != ';')
+	str = skip_spaces(str);
+	while (str[curr] && str[curr] != '|' && str[curr] != ';' && str[curr] != '<' && str[curr] != '>')
 		curr++;
 	commands->argument = ft_strndup(str, curr);
 	return (str + curr);
 }
 
-// void	init_raw(t_raw *commands)
-// {
-// 	commands
+char	*find_pipe(char *str, t_raw *command)
+{
+	int i;
+	int type;
+
+	i = 0;
+	if (*str && (*str == '<' || *str == '>'))
+	{
+		type = *str == '<' ? 1 : 0;
+		if (!ft_strncmp(str, ">>", 2) || !ft_strncmp(str, "<<", 2))
+		{
+			command->type_redirect = 2;
+			str += 1;
+		}
+		else
+			command->type_redirect = 1;
+		str += 1;
+		
+		while (*str && *str != '|' && *str != ';' && is_space(*str))
+			str++;
+		while (str[i] && str[i] != '|' && str[i] != ';')
+			i++;
+		
+		if (type == 1)
+			command->in = ft_strndup(str, i);
+		else
+			command->out = ft_strndup(str, i);
+	}
+	return (str + i + 1);
 }
 
-char	**spliting_raw(char *str)
+t_raw	*spliting_raw(char *str)
 {
-	t_raw	*commands;
-	t_raw	*last;
-
+	t_raw	*root;
+	t_raw	*curr;
+	
+	root = 0;
 	while (*str)
 	{
-		commands = malloc(sizeof(t_raw));
-		commands->argument = 0;
-		commands->command = 0;
-		commands->flags = 0;
+		curr = raw_new_node();
 		
 		while (*str && is_space(*str))
 			str++;
-		str = find_command(str, commands);
-		str = find_flags(str, commands);
-		str = find_arg(str, commands);
-		
-		printf("%s\n", commands->command);
-		printf("%s\n", commands->flags);
-		printf("%s\n", commands->argument);
+			
+		str = find_command(str, curr);
+		str = find_flags(str, curr);
+		str = find_arg(str, curr);
+		str = find_pipe(str, curr);
+		root = raw_push(root, curr);
+		// break;
 	}
 	
+	raw_print_list(root);
+	raw_free_list(root);
 	return (0);
 }
 
