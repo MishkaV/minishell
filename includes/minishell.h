@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/30 17:01:58 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/31 13:38:01 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,14 @@
 # include <errno.h>
 # include <sys/stat.h>
 
-int		ft_strcmp(const char *s1, const char *s2);
-int		ft_find_chr(char *str, char c);
-char	*ft_concat(char *s1, char *s2);
-char	*ft_strndup(const char *s1, int n);
+# include "libft_more.h"
+# include "envp.h"
+# include "raw.h"
 
-t_envp_list *envp_new_node(char *key, char *data);
-t_envp_list *envp_push_node(t_envp_list *root, char *key, char *data);
-char	    *envp_get_data(t_envp_list *root, char *key);
-int	        envp_change_data(t_envp_list *root, char *key, char *data);
-int			envp_free_node(t_envp_list *node);
-int			envp_free_list(t_envp_list *root);
-t_envp_list	*envp_pop_front(t_envp_list *root);
-t_envp_list *envp_pop_by_key(t_envp_list *root, char *key);
-void	envp_print_list(t_envp_list	*root);
+void	signal_int(int code);
 
-t_raw	*raw_get_last(t_raw *root);
-t_raw	*raw_new_node();
-t_raw	*raw_push(t_raw *root, t_raw *new_node);
-void	raw_free_node(t_raw *node);
-void	raw_free_list(t_raw *root);
-void	raw_print_list(t_raw *root);
+int	check_quotes(char *str);
+int	is_space(char c);
 
 void	main_loop();
 int		init_envp(t_vars *vars, char **envp);

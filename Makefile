@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/08/30 16:45:22 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/08/31 13:27:01 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ DIR_MAIN_RT		=	$(DIR_SRCS)/main_routine
 DIR_MY_FUNCTION =	$(DIR_SRCS)/my_function
 
 SRCS			=	$(DIR_MAIN_RT)/minishell.c \
+					$(DIR_MAIN_RT)/checks.c	\
+					$(DIR_MAIN_RT)/signals.c	\
 					$(DIR_MAIN_RT)/main_loop.c
 
 UTILS			=	$(DIR_UTILS)/inits.c \
