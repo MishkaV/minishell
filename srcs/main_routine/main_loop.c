@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 17:40:32 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/31 22:40:14 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,6 @@ t_raw	*spliting_raw(char *str)
 		str = find_arg(str, curr);
 		str = find_pipe(str, curr);
 		root = raw_push(root, curr);
-		if (!*str)
-			break;
 	}
 	
 	raw_print_list(root);
