@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:41:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/30 18:43:10 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/31 14:53:51 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ t_raw	*raw_push(t_raw *root, t_raw *new_node)
 
 	to_return = root;
 	if (!root)
-	{
-		root = new_node;
-		return (root);
-	}
+		return (new_node);
 	root = raw_get_last(root);
 	root->next = new_node;
 	return (to_return);

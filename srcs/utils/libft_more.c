@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:12:24 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 14:15:33 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/31 15:50:02 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,11 @@ char	*ft_concat(char *s1, char *s2)
 
 char	*skip_spaces(char *str)
 {
-	while (*str && is_space(*str))
-		str++;
-	return (str);
+	// if (str)
+	// {
+		while (*str && is_space(*str))
+			str++;
+		return (str);	
+	// }
+	// return (0);
 }
