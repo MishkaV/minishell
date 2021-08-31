@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 13:38:01 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/31 16:55:02 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 
 # include "libft_more.h"
 # include "envp.h"
+# include "redirect.h"
 # include "raw.h"
 
 void	signal_int(int code);

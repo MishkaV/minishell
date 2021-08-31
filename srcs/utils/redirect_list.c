@@ -1,59 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raw_list.c                                         :+:      :+:    :+:   */
+/*   redirect_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/30 16:41:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 16:55:50 by jbenjy           ###   ########.fr       */
+/*   Created: 2021/08/31 16:24:50 by jbenjy            #+#    #+#             */
+/*   Updated: 2021/08/31 17:38:55 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_raw	*raw_get_last(t_raw *root)
+t_redirect  *rct_get_last(t_redirect  *root)
 {
 	if (!root)
 		return (0);
 	while (root->next)
 		root = root->next;
-	return (root); 
+	return (root);
 }
 
-t_raw	*raw_new_node()
+t_redirect  *rct_new_node()
 {
-	t_raw *curr;
+	t_redirect *curr;
 
-	curr = malloc(sizeof(t_raw));
-	curr->command = 0;
-	curr->flags = 0;
-	curr->argument = 0;
-	curr->redirects = 0;
-	curr->next = 0;
+	curr = malloc(sizeof(t_redirect));
+	if (!curr)
+		return (0);
+	curr->file = 0;
+	curr->type = 0;
+	curr->type = 0;
 	return (curr);
 }
 
-t_raw	*raw_push(t_raw *root, t_raw *new_node)
+t_redirect	*rct_push(t_redirect *root, t_redirect *new_node)
 {
-	t_raw *to_return;
-
+	t_redirect *to_return;
+	
 	to_return = root;
 	if (!root)
 		return (new_node);
-	root = raw_get_last(root);
+	root = rct_get_last(root);
 	root->next = new_node;
 	return (to_return);
 }
 
-void	raw_print_list(t_raw *root)
+void	rct_print(t_redirect *root)
 {
-	while (root)
+	if (root)
 	{
-		printf("Command: |%s|\n", root->command);
-		printf("Flag: |%s|\n", root->flags);
-		printf("Argument: |%s|\n", root->argument);
-		rct_print(root->redirects);
-		root = root->next;
+		while (root)
+		{
+			printf("Type: |%d|\n", root->type);
+			printf("File: |%s|\n", root->file);
+			root = root->next;	
+		}
 	}
+	else
+		printf("Redirects are empty\n");
 }

@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   redirect.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/27 22:45:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 16:56:57 by jbenjy           ###   ########.fr       */
+/*   Created: 2021/08/31 16:53:21 by jbenjy            #+#    #+#             */
+/*   Updated: 2021/08/31 17:11:36 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#ifndef REDIRECT_H
+# define REDIRECT_H
 
-# define READLINE_WORDS "\033[0;32mcool_bash \033[0m>> "
-# define ERROR_SYNTAX "\033[0;31mError syntax:\033[0m "
-
-# define SINGLE_IN 1
-# define SINGLE_OUT 2
-# define DOUBLE_IN 3
-# define DOUBLE_OUT 4
+t_redirect  *rct_get_last(t_redirect  *root);
+t_redirect  *rct_new_node();
+t_redirect	*rct_push(t_redirect *root, t_redirect *new_node);
+void	rct_print(t_redirect *root);
+void	rct_free_node(t_redirect *node);
+void	rct_free_list(t_redirect *root);
 
 #endif

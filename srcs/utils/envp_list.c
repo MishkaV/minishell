@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 13:09:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/26 20:47:22 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/31 16:25:29 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_envp_list *envp_new_node(char *key, char *data)
 	curr = malloc(sizeof(t_envp_list));
 	if (!curr)
 		return (0);
-	
 	curr->key = key;
 	curr->data = data;
 	curr->next = 0;

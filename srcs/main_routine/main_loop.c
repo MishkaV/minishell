@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 16:15:55 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/31 17:40:32 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,60 +54,56 @@ char	*find_arg(char *str, t_raw *commands)
 	return (str + curr);
 }
 
+char	*check_rct(t_redirect *curr_rct, char *str)
+{
+	if (*str == '<')
+	{
+		if (!ft_strncmp(str, "<<", 2))
+			curr_rct->type = DOUBLE_IN;
+		else
+			curr_rct->type = SINGLE_IN;
+	}
+	else
+	{
+		if (!ft_strncmp(str, ">>", 2))
+			curr_rct->type = DOUBLE_OUT;
+		else
+			curr_rct->type = SINGLE_OUT;
+	}
+	while (*str && (*str == '<' || *str == '>'))
+		str++;
+	return (str);
+}
+
 char	*find_pipe(char *str, t_raw *command)
 {
 	int i;
-	int type;
+	t_redirect *curr_rct;
 
-	// if (*str && (*str == '<' || *str == '>'))
-	// {
-	// 	type = *str == '<' ? 1 : 0;
-	// 	if (!ft_strncmp(str, ">>", 2) || !ft_strncmp(str, "<<", 2))
-	// 	{
-	// 		command->type_redirect = 2;
-	// 		str += 1;
-	// 	}
-	// 	else
-	// 		command->type_redirect = 1;
-	// 	str += 1;
-		
-	// 	while (*str && *str != '|' && *str != ';' && is_space(*str))
-	// 		str++;
-	// 	while (str[i] && str[i] != '|' && str[i] != ';')
-	// 		i++;
-		
-	// 	if (type == 1)
-	// 		command->in = ft_strndup(str, i);
-	// 	else
-	// 		command->out = ft_strndup(str, i);
-
-	// }
-	// return (str + i);
-	// while (*str && str)
 	while (*str && is_special(*str))
 	{
+		printf("1 |%s|\n", str);
 		i = 0;
 		if (*str == '|' || *str == ';')
 			return (str + 1);
 		
-		type = *str == '<' ? 1 : 0; // 1 == <, 0 == >
-		if (!ft_strncmp(str, ">>", 2) || !ft_strncmp(str, "<<", 2))
-		{
-			command->type_redirect = 2;
-			str += 1;
-		}
-		else
-			command->type_redirect = 1;
-		str += 1;
-		
+		printf("2 |%s|\n", str);
+		curr_rct = rct_new_node();
+		str = check_rct(curr_rct, str);
 		str = skip_spaces(str);
 		while (str[i] && !is_special(str[i]))
 			i++;
-		if (type == 1)
-			command->in = ft_strndup(str, i);
-		else
-			command->out = ft_strndup(str, i);
+		
+		printf("3 |%s|\n", str);
+		curr_rct->file = ft_strndup(str, i);
+		
+		printf("4.1 |%s|\n", str);
+		command->redirects = rct_push(command->redirects, curr_rct);
+
+		printf("4.2 |%s|\n", str);
 		str += i;
+	
+		printf("4 |%s|\n", str);
 	}
 	return (str);
 }
