@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 16:24:50 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 22:43:46 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/01 12:02:54 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,15 @@ t_redirect	*rct_push(t_redirect *root, t_redirect *new_node)
 
 void	rct_print(t_redirect *root)
 {
+	int i;
+
+	i = 1;
 	if (root)
 	{
 		while (root)
 		{
-			printf("Type: |%d|\n", root->type);
+			
+			printf("\n#%d\nType: |%d|\n", i++, root->type);
 			printf("File: |%s|\n", root->file);
 			root = root->next;	
 		}

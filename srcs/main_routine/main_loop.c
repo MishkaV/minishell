@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 22:40:14 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/01 12:01:06 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,28 +82,19 @@ char	*find_pipe(char *str, t_raw *command)
 
 	while (*str && is_special(*str))
 	{
-		printf("1 |%s|\n", str);
 		i = 0;
 		if (*str == '|' || *str == ';')
 			return (str + 1);
 		
-		printf("2 |%s|\n", str);
 		curr_rct = rct_new_node();
 		str = check_rct(curr_rct, str);
 		str = skip_spaces(str);
 		while (str[i] && !is_special(str[i]))
 			i++;
 		
-		printf("3 |%s|\n", str);
 		curr_rct->file = ft_strndup(str, i);
-		
-		printf("4.1 |%s|\n", str);
 		command->redirects = rct_push(command->redirects, curr_rct);
-
-		printf("4.2 |%s|\n", str);
 		str += i;
-	
-		printf("4 |%s|\n", str);
 	}
 	return (str);
 }
