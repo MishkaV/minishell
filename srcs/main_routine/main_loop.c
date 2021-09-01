@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/01 12:01:06 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/01 12:54:00 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,11 @@ t_raw	*spliting_raw(char *str)
 void	main_loop()
 {
 	char *str;
-	// t_raw *root;
 	
 	while (1)
 	{
 		// signal(SIGINT, &signal_int);
+		// signal(SIGQUIT, &signal_quit);
 		str = readline(READLINE_WORDS);
 		if (check_quotes(str))
 			printf("%s%s\n", ERROR_SYNTAX,  "bad number of quotes");

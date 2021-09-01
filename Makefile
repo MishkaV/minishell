@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/08/31 16:25:09 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/09/01 12:53:51 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ OBJS			=	$(subst ${DIR_MAIN_RT}/, $(OBJSDIR)/, $(SRCS:.c=.o)) \
 INCLUDES		=	-I ./includes
 
 INCLUDES_LIBFT	=	-I ./libft
+
 
 L_LIBFT			=  ./libft/libft.a
 
