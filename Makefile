@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/08/28 14:48:40 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/09/01 12:53:51 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,15 @@ DIR_MAIN_RT		=	$(DIR_SRCS)/main_routine
 DIR_MY_FUNCTION =	$(DIR_SRCS)/my_function
 
 SRCS			=	$(DIR_MAIN_RT)/minishell.c \
+					$(DIR_MAIN_RT)/checks.c	\
+					$(DIR_MAIN_RT)/signals.c \
+					$(DIR_MAIN_RT)/redirect_list.c \
 					$(DIR_MAIN_RT)/main_loop.c
 
 UTILS			=	$(DIR_UTILS)/inits.c \
 					$(DIR_UTILS)/free_all.c \
 					$(DIR_UTILS)/envp_list.c \
+					$(DIR_UTILS)/raw_list.c \
 					$(DIR_UTILS)/libft_more.c
 
 MY_FUNCTION		=	$(DIR_MY_FUNCTION)/my_echo.c \
@@ -52,6 +56,7 @@ OBJS			=	$(subst ${DIR_MAIN_RT}/, $(OBJSDIR)/, $(SRCS:.c=.o)) \
 INCLUDES		=	-I ./includes
 
 INCLUDES_LIBFT	=	-I ./libft
+
 
 L_LIBFT			=  ./libft/libft.a
 

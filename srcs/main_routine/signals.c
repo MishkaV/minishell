@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/27 22:45:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 16:56:57 by jbenjy           ###   ########.fr       */
+/*   Created: 2021/08/31 13:26:27 by jbenjy            #+#    #+#             */
+/*   Updated: 2021/09/01 12:53:48 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#include "minishell.h"
 
-# define READLINE_WORDS "\033[0;32mcool_bash \033[0m>> "
-# define ERROR_SYNTAX "\033[0;31mError syntax:\033[0m "
 
-# define SINGLE_IN 1
-# define SINGLE_OUT 2
-# define DOUBLE_IN 3
-# define DOUBLE_OUT 4
+void	signal_int(int code)
+{
+	(void)code;
 
-#endif
+	ft_putstr_fd("\n", 2);
+	ft_putstr_fd(READLINE_WORDS, 2);
+	rl_on_new_line();
+	// rl_replace_line("", 0);
+	rl_redisplay();
+	// ft_putstr_fd("\b", 2);
+	// ft_putstr_fd(READLINE_WORDS, 2);
+}
+
+void	signal_quit(int code)
+{
+	(void)code;
+	
+	// ft_putstr_fd("\b\b \b\b", 2);
+}

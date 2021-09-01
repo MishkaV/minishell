@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:12:24 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/27 22:49:30 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/31 17:35:12 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,23 @@ char	*ft_strndup(const char *s1, int n)
 	char    *begin;
     int     i;
     
-    
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	begin = str;
-    i = 0; 
-	if (!str || n < 0)
-		return (NULL);
-	while (*s1 && i != n)
-    {
-        *str++ = *s1++;
-	    i++;
-    }
-	*str = '\0';
-	return (begin);
+    if (s1)
+	{
+		
+		str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+		begin = str;
+		i = 0; 
+		if (!str || n < 0)
+			return (NULL);
+		while (*s1 && i != n)
+		{
+			*str++ = *s1++;
+			i++;
+		}
+		*str = '\0';
+		return (begin);	
+	}
+	return (0);
 }
 
 char	*ft_concat(char *s1, char *s2)
@@ -74,4 +78,11 @@ char	*ft_concat(char *s1, char *s2)
 	*str = '\0';
 	 
 	return (begin);
+}
+
+char	*skip_spaces(char *str)
+{
+	while (*str && is_space(*str))
+		str++;
+	return (str);	
 }

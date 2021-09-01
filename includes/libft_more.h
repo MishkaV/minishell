@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   libft_more.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/27 22:45:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 16:56:57 by jbenjy           ###   ########.fr       */
+/*   Created: 2021/08/31 13:36:01 by jbenjy            #+#    #+#             */
+/*   Updated: 2021/08/31 13:36:34 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#ifndef LIBFT_MORE_H
+# define LIBFT_MORE_H
 
-# define READLINE_WORDS "\033[0;32mcool_bash \033[0m>> "
-# define ERROR_SYNTAX "\033[0;31mError syntax:\033[0m "
-
-# define SINGLE_IN 1
-# define SINGLE_OUT 2
-# define DOUBLE_IN 3
-# define DOUBLE_OUT 4
+int		ft_strcmp(const char *s1, const char *s2);
+int		ft_find_chr(char *str, char c);
+char	*ft_concat(char *s1, char *s2);
+char	*ft_strndup(const char *s1, int n);
+char	*skip_spaces(char *str);
 
 #endif

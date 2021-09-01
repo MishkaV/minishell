@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   raw.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/27 22:45:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 16:56:57 by jbenjy           ###   ########.fr       */
+/*   Created: 2021/08/31 13:37:04 by jbenjy            #+#    #+#             */
+/*   Updated: 2021/08/31 13:37:25 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#ifndef RAW_H
+# define RAW_H
 
-# define READLINE_WORDS "\033[0;32mcool_bash \033[0m>> "
-# define ERROR_SYNTAX "\033[0;31mError syntax:\033[0m "
-
-# define SINGLE_IN 1
-# define SINGLE_OUT 2
-# define DOUBLE_IN 3
-# define DOUBLE_OUT 4
+t_raw	*raw_get_last(t_raw *root);
+t_raw	*raw_new_node();
+t_raw	*raw_push(t_raw *root, t_raw *new_node);
+void	raw_free_node(t_raw *node);
+void	raw_free_list(t_raw *root);
+void	raw_print_list(t_raw *root);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 21:16:07 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/23 15:17:52 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/08/31 17:16:41 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int	envp_free_node(t_envp_list *node)
 {
 	if (!node)
 		return (0);
-	free(node->key);
-	free(node->data);
+	if (node->key)
+		free(node->key);
+	if (node->data)
+		free(node->data);
 	free(node);
 	return (1);
 }
@@ -35,4 +37,54 @@ int	envp_free_list(t_envp_list *root)
 		root = next;	
 	}
 	return (1);
+}
+
+void	raw_free_node(t_raw *node)
+{
+	if (node)
+	{
+		if (node->command)
+			free(node->command);
+		if (node->flags)
+			free(node->flags);
+		if (node->argument)
+			free(node->argument);
+		if (node->redirects)
+			rct_free_list(node->redirects);
+		free(node);
+	}
+}
+
+void	raw_free_list(t_raw *root)
+{
+	t_raw *next;
+
+	while (root)
+	{
+		next = root->next;
+		raw_free_node(root);
+		root = next;		
+	}
+}
+
+void	rct_free_node(t_redirect *node)
+{
+	if (node)
+	{
+		if (node->file)
+			free(node->file);
+		free(node);
+	} 
+}
+
+void	rct_free_list(t_redirect *root)
+{
+	t_redirect *next;
+
+	while (root)
+	{
+		next = root->next;
+		rct_free_node(root);
+		root = next;		
+	}
 }
