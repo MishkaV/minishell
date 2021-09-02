@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 22:45:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 16:56:57 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/02 18:46:01 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,9 @@
 # define SINGLE_OUT 2
 # define DOUBLE_IN 3
 # define DOUBLE_OUT 4
+# define TYPE_COMMAND 5
+# define TYPE_PIPE 6
+
+
 
 #endif

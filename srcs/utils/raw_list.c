@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:41:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 16:55:50 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/02 20:19:11 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_raw	*raw_new_node()
 	curr->flags = 0;
 	curr->argument = 0;
 	curr->redirects = 0;
+	curr->type = 0;
 	curr->next = 0;
 	return (curr);
 }
@@ -53,6 +54,7 @@ void	raw_print_list(t_raw *root)
 		printf("Command: |%s|\n", root->command);
 		printf("Flag: |%s|\n", root->flags);
 		printf("Argument: |%s|\n", root->argument);
+		printf("Type: |%d|\n", root->type);
 		rct_print(root->redirects);
 		root = root->next;
 	}

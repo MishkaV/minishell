@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/01 17:02:00 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/02 20:22:23 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*check_rct(t_redirect *curr_rct, char *str)
 	return (str);
 }
 
-char	*find_pipe(char *str, t_raw *command)
+char	*find_pipe(char *str, t_raw *command, int *check_type)
 {
 	int i;
 	t_redirect *curr_rct;
@@ -84,8 +84,12 @@ char	*find_pipe(char *str, t_raw *command)
 	{
 		i = 0;
 		if (*str == '|' || *str == ';')
+		{
+			if (*str == '|')
+				*check_type = TYPE_PIPE;
 			return (str + 1);
-		
+		}
+			
 		curr_rct = rct_new_node();
 		str = check_rct(curr_rct, str);
 		str = skip_spaces(str);
@@ -99,26 +103,42 @@ char	*find_pipe(char *str, t_raw *command)
 	return (str);
 }
 
+
+
 t_raw	*spliting_raw(char *str)
 {
 	t_raw	*root;
 	t_raw	*curr;	
+	int		check_type;
 	
 	root = 0;
+	check_type = TYPE_COMMAND;
 	while (*str)
 	{
+		puts("1");
 		curr = raw_new_node();
-		
+		curr->type = check_type;
+		puts("2");
 		str = skip_spaces(str);
+		puts("3");
 		str = find_command(str, curr);
+		puts("4");
 		str = find_flags(str, curr);
+		puts("5");
 		str = find_arg(str, curr);
-		str = find_pipe(str, curr);
+		puts("6");
+		str = find_pipe(str, curr, &check_type);
+		puts("7");
 		root = raw_push(root, curr);
+		puts("8");
 	}
-	
+	puts("9");
 	raw_print_list(root);
+	
+	puts("10");
 	raw_free_list(root);
+	
+	puts("11");
 	return (root);
 }
 
@@ -128,7 +148,7 @@ void	main_loop()
 	
 	while (1)
 	{
-		signal(SIGINT, &signal_int);
+		// signal(SIGINT, &signal_int);
 		// signal(SIGQUIT, &signal_quit);
 		str = readline(READLINE_WORDS);
 		if (check_quotes(str))

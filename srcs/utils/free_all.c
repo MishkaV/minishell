@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 21:16:07 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 17:16:41 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/02 19:41:41 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ void	raw_free_node(t_raw *node)
 void	raw_free_list(t_raw *root)
 {
 	t_raw *next;
-
+	
+	if (!root)
+		return ;
 	while (root)
 	{
 		next = root->next;
@@ -80,11 +82,13 @@ void	rct_free_node(t_redirect *node)
 void	rct_free_list(t_redirect *root)
 {
 	t_redirect *next;
-
+	
+	if (!root)
+		return ;
 	while (root)
 	{
 		next = root->next;
 		rct_free_node(root);
-		root = next;		
+		root = next;
 	}
 }
