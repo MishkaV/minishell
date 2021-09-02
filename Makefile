@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/09/01 12:53:51 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/09/02 16:17:36 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ DIR_LIBFT		=	libft
 DIR_SRCS		=	srcs
 
 DIR_INCLUDE		=	./includes
+
+DIR_RLN_LIB		=	./readline
 
 DIR_UTILS		=	$(DIR_SRCS)/utils
 DIR_MAIN_RT		=	$(DIR_SRCS)/main_routine
@@ -57,8 +59,12 @@ INCLUDES		=	-I ./includes
 
 INCLUDES_LIBFT	=	-I ./libft
 
+INCLUDES_RLN	=	-I ./readline_lib
+
 
 L_LIBFT			=  ./libft/libft.a
+
+L_READLINE_LIB	=  $(DIR_RLN_LIB)/libhistory.a $(DIR_RLN_LIB)/libreadline.a 
 
 RED				=	\033[0;31m
 GREEN			=	\033[0;32m
@@ -115,19 +121,19 @@ $(OBJSDIR):
 	@mkdir $@
 
 $(OBJSDIR)/%.o: $(DIR_MAIN_RT)/%.c | $(OBJSDIR)
-	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) -c $< -o $@
+	@gcc $(CFLAGS)  $(INCLUDES) $(INCLUDES_LIBFT)  -c $< -o $@
 
 $(OBJSDIR)/%.o: $(DIR_UTILS)/%.c | $(OBJSDIR)
-	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) -c $< -o $@
+	@gcc $(CFLAGS)  $(INCLUDES) $(INCLUDES_LIBFT)  -c $< -o $@
 
 $(OBJSDIR)/%.o: $(DIR_MY_FUNCTION)/%.c | $(OBJSDIR)
-	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) -c $< -o $@
+	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT)   -c $< -o $@
 
 $(NAME): $(OBJS) $(HEADERS)
 	@echo "${MAGENTA} ${WORD_MINISHELL}${NORMAL}"
 	@echo "${YELLOW} ${WORD_LOADING}${NORMAL}"
 	@make -C ./${DIR_LIBFT}
-	@gcc $(RFLAGS) $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) ${L_LIBFT} $(OBJS) $(OBJS_UTILS) -o $@
+	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) $(INCLUDES_RLN) $(L_READLINE_LIB) -ltermcap  ${L_LIBFT} $(OBJS) $(OBJS_UTILS) -o $@
 	@echo "${GREEN} ${WORD_COMPl_MIN}${NORMAL}"
 
 clean:

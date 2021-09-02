@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/01 12:54:00 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/01 17:02:00 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	main_loop()
 	
 	while (1)
 	{
-		// signal(SIGINT, &signal_int);
+		signal(SIGINT, &signal_int);
 		// signal(SIGQUIT, &signal_quit);
 		str = readline(READLINE_WORDS);
 		if (check_quotes(str))

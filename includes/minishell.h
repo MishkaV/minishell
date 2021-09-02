@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/01 12:47:24 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/02 16:17:21 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <sys/uio.h>
 # include <signal.h>
 # include <sys/wait.h>
-# include <readline/history.h>
-# include <readline/readline.h>
+# include "../readline/history.h"
+# include "../readline/readline.h"
 # include <dirent.h>
 
 # include "defines.h"
