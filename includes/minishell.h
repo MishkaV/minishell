@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/02 19:09:14 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 12:00:56 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@
 # include <sys/uio.h>
 # include <signal.h>
 # include <sys/wait.h>
-# include "../readline/history.h"
-# include "../readline/readline.h"
+// # include "../readline/history.h"
+// # include "../readline/readline.h"
+# include "readline/history.h"
+# include "readline/readline.h"
 # include <dirent.h>
-// # include <setjmp.h>
 # include "defines.h"
 # include "structures.h"
 # include "my_function.h"
 # include "../libft/libft.h"
 # include <errno.h>
 # include <sys/stat.h>
-// sigjmp_buf      g_ctrl_c;
 # include "libft_more.h"
 # include "envp.h"
 # include "redirect.h"

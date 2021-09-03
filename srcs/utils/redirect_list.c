@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 16:24:50 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/01 12:02:54 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 12:07:37 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	rct_print(t_redirect *root)
 		while (root)
 		{
 			
-			printf("\n#%d\nType: |%d|\n", i++, root->type);
+			printf("#%d\nType: |%d|\n", i++, root->type);
 			printf("File: |%s|\n", root->file);
 			root = root->next;	
 		}

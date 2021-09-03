@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/09/02 20:16:20 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/09/03 12:02:30 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME			=	minishell
 CFLAGS			=	-Wall -Wextra -Werror -g
 
 RFLAGS			=	-lreadline
+
+RARMFLAG		=	-ltermcap
 
 DIR_LIBFT		=	libft
 
@@ -133,7 +135,7 @@ $(NAME): $(OBJS) $(HEADERS)
 	@echo "${MAGENTA} ${WORD_MINISHELL}${NORMAL}"
 	@echo "${YELLOW} ${WORD_LOADING}${NORMAL}"
 	@make -C ./${DIR_LIBFT}
-	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) $(INCLUDES_RLN) $(L_READLINE_LIB) -ltermcap  ${L_LIBFT} $(OBJS) $(OBJS_UTILS) -o $@
+	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) $(INCLUDES_RLN) $(L_READLINE_LIB) $(RFLAGS)  ${L_LIBFT} $(OBJS) $(OBJS_UTILS) -o $@
 	@echo "${GREEN} ${WORD_COMPl_MIN}${NORMAL}"
 
 clean:

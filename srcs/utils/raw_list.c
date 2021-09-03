@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:41:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/02 20:19:11 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 12:07:49 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	raw_print_list(t_raw *root)
 		printf("Argument: |%s|\n", root->argument);
 		printf("Type: |%d|\n", root->type);
 		rct_print(root->redirects);
+		printf("\n");
 		root = root->next;
 	}
 }

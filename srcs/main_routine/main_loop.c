@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/02 20:22:23 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 12:06:14 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,30 +115,18 @@ t_raw	*spliting_raw(char *str)
 	check_type = TYPE_COMMAND;
 	while (*str)
 	{
-		puts("1");
 		curr = raw_new_node();
 		curr->type = check_type;
-		puts("2");
+		check_type = TYPE_COMMAND;
 		str = skip_spaces(str);
-		puts("3");
 		str = find_command(str, curr);
-		puts("4");
 		str = find_flags(str, curr);
-		puts("5");
 		str = find_arg(str, curr);
-		puts("6");
 		str = find_pipe(str, curr, &check_type);
-		puts("7");
 		root = raw_push(root, curr);
-		puts("8");
 	}
-	puts("9");
 	raw_print_list(root);
-	
-	puts("10");
 	raw_free_list(root);
-	
-	puts("11");
 	return (root);
 }
 
