@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 13:26:27 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 12:01:17 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 12:26:42 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	signal_int(int code)
 void	signal_quit(int code)
 {
 	(void)code;
-	
+
+	puts("Hello");
+	printf("\n");
 	// ft_putstr_fd("\b\b \b\b", 2);
 }

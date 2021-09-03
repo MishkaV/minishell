@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/09/03 12:02:30 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/09/03 12:49:42 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,10 @@ MY_FUNCTION		=	$(DIR_MY_FUNCTION)/my_echo.c \
 HEADERS			=	$(DIR_INCLUDE)/minishell.h \
 					$(DIR_INCLUDE)/structures.h \
 					$(DIR_INCLUDE)/defines.h \
+					$(DIR_INCLUDE)/envp.h \
+					$(DIR_INCLUDE)/libft_more.h \
+					$(DIR_INCLUDE)/raw.h \
+					$(DIR_INCLUDE)/redirect.h \
 					$(DIR_LIBFT)/libft.h 
 
 OBJSDIR			=	temporary
