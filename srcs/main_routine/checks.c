@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 13:20:59 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 13:21:52 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 12:56:03 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,31 @@ int	is_space(char c)
 {
 	return (c == '\t' || c == '\v' || c == '\r' ||
 			c == '\f' || c == '\b' || c == ' ');
+}
+
+
+int	is_special(char c)
+{
+	return (c == '|' || c == ';' || c == '<' || c == '>');
+}
+
+char	*check_rct(t_redirect *curr_rct, char *str)
+{
+	if (*str == '<')
+	{
+		if (!ft_strncmp(str, "<<", 2))
+			curr_rct->type = DOUBLE_IN;
+		else
+			curr_rct->type = SINGLE_IN;
+	}
+	else
+	{
+		if (!ft_strncmp(str, ">>", 2))
+			curr_rct->type = DOUBLE_OUT;
+		else
+			curr_rct->type = SINGLE_OUT;
+	}
+	while (*str && (*str == '<' || *str == '>'))
+		str++;
+	return (str);
 }

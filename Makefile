@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/09/03 12:49:42 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/09/03 12:57:45 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS			=	$(DIR_MAIN_RT)/minishell.c \
 					$(DIR_MAIN_RT)/checks.c	\
 					$(DIR_MAIN_RT)/signals.c \
 					$(DIR_MAIN_RT)/main_loop.c \
+					$(DIR_MAIN_RT)/parser.c \
 					$(DIR_MAIN_RT)/redirect_list.c 
 
 UTILS			=	$(DIR_UTILS)/inits.c \

@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 12:50:51 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 12:57:26 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,16 @@
 void	signal_int(int code);
 void	signal_quit(int code);
 
-int	check_quotes(char *str);
-int	is_space(char c);
+int	    check_quotes(char *str);
+int	    is_space(char c);
+int	    is_special(char c);
+char	*check_rct(t_redirect *curr_rct, char *str);
+
+
+char	*find_command(char *str, t_raw *commands);
+char	*find_flags(char *str, t_raw *command);
+char	*find_arg(char *str, t_raw *commands);
+char	*find_pipe(char *str, t_raw *command, int *check_type);
 
 void	main_loop();
 int		init_envp(t_vars *vars, char **envp);
