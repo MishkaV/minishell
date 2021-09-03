@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 22:45:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 12:47:33 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 20:17:40 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@
 # define DOUBLE_OUT 4
 # define TYPE_COMMAND 5
 # define TYPE_PIPE 6
+
+# define COMMAND_ECHO 7
+# define COMMAND_CD 8
+# define COMMAND_PWD 9
+# define COMMAND_EXPORT 10
+# define COMMAND_UNSET 11
+# define COMMAND_ENV 12
+# define COMMAND_EXIT 13
 
 
 
