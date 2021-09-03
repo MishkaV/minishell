@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:32:33 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/02 19:41:14 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 19:14:06 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct          s_envp_list
 typedef struct  s_vars
 {
 	t_envp_list *envp;
+	char		**paths;
 }               t_vars;
 
 

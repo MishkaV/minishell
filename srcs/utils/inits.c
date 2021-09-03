@@ -6,11 +6,20 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:38:21 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/27 22:49:02 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 19:26:11 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	init_path(t_vars *vars)
+{
+	char *str;
+
+	str = envp_get_data(vars->envp, "PATH"); 
+	if (str)
+		vars->paths = ft_split(str, ':');
+}
 
 int init_envp(t_vars *vars, char **envp)
 {
@@ -30,5 +39,6 @@ int init_envp(t_vars *vars, char **envp)
 		i++;
 	}
 	envp[i] = 0;
+	init_path(vars);
 	return (0);
 }

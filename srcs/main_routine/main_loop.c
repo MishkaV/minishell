@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 12:56:40 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 19:25:33 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ t_raw	*spliting_raw(char *str)
 		str = find_pipe(str, curr, &check_type);
 		root = raw_push(root, curr);
 	}
-	raw_print_list(root);
-	raw_free_list(root);
+	// raw_print_list(root);
 	return (root);
 }
 
-void	main_loop()
+void	main_loop(t_vars *vars)
 {
-	char *str;
+	char	*str;
+	t_raw	*root;
 	
 	while (1)
 	{
@@ -50,7 +50,13 @@ void	main_loop()
 		{
 			if (check_quotes(str))
 				printf("%s%s\n", ERROR_SYNTAX,  "bad number of quotes");
-			spliting_raw(str);
+			else
+			{
+				root = spliting_raw(str);
+				lexer_analysis(root, vars);
+				//executor
+				raw_free_list(root);
+			}
 		}
 		else
 		{

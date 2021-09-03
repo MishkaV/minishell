@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/06 15:26:44 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 19:23:27 by jbenjy           ###   ########.fr       */
+/*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
+/*   Updated: 2021/09/03 19:28:38 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-int main(int argc, char **argv, char **envp)
+t_raw   *lexer_analysis(t_raw *root, t_vars *vars)
 {
-	(void)argc;
-	(void)argv;
-	t_vars vars;
-	
-	init_envp(&vars, envp);
-	main_loop(&vars);
-	
-	envp_free_list(vars.envp);
-	if (vars.paths)
-		free(vars.paths); 
-	return (0);
+    
+    // struct stat buff;
+    (void)root;
+    // stat("/bin", &buff);
+    // printf("%lld\n", buff.st_size);
+    
+    return (0);
 }

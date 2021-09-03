@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 12:57:26 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 19:24:04 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/uio.h>
 # include <signal.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 // # include "../readline/history.h"
 // # include "../readline/readline.h"
 # include "readline/history.h"
@@ -51,7 +52,10 @@ char	*find_flags(char *str, t_raw *command);
 char	*find_arg(char *str, t_raw *commands);
 char	*find_pipe(char *str, t_raw *command, int *check_type);
 
-void	main_loop();
+
+t_raw   *lexer_analysis(t_raw *root, t_vars *vars);
+
+void	main_loop(t_vars *vars);
 int		init_envp(t_vars *vars, char **envp);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:41:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 12:07:49 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/03 19:17:34 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_raw	*raw_new_node()
 	t_raw *curr;
 
 	curr = malloc(sizeof(t_raw));
+	if (!curr)
+		return (0);
 	curr->command = 0;
 	curr->flags = 0;
 	curr->argument = 0;
