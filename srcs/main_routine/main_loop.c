@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 19:25:33 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/06 19:48:56 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	main_loop(t_vars *vars)
 		if (str)
 		{
 			if (check_quotes(str))
-				printf("%s%s\n", ERROR_SYNTAX,  "bad number of quotes");
+				print_error(ERROR_QUOTES);
 			else
 			{
 				root = spliting_raw(str);

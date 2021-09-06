@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 19:24:04 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/06 19:48:32 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # include "envp.h"
 # include "redirect.h"
 # include "raw.h"
+# include "error.h"
 
 void	signal_int(int code);
 void	signal_quit(int code);

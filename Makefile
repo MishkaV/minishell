@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/09/03 16:48:56 by jbenjy           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 NAME			=	minishell
 
@@ -42,6 +31,7 @@ UTILS			=	$(DIR_UTILS)/inits.c \
 					$(DIR_UTILS)/free_all.c \
 					$(DIR_UTILS)/envp_list.c \
 					$(DIR_UTILS)/raw_list.c \
+					$(DIR_UTILS)/error.c \
 					$(DIR_UTILS)/libft_more.c
 
 MY_FUNCTION		=	$(DIR_MY_FUNCTION)/my_echo.c \
