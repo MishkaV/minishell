@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/08 13:34:00 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/08 15:41:31 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,37 +64,34 @@ int		check_path_command(char *command, t_vars *vars)
 	return (-1);
 }
 
-char    *lexer_check_command(t_raw *curr, t_vars *vars)
+//Вопрос: стоит ли пихнуть эту инфу в структуру
+void	lexer_check_command(t_raw *curr, t_vars *vars)
 {
-	(void)vars;
 	int	command_code;
 	char *to_lower;
-	
 
 	to_lower = ft_tolower_str(curr->command);
 	command_code = check_default_command(to_lower);
 	if (command_code == -1)
-	{	
+	{
 		command_code = check_path_command(to_lower, vars);
-		
 		if (command_code == -1)
 			print_error(ERROR_NOT_FOUND);
 	}
-
-	
 	free(to_lower);
-	return (0);
 }
 
+void	lexer_check_flags(t_raw *curr)
+{
+	if (curr->flags && ft_strcmp(curr->flags, "-n"))
+		print_error(ERROR_BAD_FLAG);
+}
 
 t_raw   *lexer_analysis(t_raw *root, t_vars *vars)
 {
-	
-	// struct stat buff;
-	// (void)root;
-	// stat("/bin", &buff);
-	// printf("%lld\n", buff.st_size);
 	lexer_check_command(root, vars);
+	lexer_check_flags(root);		
+
 	
 	return (0);
 }

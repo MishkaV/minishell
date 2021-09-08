@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 22:45:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/06 20:09:47 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/08 15:40:23 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define ERROR_QUOTES "bad number of quotes"
 # define ERROR_NOT_FOUND "command not found"
+# define ERROR_BAD_FLAG "not supported flag(s)"
 
 # define SINGLE_IN 1
 # define SINGLE_OUT 2

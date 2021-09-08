@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 12:55:05 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 12:56:45 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/08 15:44:32 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ char	*find_flags(char *str, t_raw *command)
 
 	i = 0;
 	str = skip_spaces(str);
-	if (!ft_strncmp("-n", str, 2))
+	if (!ft_strncmp("-", str, 1))
 	{
-		command->flags = ft_strndup("-n", 2);
-		i += 3;
+		while (str[i] && !is_space(str[i]) && !is_special(str[i]))
+			i++;
+		command->flags = ft_strndup(str, i);
 	}
 	return (str + i);
 }
