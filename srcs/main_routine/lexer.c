@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/08 16:19:52 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/08 16:37:08 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	check_def_command_more(char *command)
 int check_default_command(char *command)
 {	
 	if (!ft_strcmp(command, "echo"))
-		return (COMMAND_ECHO);	
+		return (COMMAND_ECHO);
 	if (!ft_strcmp(command, "cd"))
 		return (COMMAND_CD);
 	if (!ft_strcmp(command, "pwd"))
@@ -64,7 +64,6 @@ int		check_path_command(char *command, t_vars *vars)
 	return (-1);
 }
 
-//Вопрос: стоит ли пихнуть эту инфу в структуру
 void	lexer_check_command(t_raw *curr, t_vars *vars)
 {
 	int	command_code;
@@ -77,21 +76,27 @@ void	lexer_check_command(t_raw *curr, t_vars *vars)
 		command_code = check_path_command(to_lower, vars);
 		if (command_code == -1)
 			print_error(ERROR_NOT_FOUND);
-		curr->command_info.code_command = command_code;
 		curr->command_info.is_default = COMMAND_NOT_DEFAULT;
 	}
+	curr->command_info.code = command_code;
 	free(to_lower);
 }
 
 void	lexer_check_flags(t_raw *curr)
 {
-	if (curr->flags && ft_strcmp(curr->flags, "-n"))
+	if (curr->flags)
+	{
+		if (curr->command_info.is_default == COMMAND_DEFAULT &&
+			curr->command_info.code == COMMAND_ECHO &&
+			!ft_strcmp(curr->flags, "-n"))
+				return ;
 		print_error(ERROR_BAD_FLAG);
+	}
 }
 
 // void	lexer_parse_arg(t_raw *curr, t_vars *vars)
 // {
-	
+		
 // }
 
 t_raw   *lexer_analysis(t_raw *root, t_vars *vars)

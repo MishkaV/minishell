@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:32:33 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/08 16:02:48 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/08 16:23:42 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef struct	s_command_info
 {
 	int			is_default;
-	int			code_command;
+	int			code;
 }				t_command_info;
 
 
