@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/08 16:19:12 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/08 19:58:50 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	main_loop(t_vars *vars)
 	while (1)
 	{
 		// signal(SIGINT, &signal_int);
+		// signal(SIGQUIT, &signal_quit); //надо разобраться с ctrl /
 		str = readline(READLINE_WORDS);
 		if (str)
 		{

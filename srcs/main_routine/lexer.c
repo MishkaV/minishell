@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/08 16:37:08 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/08 21:24:53 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,20 @@ void	lexer_check_flags(t_raw *curr)
 	}
 }
 
-// void	lexer_parse_arg(t_raw *curr, t_vars *vars)
-// {
-		
-// }
+void	lexer_parse_arg(t_raw *curr, t_vars *vars)
+{
+	char *str;
+
+	str = curr->argument;
+	if (str)
+	{
+		while (*str)
+		{
+			str = skip_spaces(str);
+			// if (*str = "\'")
+		}	
+	}		
+}
 
 t_raw   *lexer_analysis(t_raw *root, t_vars *vars)
 {
