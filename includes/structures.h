@@ -6,12 +6,19 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:32:33 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 19:14:06 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/08 16:02:48 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
+
+typedef struct	s_command_info
+{
+	int			is_default;
+	int			code_command;
+}				t_command_info;
+
 
 typedef struct			s_redirect
 {
@@ -21,7 +28,6 @@ typedef struct			s_redirect
 	
 }						t_redirect;
 
-
 typedef	struct		s_raw
 {
 	char			*command;
@@ -29,6 +35,7 @@ typedef	struct		s_raw
 	char			*argument;
 	int				type;
 	t_redirect		*redirects;
+	t_command_info	command_info;
 	struct s_raw	*next;
 }					t_raw;
 

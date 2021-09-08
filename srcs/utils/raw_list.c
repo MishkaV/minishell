@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:41:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 19:17:34 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/08 16:04:52 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_raw	*raw_new_node()
 	curr->redirects = 0;
 	curr->type = 0;
 	curr->next = 0;
+	curr->command_info.is_default = COMMAND_DEFAULT;
+	curr->command_info.code_command = -1;
 	return (curr);
 }
 

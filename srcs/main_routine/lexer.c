@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/08 15:41:31 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/08 16:19:52 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	lexer_check_command(t_raw *curr, t_vars *vars)
 		command_code = check_path_command(to_lower, vars);
 		if (command_code == -1)
 			print_error(ERROR_NOT_FOUND);
+		curr->command_info.code_command = command_code;
+		curr->command_info.is_default = COMMAND_NOT_DEFAULT;
 	}
 	free(to_lower);
 }
@@ -87,11 +89,19 @@ void	lexer_check_flags(t_raw *curr)
 		print_error(ERROR_BAD_FLAG);
 }
 
+// void	lexer_parse_arg(t_raw *curr, t_vars *vars)
+// {
+	
+// }
+
 t_raw   *lexer_analysis(t_raw *root, t_vars *vars)
 {
-	lexer_check_command(root, vars);
-	lexer_check_flags(root);		
-
+	if (root)
+	{
+		lexer_check_command(root, vars);
+		lexer_check_flags(root);		
+		
+	}
 	
 	return (0);
 }

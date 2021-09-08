@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:12:24 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 20:33:08 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/08 16:14:12 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*ft_tolower_str(char *str)
 	to_return = 0;
 	if (str)
 	{
-		to_return = malloc(sizeof(char) * (ft_strlen(str)));
+		to_return = malloc(sizeof(char) * (ft_strlen(str) + 1));
 		if (!to_return)
 			return (0);
 		while(str[i])
