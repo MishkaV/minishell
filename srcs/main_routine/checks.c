@@ -6,12 +6,11 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 13:20:59 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 12:56:03 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/09 21:12:23 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 int	check_quotes(char *str)
 {
@@ -39,6 +38,11 @@ int	check_quotes(char *str)
 		str++;
 	}
 	return (flag_dq || flag_q);
+}
+
+int	is_dequote(char c)
+{
+	return (c == '\"' || c == '\\');
 }
 
 int	is_space(char c)

@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/09 19:27:58 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/09 21:19:22 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*lexer_get_text(char *str)
 	return (ft_strndup(str, i));
 }
 
-
+// Внутри могут быть скобки!!!
 char	*lexer_parse_text(t_raw *curr, t_vars *vars, char *str)
 {
 	char	*result;
@@ -73,12 +73,26 @@ char	*lexer_parse_quote(t_raw *curr, char *str)
 	return (str + i + 1);
 }
 
+
+static char	*lexer_dquote_ret(char *result, char *str, int i)
+{
+	char	*str1;
+	char	*str2;
+
+	str1 = result;
+	str2 = ft_strndup(str, i);
+	result = ft_concat(str1, str2);
+	if (str1)
+		free(str1);
+	if (str2)
+		free(str2);
+	return (result);
+}
+
 char	*lexer_parse_dquote(t_raw *curr, t_vars *vars, char *str)
 {
 	int		i;
 	char	*result;
-	char	*str1;
-	char	*str2;
 	char	*path;
 	
 	
@@ -88,7 +102,7 @@ char	*lexer_parse_dquote(t_raw *curr, t_vars *vars, char *str)
 		str++;
 	while (str[i] && str[i] != '\"')
 	{
-		if (str[i] == '$')
+		if (str[i] == '$' && ft_isalpha(str[i + 1]))
 		{
 			path = lexer_get_dollar(vars->envp, str + i, 1);
 			if (path)
@@ -98,20 +112,29 @@ char	*lexer_parse_dquote(t_raw *curr, t_vars *vars, char *str)
 			}
 			while (str[i] && !is_space(str[i]) && str[i] != '\"')
 				i++;
+			str += i;
+			i = 0;
 		}
-		// else if (str[i] == '\\')
-		// {
-			
-		// }
+		else if (str[i] == '\\' && is_dequote(str[i + 1]))
+		{
+			puts("IN");
+			printf("%c = %d\n", str[i+1], is_dequote(str[i+1]));
+			char *str_before;
+			if (i)
+				str_before = ft_strndup(str, i - 1);
+			else
+				str_before = ft_strdup("");
+			char *str_after = ft_strdup(str + i + 1);
+			str = ft_concat(str_before, str_after);
+			free(str_before);
+			free(str_after);
+			i--;
+		}
 		else
 			i++;
 	}
-	str1 = result;
-	str2 = ft_strndup(str, i);
-	result = ft_concat(str1, str2);
-	free(str1);
-	free(str2);
-	curr->treated_comnd = trls_push_node(curr->treated_comnd, result);
+	curr->treated_comnd = trls_push_node(curr->treated_comnd,
+							lexer_dquote_ret(result, str, i));
 	return (str + i + 1);
 }
 

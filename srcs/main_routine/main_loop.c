@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/08 19:58:50 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/09 19:47:03 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ void	main_loop(t_vars *vars)
 		str = readline(READLINE_WORDS);
 		if (str)
 		{
-			if (check_quotes(str))
-				print_error(ERROR_QUOTES);
-			else
-			{
+			// if (check_quotes(str))
+			// 	print_error(ERROR_QUOTES);
+			// else
+			// {
 				root = spliting_raw(str);
 				lexer_analysis(root, vars);
 				//executor
 				raw_free_list(root);
-			}
+			// }
 		}
 		else
 		{

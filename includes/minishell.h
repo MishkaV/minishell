@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/09 11:52:12 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/09 21:01:51 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	signal_int(int code);
 void	signal_quit(int code);
 
 int	    check_quotes(char *str);
+int     is_dequote(char c);
 int	    is_space(char c);
 int	    is_special(char c);
 char	*check_rct(t_redirect *curr_rct, char *str);
