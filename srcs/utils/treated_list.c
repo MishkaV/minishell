@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 11:05:53 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/09 12:30:20 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/09 12:44:20 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,6 @@ int  trls_get_len(t_trls *root)
         root = root->next;
     }
     return(len);
-}
-
-void    trls_free_list(t_trls *root)
-{
-    t_trls *next;
-    
-    if (root)
-    {
-        while(root)
-        {
-            next = root->next;
-            if (root->arg)
-                free(root->arg);
-            free(root);
-            root = next;
-        }    
-    }
 }
 
 void    trls_print_list(t_trls *root)
