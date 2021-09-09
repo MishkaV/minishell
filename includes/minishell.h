@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/06 19:48:32 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/09 11:52:12 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # include "redirect.h"
 # include "raw.h"
 # include "error.h"
+# include "treated_list.h"
 
 void	signal_int(int code);
 void	signal_quit(int code);
@@ -53,7 +54,10 @@ char	*find_flags(char *str, t_raw *command);
 char	*find_arg(char *str, t_raw *commands);
 char	*find_pipe(char *str, t_raw *command, int *check_type);
 
-
+int     lexer_check_default_command(char *command);
+int		lexer_check_path_command(char *command, t_vars *vars);
+void	lexer_check_command(t_raw *curr, t_vars *vars);
+void	lexer_check_flags(t_raw *curr);
 t_raw   *lexer_analysis(t_raw *root, t_vars *vars);
 
 void	main_loop(t_vars *vars);

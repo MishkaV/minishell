@@ -24,6 +24,7 @@ SRCS			=	$(DIR_MAIN_RT)/minishell.c \
 					$(DIR_MAIN_RT)/signals.c \
 					$(DIR_MAIN_RT)/main_loop.c \
 					$(DIR_MAIN_RT)/lexer.c \
+					$(DIR_MAIN_RT)/lexer_checks.c \
 					$(DIR_MAIN_RT)/parser.c \
 					$(DIR_MAIN_RT)/redirect_list.c 
 
@@ -31,6 +32,7 @@ UTILS			=	$(DIR_UTILS)/inits.c \
 					$(DIR_UTILS)/free_all.c \
 					$(DIR_UTILS)/envp_list.c \
 					$(DIR_UTILS)/raw_list.c \
+					$(DIR_UTILS)/treated_list.c \
 					$(DIR_UTILS)/error.c \
 					$(DIR_UTILS)/libft_more.c
 
@@ -42,6 +44,7 @@ HEADERS			=	$(DIR_INCLUDE)/minishell.h \
 					$(DIR_INCLUDE)/structures.h \
 					$(DIR_INCLUDE)/defines.h \
 					$(DIR_INCLUDE)/envp.h \
+					$(DIR_INCLUDE)/treated_list.h \
 					$(DIR_INCLUDE)/libft_more.h \
 					$(DIR_INCLUDE)/raw.h \
 					$(DIR_INCLUDE)/redirect.h \

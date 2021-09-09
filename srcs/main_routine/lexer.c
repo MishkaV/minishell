@@ -6,93 +6,67 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/08 21:24:53 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/09 12:43:12 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	check_def_command_more(char *command)
+/////////
+// char	*lexer_parse_quote(char *str)
+// {
+	
+// }
+
+// char	*lexer_parse_dquote(char *str)
+// {
+	
+// }
+
+char	*lexer_get_dollar(t_envp_list *envp, char *str)
 {
-	if (!ft_strcmp(command, "unset"))
-		return (COMMAND_UNSET);
-	if (!ft_strcmp(command, "env"))
-		return (COMMAND_ENV);
-	if (!ft_strcmp(command, "exit"))
-		return (COMMAND_EXIT);
-	if (!ft_strcmp(command, "./minishell"))
-		return (COMMAND_MINISHELL);
-	return (-1);
-}
-
-
-int check_default_command(char *command)
-{	
-	if (!ft_strcmp(command, "echo"))
-		return (COMMAND_ECHO);
-	if (!ft_strcmp(command, "cd"))
-		return (COMMAND_CD);
-	if (!ft_strcmp(command, "pwd"))
-		return (COMMAND_PWD);
-	if (!ft_strcmp(command, "export"))
-		return (COMMAND_EXPORT);
-	return (check_def_command_more(command));
-}
-
-int		check_path_command(char *command, t_vars *vars)
-{
-	struct stat buff;
-	char	*path;
-	char	*full_path;
+	char	*curr;
+	char	*result;
 	int		i;
 
 	i = 0;
-	while (vars->paths[i])
-	{
-		path = ft_concat("/", command);
-		full_path = ft_concat(vars->paths[i], path);
-		if (stat(full_path, &buff) != -1)
-		{
-			free(path);
-			free(full_path);
-			return (i);
-		}
-		free(path);
-		free(full_path);
+	if (!str)
+		return (0);
+	if(str[i] == '$')
+		str++;
+	while (str[i] && !is_space(str[i]))
 		i++;
-	}
-	return (-1);
+	curr = ft_strndup(str, i);
+	result = ft_strdup(envp_get_data(envp, curr));
+	free(curr);
+	return (result);
 }
 
-void	lexer_check_command(t_raw *curr, t_vars *vars)
+char	*lexer_get_text(char *str)
 {
-	int	command_code;
-	char *to_lower;
+	int i;
 
-	to_lower = ft_tolower_str(curr->command);
-	command_code = check_default_command(to_lower);
-	if (command_code == -1)
-	{
-		command_code = check_path_command(to_lower, vars);
-		if (command_code == -1)
-			print_error(ERROR_NOT_FOUND);
-		curr->command_info.is_default = COMMAND_NOT_DEFAULT;
-	}
-	curr->command_info.code = command_code;
-	free(to_lower);
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] && !is_space(str[i]))
+		i++;
+	return (ft_strndup(str, i));
 }
 
-void	lexer_check_flags(t_raw *curr)
+
+char	*lexer_parse_text(t_raw *curr, t_vars *vars, char *str)
 {
-	if (curr->flags)
-	{
-		if (curr->command_info.is_default == COMMAND_DEFAULT &&
-			curr->command_info.code == COMMAND_ECHO &&
-			!ft_strcmp(curr->flags, "-n"))
-				return ;
-		print_error(ERROR_BAD_FLAG);
-	}
+	char	*result;
+	
+	if(str[0] == '$')
+		result = lexer_get_dollar(vars->envp, str);
+	else
+		result = lexer_get_text(str);
+	curr->treated_comnd = trls_push_node(curr->treated_comnd, result);
+	return (skip_sym(str));
 }
+
 
 void	lexer_parse_arg(t_raw *curr, t_vars *vars)
 {
@@ -105,7 +79,13 @@ void	lexer_parse_arg(t_raw *curr, t_vars *vars)
 		{
 			str = skip_spaces(str);
 			// if (*str = "\'")
-		}	
+			// 	str = lexer_parse_quote(str);
+			// else if (*str = "\"")
+			// 	str = lexer_parse_dquote(str);
+			// else
+				str = lexer_parse_text(curr, vars, str);
+		}
+		trls_print_list(curr->treated_comnd);
 	}		
 }
 
@@ -115,7 +95,7 @@ t_raw   *lexer_analysis(t_raw *root, t_vars *vars)
 	{
 		lexer_check_command(root, vars);
 		lexer_check_flags(root);		
-		
+		lexer_parse_arg(root, vars);
 	}
 	
 	return (0);
