@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/09 21:01:51 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/10 14:12:31 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
-// # include "../readline/history.h"
-// # include "../readline/readline.h"
-# include "readline/history.h"
-# include "readline/readline.h"
+# include "../readline/history.h"
+# include "../readline/readline.h"
+// # include "readline/history.h"
+// # include "readline/readline.h"
 # include <dirent.h>
 # include "defines.h"
 # include "structures.h"
@@ -57,8 +57,8 @@ char	*find_pipe(char *str, t_raw *command, int *check_type);
 
 int     lexer_check_default_command(char *command);
 int		lexer_check_path_command(char *command, t_vars *vars);
-void	lexer_check_command(t_raw *curr, t_vars *vars);
-void	lexer_check_flags(t_raw *curr);
+int		lexer_check_command(t_raw *curr, t_vars *vars);
+int     lexer_check_flags(t_raw *curr);
 t_raw   *lexer_analysis(t_raw *root, t_vars *vars);
 
 void	main_loop(t_vars *vars);
