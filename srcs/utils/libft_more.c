@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 14:12:24 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/09 18:59:21 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/10 10:47:50 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	*skip_spaces(char *str)
 
 char	*skip_sym(char *str)
 {
-	while (*str && !is_space(*str))
+	while (*str && !is_space(*str) && *str != '\'' && *str != '\"')
 		str++;
 	return (str);	
 }

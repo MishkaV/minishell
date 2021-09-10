@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 13:20:59 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/09 21:12:23 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/10 10:57:40 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	check_quotes(char *str)
 	flag_dq = 0;
 	while (*str)
 	{
-		if (*str == '\'')
+		if (*str == '\\' && *(str + 1) == '\"')
+			str++;
+		else if (*str == '\'')
 		{
 			if (!flag_q)
 				flag_q = 1;
@@ -30,14 +32,15 @@ int	check_quotes(char *str)
 		}
 		else if (*str == '\"')
 		{
-			if (!flag_dq)
-				flag_dq = 1;
-			else
-				flag_dq = 0;	
+			// if (!flag_dq)
+			// 	flag_dq = 1;
+			// else
+			// 	flag_dq = 0;
+			flag_dq++;
 		}
 		str++;
 	}
-	return (flag_dq || flag_q);
+	return (flag_dq % 2 || flag_q);
 }
 
 int	is_dequote(char c)
