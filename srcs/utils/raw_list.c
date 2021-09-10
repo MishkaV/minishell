@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:41:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/09 11:31:07 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/10 11:55:07 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,13 @@ void	raw_print_list(t_raw *root)
 		printf("Flag: |%s|\n", root->flags);
 		printf("Argument: |%s|\n", root->argument);
 		printf("Type: |%d|\n", root->type);
+		printf("Redirects:\n");
 		rct_print(root->redirects);
+		printf("Command info:\n");
+		printf("Default: %d\n", root->command_info.is_default);
+		printf("Code: %d\n", root->command_info.code);
+		printf("After treading:\n");
+		trls_print_list(root->treated_comnd);
 		printf("\n");
 		root = root->next;
 	}
