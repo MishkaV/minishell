@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/10 10:48:52 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/10 11:02:27 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ t_raw   *lexer_analysis(t_raw *root, t_vars *vars)
 {
 	if (root)
 	{
+		// Если нет такой команды - не надо пускать
 		lexer_check_command(root, vars);
 		lexer_check_flags(root);		
 		lexer_parse_arg(root, vars);
