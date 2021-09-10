@@ -6,77 +6,90 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:31:13 by jbenjy            #+#    #+#             */
-/*   Updated: 2020/11/11 16:21:56 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/10 18:50:43 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		count_subs(char const *s, char c)
+static	int	number_of_words1(char const *s, int c)
 {
-	int		count;
-	int		i;
+	unsigned int	i;
+	unsigned int	j;
 
-	count = 0;
+	if (!s[0])
+		return (0);
 	i = 0;
+	j = 0;
+	while (s[i] && s[i] == c)
+		i++;
 	while (s[i])
 	{
-		if ((s[i + 1] == c || s[i + 1] == '\0') && s[i] != c)
-			count++;
-		i++;
-	}
-	return (count);
-}
-
-static void		free_arr(char **arr, int count)
-{
-	int i;
-
-	i = 0;
-	while (i < count)
-		free(arr[i++]);
-	free(arr);
-}
-
-static char		**push(char **arr, int count, char *s, char c)
-{
-	int		i;
-	int		j;
-	char	*start;
-
-	i = 0;
-	while (i < count)
-	{
-		while (*s == c)
-			s++;
-		start = s;
-		while (*s != c && *s)
-			s++;
-		if (!(arr[i] = malloc(sizeof(char) * (s - start + 2))))
+		if (s[i] == c)
 		{
-			free_arr(arr, i);
-			return (0);
+			j++;
+			while (s[i] && s[i] == c)
+				i++;
+			continue ;
 		}
-		j = 0;
-		while (start != s)
-			arr[i][j++] = *start++;
-		arr[i][j] = '\0';
 		i++;
 	}
-	arr[i] = 0;
-	return (arr);
+	if (s[i - 1] != c)
+		j++;
+	return (j);
 }
 
-char			**ft_split(char const *s, char c)
+static	int	len_of_word(char const *s, int c)
 {
-	char	**arr;
-	int		count;
+	int	i;
+
+	i = 0;
+	while (*s != c && *s)
+	{
+		i++;
+		s++;
+	}
+	return (i);
+}
+
+static	char	**malloc_free(char **dst)
+{
+	int	i;
+
+	i = 0;
+	while (dst[i])
+	{
+		free(dst[i]);
+		i++;
+	}
+	free(dst);
+	return (NULL);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**dst;
+	t_split	index;
 
 	if (!s)
-		return (0);
-	count = count_subs(s, c);
-	if (!(arr = malloc(sizeof(char *) * (count + 1))))
-		return (0);
-	arr = push(arr, count, (char *)s, c);
-	return (arr);
+		return (NULL);
+	index.i = number_of_words1(s, c);
+	index.k = 0;
+	dst = (char **)malloc(sizeof(char *) * (index.i + 1));
+	if (!dst)
+		return (NULL);
+	while (index.k < index.i)
+	{
+		index.j = 0;
+		while (*s == c)
+			s++;
+		dst[index.k] = (char *)malloc(sizeof(char) * (len_of_word(s, c) + 1));
+		if (!dst[index.k])
+			return (malloc_free(dst));
+		while (*s != c && *s)
+			dst[index.k][index.j++] = *s++;
+		dst[index.k++][index.j] = '\0';
+	}
+	dst[index.k] = NULL;
+	return (dst);
 }

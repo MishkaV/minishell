@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:38:21 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 19:26:11 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/10 19:05:41 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,14 @@ int init_envp(t_vars *vars, char **envp)
 	while (envp[i])
 	{
 		key = ft_strndup(envp[i], ft_find_chr(envp[i], '='));
-		data = ft_strdup(ft_strchr(envp[i], '=') + 1);
-		if (!key || !data)
+		if (!key)
 			return (0);
+		data = ft_strdup(ft_strchr(envp[i], '=') + 1);
+		if (!data)
+		{
+			free(key);
+			return (0);
+		}
 		vars->envp = envp_push_node(vars->envp, key, data);
 		i++;
 	}
