@@ -6,12 +6,25 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:32:33 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/08/31 16:24:23 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/09 11:29:41 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
+
+typedef struct				s_treated_list
+{
+	char					*arg;
+	struct s_treated_list	*next;
+}							t_trls;
+
+
+typedef struct	s_command_info
+{
+	int			is_default;
+	int			code;
+}				t_command_info;
 
 typedef struct			s_redirect
 {
@@ -21,16 +34,15 @@ typedef struct			s_redirect
 	
 }						t_redirect;
 
-
 typedef	struct		s_raw
 {
 	char			*command;
 	char			*flags;
 	char			*argument;
-	// char			*in;
-	// char			*out;
-	// int				type_redirect;
+	int				type;
 	t_redirect		*redirects;
+	t_trls			*treated_comnd;
+	t_command_info	command_info;
 	struct s_raw	*next;
 }					t_raw;
 
@@ -49,6 +61,7 @@ typedef struct          s_envp_list
 typedef struct  s_vars
 {
 	t_envp_list *envp;
+	char		**paths;
 }               t_vars;
 
 

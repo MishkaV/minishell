@@ -5,16 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/08/03 15:05:44 by jbenjy            #+#    #+#              #
-#    Updated: 2021/09/02 16:17:36 by jbenjy           ###   ########.fr        #
+#    Created: 2021/09/10 13:01:30 by jbenjy            #+#    #+#              #
+#    Updated: 2021/09/10 18:19:19 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME			=	minishell
 
 CFLAGS			=	-Wall -Wextra -Werror -g
 
 RFLAGS			=	-lreadline
+
+RARMFLAG		=	-ltermcap
 
 DIR_LIBFT		=	libft
 
@@ -26,34 +29,44 @@ DIR_RLN_LIB		=	./readline
 
 DIR_UTILS		=	$(DIR_SRCS)/utils
 DIR_MAIN_RT		=	$(DIR_SRCS)/main_routine
-DIR_MY_FUNCTION =	$(DIR_SRCS)/my_function
+DIR_EXECUTOR	=	$(DIR_SRCS)/executor
 
 SRCS			=	$(DIR_MAIN_RT)/minishell.c \
 					$(DIR_MAIN_RT)/checks.c	\
 					$(DIR_MAIN_RT)/signals.c \
-					$(DIR_MAIN_RT)/redirect_list.c \
-					$(DIR_MAIN_RT)/main_loop.c
+					$(DIR_MAIN_RT)/main_loop.c \
+					$(DIR_MAIN_RT)/lexer.c \
+					$(DIR_MAIN_RT)/lexer_checks.c \
+					$(DIR_MAIN_RT)/parser.c \
+					$(DIR_MAIN_RT)/redirect_list.c 
 
 UTILS			=	$(DIR_UTILS)/inits.c \
 					$(DIR_UTILS)/free_all.c \
 					$(DIR_UTILS)/envp_list.c \
 					$(DIR_UTILS)/raw_list.c \
+					$(DIR_UTILS)/treated_list.c \
+					$(DIR_UTILS)/error.c \
 					$(DIR_UTILS)/libft_more.c
 
-MY_FUNCTION		=	$(DIR_MY_FUNCTION)/my_echo.c \
-					$(DIR_MY_FUNCTION)/my_pwd.c \
-					$(DIR_MY_FUNCTION)/my_env.c
+MY_FUNCTION		=	$(DIR_EXECUTOR)/my_echo.c \
+					$(DIR_EXECUTOR)/my_pwd.c \
+					$(DIR_EXECUTOR)/my_env.c
 
 HEADERS			=	$(DIR_INCLUDE)/minishell.h \
 					$(DIR_INCLUDE)/structures.h \
 					$(DIR_INCLUDE)/defines.h \
+					$(DIR_INCLUDE)/envp.h \
+					$(DIR_INCLUDE)/treated_list.h \
+					$(DIR_INCLUDE)/libft_more.h \
+					$(DIR_INCLUDE)/raw.h \
+					$(DIR_INCLUDE)/redirect.h \
 					$(DIR_LIBFT)/libft.h 
 
 OBJSDIR			=	temporary
 
 OBJS			=	$(subst ${DIR_MAIN_RT}/, $(OBJSDIR)/, $(SRCS:.c=.o)) \
 					$(subst ${DIR_UTILS}/, $(OBJSDIR)/, $(UTILS:.c=.o)) \
-					$(subst ${DIR_MY_FUNCTION}/, $(OBJSDIR)/, $(MY_FUNCTION:.c=.o))
+					$(subst ${DIR_EXECUTOR}/, $(OBJSDIR)/, $(MY_FUNCTION:.c=.o))
 
 INCLUDES		=	-I ./includes
 
@@ -126,14 +139,14 @@ $(OBJSDIR)/%.o: $(DIR_MAIN_RT)/%.c | $(OBJSDIR)
 $(OBJSDIR)/%.o: $(DIR_UTILS)/%.c | $(OBJSDIR)
 	@gcc $(CFLAGS)  $(INCLUDES) $(INCLUDES_LIBFT)  -c $< -o $@
 
-$(OBJSDIR)/%.o: $(DIR_MY_FUNCTION)/%.c | $(OBJSDIR)
+$(OBJSDIR)/%.o: $(DIR_EXECUTOR)/%.c | $(OBJSDIR)
 	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT)   -c $< -o $@
 
 $(NAME): $(OBJS) $(HEADERS)
 	@echo "${MAGENTA} ${WORD_MINISHELL}${NORMAL}"
 	@echo "${YELLOW} ${WORD_LOADING}${NORMAL}"
 	@make -C ./${DIR_LIBFT}
-	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) $(INCLUDES_RLN) $(L_READLINE_LIB) -ltermcap  ${L_LIBFT} $(OBJS) $(OBJS_UTILS) -o $@
+	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) $(INCLUDES_RLN) $(L_READLINE_LIB) $(RARMFLAG)  ${L_LIBFT} $(OBJS) $(OBJS_UTILS) -o $@
 	@echo "${GREEN} ${WORD_COMPl_MIN}${NORMAL}"
 
 clean:

@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_function.h                                      :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/28 21:28:41 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/02 18:43:56 by jbenjy           ###   ########.fr       */
+/*   Created: 2021/09/06 19:38:14 by jbenjy            #+#    #+#             */
+/*   Updated: 2021/09/06 19:39:23 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MY_FUNCTION_H
-# define MY_FUNCTION_H
-# define PWD_BUFF 1024
+#include "minishell.h"
 
-int my_echo(char **str_mass);
-int	my_pwd(char **str_mass);
-int	my_env(t_vars vars, char **str_mass);
-
-#endif
+void    print_error(char *error)
+{
+	printf("%s%s\n", ERROR_SYNTAX,  error);
+}
