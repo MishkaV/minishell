@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/10 14:11:24 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/10 18:14:16 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*lexer_get_dollar(t_envp_list *envp, char *str, int dquote)
 	return (result);
 }
 
+// untitled\ folder
 char	*lexer_get_text(char *str)
 {
 	int i;

@@ -6,7 +6,7 @@
 #    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 13:01:30 by jbenjy            #+#    #+#              #
-#    Updated: 2021/09/10 13:01:43 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/09/10 18:19:19 by jbenjy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ DIR_RLN_LIB		=	./readline
 
 DIR_UTILS		=	$(DIR_SRCS)/utils
 DIR_MAIN_RT		=	$(DIR_SRCS)/main_routine
-DIR_MY_FUNCTION =	$(DIR_SRCS)/my_function
+DIR_EXECUTOR	=	$(DIR_SRCS)/executor
 
 SRCS			=	$(DIR_MAIN_RT)/minishell.c \
 					$(DIR_MAIN_RT)/checks.c	\
@@ -48,9 +48,9 @@ UTILS			=	$(DIR_UTILS)/inits.c \
 					$(DIR_UTILS)/error.c \
 					$(DIR_UTILS)/libft_more.c
 
-MY_FUNCTION		=	$(DIR_MY_FUNCTION)/my_echo.c \
-					$(DIR_MY_FUNCTION)/my_pwd.c \
-					$(DIR_MY_FUNCTION)/my_env.c
+MY_FUNCTION		=	$(DIR_EXECUTOR)/my_echo.c \
+					$(DIR_EXECUTOR)/my_pwd.c \
+					$(DIR_EXECUTOR)/my_env.c
 
 HEADERS			=	$(DIR_INCLUDE)/minishell.h \
 					$(DIR_INCLUDE)/structures.h \
@@ -66,7 +66,7 @@ OBJSDIR			=	temporary
 
 OBJS			=	$(subst ${DIR_MAIN_RT}/, $(OBJSDIR)/, $(SRCS:.c=.o)) \
 					$(subst ${DIR_UTILS}/, $(OBJSDIR)/, $(UTILS:.c=.o)) \
-					$(subst ${DIR_MY_FUNCTION}/, $(OBJSDIR)/, $(MY_FUNCTION:.c=.o))
+					$(subst ${DIR_EXECUTOR}/, $(OBJSDIR)/, $(MY_FUNCTION:.c=.o))
 
 INCLUDES		=	-I ./includes
 
@@ -139,7 +139,7 @@ $(OBJSDIR)/%.o: $(DIR_MAIN_RT)/%.c | $(OBJSDIR)
 $(OBJSDIR)/%.o: $(DIR_UTILS)/%.c | $(OBJSDIR)
 	@gcc $(CFLAGS)  $(INCLUDES) $(INCLUDES_LIBFT)  -c $< -o $@
 
-$(OBJSDIR)/%.o: $(DIR_MY_FUNCTION)/%.c | $(OBJSDIR)
+$(OBJSDIR)/%.o: $(DIR_EXECUTOR)/%.c | $(OBJSDIR)
 	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT)   -c $< -o $@
 
 $(NAME): $(OBJS) $(HEADERS)
