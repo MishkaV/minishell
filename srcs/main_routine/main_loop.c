@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/12 10:00:59 by lsinistr         ###   ########.fr       */
+/*   Updated: 2021/09/12 21:51:49 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	main_loop(t_vars *vars)
 			{
 				root = spliting_raw(str);
 				lexer_analysis(root, vars);
-				raw_print_list(root);
+				// raw_print_list(root);
 				//executor
 				choose_executor(vars, root);
 				raw_free_list(root);

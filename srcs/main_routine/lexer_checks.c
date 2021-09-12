@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 11:35:13 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/10 14:13:04 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/12 22:05:59 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	lexer_check_def_command_more(char *command)
 		return (COMMAND_ENV);
 	if (!ft_strcmp(command, "exit"))
 		return (COMMAND_EXIT);
-	if (!ft_strcmp(command, "./minishell"))
-		return (COMMAND_MINISHELL);
+	// if (!ft_strcmp(command, "./minishell")) // Надо поменять на недефолт в pwd
+	// 	return (COMMAND_MINISHELL);
 	return (-1);
 }
 

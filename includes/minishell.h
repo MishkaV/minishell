@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/12 10:03:38 by lsinistr         ###   ########.fr       */
+/*   Updated: 2021/09/12 21:49:45 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
-# include "../readline/history.h"
-# include "../readline/readline.h"
-// # include "readline/history.h"
-// # include "readline/readline.h"
+// # include "../readline/history.h"
+// # include "../readline/readline.h"
+# include "readline/history.h"
+# include "readline/readline.h"
 # include <dirent.h>
 # include "defines.h"
 # include "structures.h"
