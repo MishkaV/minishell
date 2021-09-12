@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+         #
+#    By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 13:01:30 by jbenjy            #+#    #+#              #
-#    Updated: 2021/09/10 18:19:19 by jbenjy           ###   ########.fr        #
+#    Updated: 2021/09/12 10:40:49 by lsinistr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRCS			=	$(DIR_MAIN_RT)/minishell.c \
 					$(DIR_MAIN_RT)/lexer.c \
 					$(DIR_MAIN_RT)/lexer_checks.c \
 					$(DIR_MAIN_RT)/parser.c \
-					$(DIR_MAIN_RT)/redirect_list.c 
+					$(DIR_MAIN_RT)/redirect_list.c \
+					$(DIR_MAIN_RT)/choose_executor.c
 
 UTILS			=	$(DIR_UTILS)/inits.c \
 					$(DIR_UTILS)/free_all.c \
@@ -50,7 +51,8 @@ UTILS			=	$(DIR_UTILS)/inits.c \
 
 MY_FUNCTION		=	$(DIR_EXECUTOR)/my_echo.c \
 					$(DIR_EXECUTOR)/my_pwd.c \
-					$(DIR_EXECUTOR)/my_env.c
+					$(DIR_EXECUTOR)/my_env.c \
+					$(DIR_EXECUTOR)/my_unset.c
 
 HEADERS			=	$(DIR_INCLUDE)/minishell.h \
 					$(DIR_INCLUDE)/structures.h \
@@ -60,7 +62,7 @@ HEADERS			=	$(DIR_INCLUDE)/minishell.h \
 					$(DIR_INCLUDE)/libft_more.h \
 					$(DIR_INCLUDE)/raw.h \
 					$(DIR_INCLUDE)/redirect.h \
-					$(DIR_LIBFT)/libft.h 
+					$(DIR_LIBFT)/libft.h
 
 OBJSDIR			=	temporary
 
@@ -77,7 +79,7 @@ INCLUDES_RLN	=	-I ./readline_lib
 
 L_LIBFT			=  ./libft/libft.a
 
-L_READLINE_LIB	=  $(DIR_RLN_LIB)/libhistory.a $(DIR_RLN_LIB)/libreadline.a 
+L_READLINE_LIB	=  $(DIR_RLN_LIB)/libhistory.a $(DIR_RLN_LIB)/libreadline.a
 
 RED				=	\033[0;31m
 GREEN			=	\033[0;32m

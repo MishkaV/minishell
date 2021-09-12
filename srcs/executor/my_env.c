@@ -1,15 +1,15 @@
 #include "minishell.h"
 
-static	int	check_pwd_args(char **str_mass)
+static	int	check_pwd_args(t_raw *root)
 {
-	return (((ft_strncmp(str_mass[1], "pwd", 4) == 0 || ft_strncmp(str_mass[1], "PWD", 4) == 0) && str_mass[2] == NULL)
-		|| ((ft_strncmp(str_mass[1], "pwd", 4) == 0 || ft_strncmp(str_mass[1], "PWD", 4) == 0)
-		&& ft_strncmp(str_mass[2], "-L", 3) == 0 && str_mass[3] == NULL)
-		|| ((ft_strncmp(str_mass[1], "pwd", 4) == 0 || ft_strncmp(str_mass[1], "PWD", 4) == 0)
-		&& ft_strncmp(str_mass[2], "-P", 3) == 0 && str_mass[3] == NULL));
+	return (((ft_strncmp(root->treated_comnd->arg, "pwd", 4) == 0 || ft_strncmp(root->treated_comnd->arg, "PWD", 4) == 0) && root->treated_comnd->next == NULL)
+		|| ((ft_strncmp(root->treated_comnd->arg, "pwd", 4) == 0 || ft_strncmp(root->treated_comnd->arg, "PWD", 4) == 0)
+		&& ft_strncmp(root->treated_comnd->next->arg, "-L", 3) == 0 && root->treated_comnd->next->next == NULL)
+		|| ((ft_strncmp(root->treated_comnd->arg, "pwd", 4) == 0 || ft_strncmp(root->treated_comnd->arg, "PWD", 4) == 0)
+		&& ft_strncmp(root->treated_comnd->next->arg, "-P", 3) == 0 && root->treated_comnd->next->next == NULL));
 }
 
-int		my_env(t_vars vars, char **str_mass)
+int		my_env(t_vars vars, t_raw *root)
 {
 	t_envp_list	*env;
 	t_envp_list *env_iter;
@@ -18,7 +18,7 @@ int		my_env(t_vars vars, char **str_mass)
 
 	env = vars.envp;
 	env_iter = env;
-	if (str_mass[1] == NULL)
+	if (root->flags == NULL && root->treated_comnd == NULL)
 	{
 		while (env_iter != NULL)
 		{
@@ -28,7 +28,7 @@ int		my_env(t_vars vars, char **str_mass)
 	}
 	else
 	{
-		if (check_pwd_args(str_mass))
+		if (check_pwd_args(root))
 		{
 			get_pwd = getcwd(NULL, PWD_BUFF);
 			printf("%s\n", get_pwd);
@@ -36,16 +36,16 @@ int		my_env(t_vars vars, char **str_mass)
 		}
 		else
 		{
-			if (stat(str_mass[1], &var_stat) == -1)
+			if (stat(root->treated_comnd->arg, &var_stat) == -1)
 			{
 				ft_putstr_fd("env: ", STDERR_FILENO);
-				ft_putstr_fd(str_mass[1], STDERR_FILENO);
+				ft_putstr_fd(root->treated_comnd->arg, STDERR_FILENO);
 				ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 			}
 			else
 			{
 				ft_putstr_fd("env: ", STDERR_FILENO);
-				ft_putstr_fd(str_mass[1], STDERR_FILENO);
+				ft_putstr_fd(root->treated_comnd->arg, STDERR_FILENO);
 				ft_putstr_fd(": Permission denied\n", STDERR_FILENO);
 			}
 			return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/10 18:07:26 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/12 10:00:59 by lsinistr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 t_raw	*spliting_raw(char *str)
 {
 	t_raw	*root;
-	t_raw	*curr;	
+	t_raw	*curr;
 	int		check_type;
-	
+
 	root = 0;
 	check_type = TYPE_COMMAND;
 
@@ -41,11 +41,11 @@ void	main_loop(t_vars *vars)
 {
 	char	*str;
 	t_raw	*root;
-	
+
 	while (1)
 	{
 		signal(SIGINT, &signal_int);
-		signal(SIGQUIT, SIG_IGN); 
+		signal(SIGQUIT, SIG_IGN);
 		str = readline(READLINE_WORDS);
 		if (str)
 		{
@@ -57,13 +57,14 @@ void	main_loop(t_vars *vars)
 				lexer_analysis(root, vars);
 				raw_print_list(root);
 				//executor
+				choose_executor(vars, root);
 				raw_free_list(root);
 			}
 		}
 		else
 		{
 			printf("\b\b%s\n", GOOD_BYE);
-			break ;	
+			break ;
 		}
 		add_history(str);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:32:33 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/09 11:29:41 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/12 10:24:47 by lsinistr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct			s_redirect
 	int					type;
 	char				*file;
 	struct s_redirect	*next;
-	
+
 }						t_redirect;
 
 typedef	struct		s_raw

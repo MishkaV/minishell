@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_function.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 21:28:41 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/02 18:43:56 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/12 10:40:29 by lsinistr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define MY_FUNCTION_H
 # define PWD_BUFF 1024
 
-int my_echo(char **str_mass);
-int	my_pwd(char **str_mass);
-int	my_env(t_vars vars, char **str_mass);
+int my_echo(t_raw *root);
+int	my_pwd(t_raw *root);
+int	my_env(t_vars vars, t_raw *root);
+int	my_unset(t_vars *vars, t_raw *root);
 
 #endif

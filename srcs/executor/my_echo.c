@@ -1,30 +1,30 @@
 #include "minishell.h"
 
-int my_echo(char **str_mass)
+int my_echo(t_raw *root)
 {
-	int i;
-	if (str_mass[1] == NULL)
-		printf("\n");
-	if (ft_strncmp(str_mass[1], "-n", 3) == 0)
+	if (root->flags == NULL && root->treated_comnd == NULL)
 	{
-		i = 2;
-		while (str_mass[i] != NULL)
+		printf("\n");
+		return (0);
+	}
+	if (root->flags != NULL && ft_strncmp(root->flags, "-n", 3) == 0)
+	{
+		while (root->treated_comnd != NULL)
 		{
-			printf("%s", str_mass[i]);
-			if (str_mass[i + 1] != NULL)
+			printf("%s", root->treated_comnd->arg);
+			if (root->treated_comnd->next != NULL)
 				printf(" ");
-			i++;
+			root->treated_comnd = root->treated_comnd->next;
 		}
 	}
 	else
 	{
-		i = 1;
-		while (str_mass[i] != NULL)
+		while (root->treated_comnd != NULL)
 		{
-			printf("%s", str_mass[i]);
-			if (str_mass[i + 1] != NULL)
+			printf("%s", root->treated_comnd->arg);
+			if (root->treated_comnd->next != NULL)
 				printf(" ");
-			i++;
+			root->treated_comnd = root->treated_comnd->next;
 		}
 		printf("\n");
 	}

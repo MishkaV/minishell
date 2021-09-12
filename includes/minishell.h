@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/10 14:12:31 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/12 10:03:38 by lsinistr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,8 @@ t_raw   *lexer_analysis(t_raw *root, t_vars *vars);
 
 void	main_loop(t_vars *vars);
 int		init_envp(t_vars *vars, char **envp);
+
+///////////////////////////////////////////////////////////////
+int		choose_executor(t_vars *vars, t_raw *root);
 
 #endif
