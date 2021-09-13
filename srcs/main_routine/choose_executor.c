@@ -36,12 +36,11 @@ void	executor_loop(t_vars *vars, t_raw *root)
 	}
 }
 
-
 int		choose_executor(t_vars *vars, t_raw *root)
 {
 	int status;
 
-	(void)vars;
+	// (void)vars; //Прикольно
 	status = 0;
 	if (ft_strncmp(root->command, "echo", 5) == 0)
 		status = my_echo(root);
