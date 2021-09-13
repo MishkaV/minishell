@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 13:09:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/13 14:52:30 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/13 16:16:23 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ int	envp_change_data(t_envp_list *root, char *key, char *data)
 		{
 			if (!ft_strcmp(root->key, key))
 			{
-				free(root->data);
-				root->data = ft_strdup(data);
+				if (root->data)
+					free(root->data);
+				root->data = data;
 				return (1);
 			}
 			root = root->next;
