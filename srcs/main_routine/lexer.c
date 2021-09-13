@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/13 10:58:45 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/13 11:31:09 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,12 @@ char	*lexer_parse_text(t_raw *curr, t_vars *vars, char *str)
 	char	*result;
 	
 	if(str[0] == '$')
-		result = lexer_get_dollar(vars->envp, str, 0);
+	{
+		if (!ft_strncmp(str, "$?", 2) && (!str[2] || is_space(str[2]) || str[2] == '\'' || str[2] == '\"' ))
+			result = lexer_get_text(str);
+		else
+			result = lexer_get_dollar(vars->envp, str, 0);	
+	}
 	else
 		result = lexer_get_text(str);
 	curr->treated_comnd = trls_push_node(curr->treated_comnd, result);
@@ -138,9 +143,8 @@ void	lexer_parse_arg(t_raw *curr, t_vars *vars)
 			else if (*str != '\0')
 				str = lexer_parse_text(curr, vars, str);
 		}
-	}		
+	}
 }
-
 
 void	lexer_analysis(t_raw *root, t_vars *vars)
 {
