@@ -1,64 +1,30 @@
 #include "minishell.h"
 
-static	size_t	env_len(char *env)
-{
-	size_t i;
-
-	i = 0;
-	while(env[i] != '=' && env[i])
-		i++;
-	return(i);
-}
-
 int		my_unset(t_vars *vars, t_raw *root)
 {
-	t_envp_list	*env;
-	t_envp_list	*env_iter;
-	t_envp_list	*prev;
-
-	env = vars->envp;
-	env_iter = env;
-	prev = env;
+	t_trls *list;
+	int		flag;
+	
+	list = root->treated_comnd;
 	if (ft_strncmp(root->command, "unset", 6) == 0 && root->flags == NULL && root->treated_comnd == NULL)
 	{
+		ft_putstr_fd(ERROR_SYNTAX, STDERR_FILENO);
 		ft_putstr_fd("unset: not enough arguments\n", STDERR_FILENO);
 		return (1);
 	}
-	while (env_iter != NULL)
+	flag = 0;
+	while (list)
 	{
-		if (ft_strncmp(root->treated_comnd->arg, env_iter->key, env_len(env_iter->key)) == 0)
+		if (ft_strchr(list->arg, '=') && !flag)
 		{
-			if (env_iter == env)
-			{
-				env = env_iter->next;
-				free(env_iter);
-				if (root->treated_comnd->next == NULL)
-					break;
-				root->treated_comnd = root->treated_comnd->next;
-				env_iter = env;
-			}
-			else if (env_iter->next == NULL)
-			{
-				prev->next = NULL;
-				free(env_iter);
-				if (root->treated_comnd->next == NULL)
-					break;
-				root->treated_comnd = root->treated_comnd->next;
-				env_iter = env;
-			}
-			else
-			{
-				prev->next = env_iter->next;
-				free(env_iter);
-				if (root->treated_comnd->next == NULL)
-					break;
-				root->treated_comnd = root->treated_comnd->next;
-				env_iter = env;
-			}
+			ft_putstr_fd(ERROR_SYNTAX, STDERR_FILENO);
+			ft_putstr_fd("unset: ", STDERR_FILENO);
+			ft_putstr_fd(list->arg, STDERR_FILENO);
+			ft_putstr_fd(": not a valid identifier\n", STDERR_FILENO);
+			flag = 1;
 		}
-		if (env_iter != env)
-			prev = prev->next;
-		env_iter = env_iter->next;
+		vars->envp = envp_pop_by_key(vars->envp, list->arg);
+		list = list->next;
 	}
 	return (0);
 }
