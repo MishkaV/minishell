@@ -40,18 +40,18 @@ int		choose_executor(t_vars *vars, t_raw *root)
 {
 	int status;
 
-	// (void)vars; //Прикольно
+	(void)vars;
 	status = 0;
-	if (ft_strncmp(root->command, "echo", 5) == 0)
+	if (ft_strcmp(root->command, "echo") == 0)
 		status = my_echo(root);
-	else if (ft_strncmp(root->command, "pwd", 4) == 0)
+	else if (ft_strcmp(root->command, "pwd") == 0)
 		status = my_pwd(root);
-	else if (ft_strncmp(root->command, "env", 4) == 0)
+	else if (ft_strcmp(root->command, "env") == 0)
 		status = my_env(*vars, root); 
-	else if (ft_strncmp(root->command, "unset", 6) == 0)
-		status = my_unset(vars, root);
-	else if (ft_strncmp(root->command, "export", 7) == 0)
-		status = my_export(vars, root); //Здесь какая-то дичь, не выводит такой же env
+	// else if (ft_strncmp(root->command, "unset", 6) == 0)
+	// 	status = my_unset(vars, root);
+	// else if (ft_strncmp(root->command, "export", 7) == 0)
+	// 	status = my_export(vars, root); //Здесь какая-то дичь, не выводит такой же env
 
 	return (status);
 }

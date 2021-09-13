@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/13 11:31:09 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/13 13:16:13 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ char	*lexer_parse_dquote(t_raw *curr, t_vars *vars, char *str)
 {
 	t_trls	*list;
 	char	*path;
-	(void)curr;
 	
 	list = 0;
 	while (*str && *str != '\"')
