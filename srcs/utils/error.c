@@ -6,13 +6,14 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 19:38:14 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/06 19:39:23 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/13 10:27:43 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    print_error(char *error)
+int	print_error(char *error)
 {
 	printf("%s%s\n", ERROR_SYNTAX,  error);
+	return (1);
 }

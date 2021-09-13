@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/12 22:03:43 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/13 10:58:45 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,24 +141,14 @@ void	lexer_parse_arg(t_raw *curr, t_vars *vars)
 	}		
 }
 
-t_raw   *lexer_analysis(t_raw *root, t_vars *vars)
+
+void	lexer_analysis(t_raw *root, t_vars *vars)
 {
-	int code;
-	
 	if (root)
-	{
-		//Если ошибка - надо пропустить пайп
 		while (root)
 		{
-			code = lexer_check_command(root, vars);
-			// if (!code)
-				// code = lexer_check_flags(root);
-			// if (!code)
-				lexer_parse_arg(root, vars);
-				
+			lexer_check_command(root, vars);
+			lexer_parse_arg(root, vars);
 			root = root->next;
 		}
-	}
-	
-	return (0);
 }

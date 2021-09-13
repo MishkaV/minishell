@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 22:45:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/08 16:04:31 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/13 10:47:54 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define ERROR_QUOTES "bad number of quotes"
 # define ERROR_NOT_FOUND "command not found"
 # define ERROR_BAD_FLAG "not supported flag(s)"
+# define ERROR_TOO_MANY_ARG "too many arguments"
 
 # define SINGLE_IN 1
 # define SINGLE_OUT 2
@@ -35,7 +36,7 @@
 # define COMMAND_UNSET 11
 # define COMMAND_ENV 12
 # define COMMAND_EXIT 13
-# define COMMAND_MINISHELL 14
+# define COMMAND_IN_PWD -2
 # define COMMAND_DEFAULT 15
 # define COMMAND_NOT_DEFAULT 16
 

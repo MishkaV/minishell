@@ -1,5 +1,42 @@
 #include "minishell.h"
 
+static int	lexer_before_exec_check(t_raw *root)
+{
+	int flag;
+
+	flag = 0;
+	if (root)
+	{
+		if (root->command_info.code == -1)
+			flag = print_error(ERROR_NOT_FOUND);
+		if (!flag && lexer_check_flags(root))
+			flag = print_error(ERROR_BAD_FLAG);
+	}
+	return (flag);
+}
+
+void	executor_loop(t_vars *vars, t_raw *root)
+{
+	if (root)
+	{
+		while (root)
+		{
+			if (!lexer_before_exec_check(root))
+			{
+				choose_executor(vars, root);
+				root = root->next;
+			}
+			else
+			{
+				root = root->next;
+				while (root && root->type == TYPE_PIPE)
+					root = root->next;
+			}
+		}
+	}
+}
+
+
 int		choose_executor(t_vars *vars, t_raw *root)
 {
 	int status;
