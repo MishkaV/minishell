@@ -46,13 +46,13 @@ int	my_export(t_vars *vars, t_raw *root)
 			sort_env = sort_env->next;
 		}
 	}
-	else
-	{
+	//else
+	//{
 		// if (root->treated_comnd->arg)
 		// {
 		// 	printf("declare -x %s=\n", root->treated_comnd->arg);
 		// }
 		// root->treated_comnd = root->treated_comnd->next;
-	}
+	//}
 	return (0);
 }
