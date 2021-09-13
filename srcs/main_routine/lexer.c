@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/10 18:14:16 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/13 13:16:13 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,12 @@ char	*lexer_parse_text(t_raw *curr, t_vars *vars, char *str)
 	char	*result;
 	
 	if(str[0] == '$')
-		result = lexer_get_dollar(vars->envp, str, 0);
+	{
+		if (!ft_strncmp(str, "$?", 2) && (!str[2] || is_space(str[2]) || str[2] == '\'' || str[2] == '\"' ))
+			result = lexer_get_text(str);
+		else
+			result = lexer_get_dollar(vars->envp, str, 0);	
+	}
 	else
 		result = lexer_get_text(str);
 	curr->treated_comnd = trls_push_node(curr->treated_comnd, result);
@@ -97,7 +102,6 @@ char	*lexer_parse_dquote(t_raw *curr, t_vars *vars, char *str)
 {
 	t_trls	*list;
 	char	*path;
-	(void)curr;
 	
 	list = 0;
 	while (*str && *str != '\"')
@@ -138,26 +142,16 @@ void	lexer_parse_arg(t_raw *curr, t_vars *vars)
 			else if (*str != '\0')
 				str = lexer_parse_text(curr, vars, str);
 		}
-	}		
+	}
 }
 
-t_raw   *lexer_analysis(t_raw *root, t_vars *vars)
+void	lexer_analysis(t_raw *root, t_vars *vars)
 {
-	int code;
-	
 	if (root)
-	{
-		// Если нет такой команды - не надо пускать
 		while (root)
 		{
-			code = lexer_check_command(root, vars);
-			if (!code)
-				code = lexer_check_flags(root);		
-			if (!code)
-				lexer_parse_arg(root, vars);
+			lexer_check_command(root, vars);
+			lexer_parse_arg(root, vars);
 			root = root->next;
 		}
-	}
-	
-	return (0);
 }

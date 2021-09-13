@@ -38,12 +38,14 @@ int		my_env(t_vars vars, t_raw *root)
 		{
 			if (stat(root->treated_comnd->arg, &var_stat) == -1)
 			{
+				ft_putstr_fd(ERROR_SYNTAX, STDERR_FILENO);
 				ft_putstr_fd("env: ", STDERR_FILENO);
 				ft_putstr_fd(root->treated_comnd->arg, STDERR_FILENO);
 				ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 			}
 			else
 			{
+				ft_putstr_fd(ERROR_SYNTAX, STDERR_FILENO);
 				ft_putstr_fd("env: ", STDERR_FILENO);
 				ft_putstr_fd(root->treated_comnd->arg, STDERR_FILENO);
 				ft_putstr_fd(": Permission denied\n", STDERR_FILENO);

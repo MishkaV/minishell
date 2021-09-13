@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/12 10:00:59 by lsinistr         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:22:10 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_raw	*spliting_raw(char *str)
 		str = find_pipe(str, curr, &check_type);
 		root = raw_push(root, curr);
 	}
-	// raw_print_list(root);
 	return (root);
 }
 
@@ -55,9 +54,8 @@ void	main_loop(t_vars *vars)
 			{
 				root = spliting_raw(str);
 				lexer_analysis(root, vars);
-				raw_print_list(root);
-				//executor
-				choose_executor(vars, root);
+				executor_loop(vars, root);
+				// raw_print_list(root);
 				raw_free_list(root);
 			}
 		}
@@ -67,5 +65,6 @@ void	main_loop(t_vars *vars)
 			break ;
 		}
 		add_history(str);
+		free(str);
 	}
 }

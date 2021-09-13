@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/12 10:03:38 by lsinistr         ###   ########.fr       */
+/*   Updated: 2021/09/13 16:52:26 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ int     lexer_check_default_command(char *command);
 int		lexer_check_path_command(char *command, t_vars *vars);
 int		lexer_check_command(t_raw *curr, t_vars *vars);
 int     lexer_check_flags(t_raw *curr);
-t_raw   *lexer_analysis(t_raw *root, t_vars *vars);
+void    lexer_analysis(t_raw *root, t_vars *vars);
 
 void	main_loop(t_vars *vars);
 int		init_envp(t_vars *vars, char **envp);
 
-///////////////////////////////////////////////////////////////
+void	executor_loop(t_vars *vars, t_raw *root);
 int		choose_executor(t_vars *vars, t_raw *root);
 
 #endif

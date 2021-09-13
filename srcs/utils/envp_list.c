@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 13:09:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/08 16:41:30 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/13 16:16:23 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ int	envp_change_data(t_envp_list *root, char *key, char *data)
 		{
 			if (!ft_strcmp(root->key, key))
 			{
-				free(root->data);
-				root->data = ft_strdup(data);
+				if (root->data)
+					free(root->data);
+				root->data = data;
 				return (1);
 			}
 			root = root->next;
@@ -137,4 +138,19 @@ void	envp_print_list(t_envp_list	*root)
 		printf("Key: %s, data: %s\n", root->key, root->data);
 		root = root->next;
 	}
+}
+
+t_envp_list *envp_copy_list(t_envp_list *root)
+{
+	t_envp_list *new_list;
+
+	new_list = 0;
+	if (!root)
+		return (0);
+	while (root)
+	{
+		new_list = envp_push_node(new_list, ft_strdup(root->key), ft_strdup(root->data));
+		root = root->next;	
+	}
+	return (new_list);
 }

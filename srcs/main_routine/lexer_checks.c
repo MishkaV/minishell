@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 11:35:13 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/10 14:13:04 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/13 10:27:23 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static int	lexer_check_def_command_more(char *command)
 		return (COMMAND_ENV);
 	if (!ft_strcmp(command, "exit"))
 		return (COMMAND_EXIT);
-	if (!ft_strcmp(command, "./minishell"))
-		return (COMMAND_MINISHELL);
 	return (-1);
 }
 
@@ -37,6 +35,17 @@ int lexer_check_default_command(char *command)
 	if (!ft_strcmp(command, "export"))
 		return (COMMAND_EXPORT);
 	return (lexer_check_def_command_more(command));
+}
+
+static int	lexer_check_in_pwd(char *command)
+{
+	struct stat buff;
+	int		to_return;
+
+	to_return = -1;
+	if (stat(command, &buff) != -1 && !ft_strncmp(command, "./", 2))
+		to_return = COMMAND_IN_PWD;
+	return (to_return);
 }
 
 int		lexer_check_path_command(char *command, t_vars *vars)
@@ -61,7 +70,7 @@ int		lexer_check_path_command(char *command, t_vars *vars)
 		free(full_path);
 		i++;
 	}
-	return (-1);
+	return (lexer_check_in_pwd(command));
 }
 
 int	lexer_check_command(t_raw *curr, t_vars *vars)
@@ -78,10 +87,7 @@ int	lexer_check_command(t_raw *curr, t_vars *vars)
 	{
 		command_code = lexer_check_path_command(to_lower, vars);
 		if (command_code == -1)
-		{
 			flag = 1;
-			print_error(ERROR_NOT_FOUND);
-		}
 		curr->command_info.is_default = COMMAND_NOT_DEFAULT;
 	}
 	curr->command_info.code = command_code;
@@ -97,7 +103,6 @@ int	lexer_check_flags(t_raw *curr)
 			curr->command_info.code == COMMAND_ECHO &&
 			!ft_strcmp(curr->flags, "-n"))
 				return (0);
-		print_error(ERROR_BAD_FLAG);
 		return (1);
 	}
 	return (0);

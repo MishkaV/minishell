@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_function.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/28 21:28:41 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/13 17:27:07 by lsinistr         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:21:27 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int	my_env(t_vars vars, t_raw *root);
 int	my_unset(t_vars *vars, t_raw *root);
 int	my_export(t_vars *vars, t_raw *root);
 int	my_exit(t_vars *vars, t_raw *root);
+int my_cd(t_vars *vars, t_raw *root);
 
 #endif

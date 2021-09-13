@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/09/10 13:01:30 by jbenjy            #+#    #+#              #
-#    Updated: 2021/09/13 17:23:08 by lsinistr         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 
 NAME			=	minishell
@@ -52,6 +41,7 @@ UTILS			=	$(DIR_UTILS)/inits.c \
 MY_FUNCTION		=	$(DIR_EXECUTOR)/my_echo.c \
 					$(DIR_EXECUTOR)/my_pwd.c \
 					$(DIR_EXECUTOR)/my_env.c \
+					$(DIR_EXECUTOR)/my_cd.c \
 					$(DIR_EXECUTOR)/my_unset.c \
 					$(DIR_EXECUTOR)/my_export.c \
 					$(DIR_EXECUTOR)/my_exit.c
