@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:26:44 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/10 19:08:03 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/13 16:51:26 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(int argc, char **argv, char **envp)
 		i = 0;
 		while (vars.paths[i])
 			free(vars.paths[i++]);
-		free(vars.paths);		
+		free(vars.paths);
 	} 
 	return (0);
 }

@@ -82,9 +82,11 @@ int	my_export(t_vars *vars, t_raw *root)
 {
 	t_envp_list *sort_env;
 	t_envp_list *begin;
+	int			status;
 
+	status = 0;
 	if (!vars || !root)
-		return (0);
+		return (1);
 	if (root->flags == NULL && root->treated_comnd == NULL)
 	{
 		sort_env = envp_copy_list(vars->envp);
@@ -98,6 +100,6 @@ int	my_export(t_vars *vars, t_raw *root)
 		envp_free_list(begin);
 	}
 	else
-		my_export_more(vars, root);
-	return (0);
+		status = my_export_more(vars, root);
+	return (status);
 }

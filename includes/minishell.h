@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/13 12:41:12 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/13 16:52:26 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void    lexer_analysis(t_raw *root, t_vars *vars);
 void	main_loop(t_vars *vars);
 int		init_envp(t_vars *vars, char **envp);
 
-///////////////////////////////////////////////////////////////
 void	executor_loop(t_vars *vars, t_raw *root);
 int		choose_executor(t_vars *vars, t_raw *root);
 
