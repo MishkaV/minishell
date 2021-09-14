@@ -19,6 +19,7 @@ int my_echo(t_raw *root)
 				printf(" ");
 			list = list->next;
 		}
+		printf("%%\n");
 	}
 	else
 	{

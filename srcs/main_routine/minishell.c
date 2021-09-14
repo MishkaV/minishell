@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 15:26:44 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/10 19:08:03 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/14 14:23:37 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int main(int argc, char **argv, char **envp)
 	t_vars	vars;
 	int		i;
 
+	vars.status = 0;
 	init_envp(&vars, envp);
 	main_loop(&vars);
 	

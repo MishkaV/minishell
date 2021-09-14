@@ -6,53 +6,99 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 10:39:11 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 11:33:49 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/14 14:43:01 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static char	**make_argv(t_raw *root)
+{
+	int		len;
+	char	**argv;
+	int		i;
+	t_trls	*list;
+	
+	
+	len = trls_get_len(root->treated_comnd);
+	argv = malloc(sizeof(char *) * (len + 2));
+	if (!argv)
+		return (0);
+		
+	argv[0] = ft_strdup(root->command);
+	list = root->treated_comnd;
+	i = 1;
+	
+	while (list)
+	{
+		argv[i++] = ft_strdup(list->arg);
+		list = list->next;
+	}
+	argv[i] = 0;
+	return (argv);
+}
+
+static void	free_list(char **list)
+{
+	int i;
+	
+	i = 0;
+	if (list)
+	{
+		while (list[i])
+		{
+			if (list[i])
+				free(list[i]);
+			i++;
+		}
+		free(list);	
+	}
+}
+
+static char *make_path(t_vars *vars, t_raw *root)
+{
+	char	*path;
+	char	*buff;
+
+	if (root->command_info.code == COMMAND_PWD)
+	{
+		if (envp_get_data(vars->envp, "PWD"))
+			buff = ft_concat(envp_get_data(vars->envp, "PWD"), "/");
+		else if (envp_get_data(vars->envp, "HOME"))
+			buff = ft_concat(envp_get_data(vars->envp, "HOME"), "/");
+		else
+			return (0);
+		path = ft_concat(buff, root->command + 2);	
+	}
+	else
+	{
+		buff = ft_concat(vars->paths[root->command_info.code], "/");
+		path = ft_concat(buff, root->command);
+	}
+	free(buff);
+	return (path);
+}
+
 int my_nondefault(t_vars *vars, t_raw *root)
 {
 	char	**envp;
-	int		i;
+	char	**argv;
 	int		pid;
-	// char	*path;
-	// char	*buff;
+	int		status;
+	char	*path;
 	
-	envp = envp_to_char(vars->envp); // Почистить?
+	envp = envp_to_char(vars->envp);
+	argv = make_argv(root);
+	path = make_path(vars, root);
 	pid = fork();
+	status = 0;
 	if (pid == -1)
 		return (1);
 	if (!pid)
-	{
-		// if (root->command_info.code == COMMAND_PWD)
-		// 	path = ft_strdup(root->command);
-		// else
-		// {
-		// 	buff = ft_concat(vars->paths[root->command_info.code], "/");
-		// 	path = ft_concat(buff, root->command);
-		// 	free(buff);
-		// }
-		// puts(path);
-		// puts("CHILD");
-		// execve(path, 0, 0);
-		// free(path);
-		(void)root;
-		char **check;
-		check = malloc(sizeof(char *) * 1);
-		check[0] = ft_strdup("\0");
-		execve("/bin/ls", check, 0);
-		exit(0);
-	}
-	puts("PARENT");
-	if (envp)
-	{
-		i = -1;
-		while (envp[++i])
-			if (envp[i])
-				free(envp[i]);
-		free(envp);	
-	}
+		execve(path, argv, envp);
+	waitpid(pid , &status, 0);
+	free(path);
+	free_list(envp);
+	free_list(argv);
 	return (0);
 }

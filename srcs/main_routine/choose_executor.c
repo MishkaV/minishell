@@ -23,7 +23,7 @@ void	executor_loop(t_vars *vars, t_raw *root)
 		{
 			if (!lexer_before_exec_check(root))
 			{
-				choose_executor(vars, root);
+				vars->status = choose_executor(vars, root);
 				root = root->next;
 			}
 			else
