@@ -37,11 +37,13 @@ void	executor_loop(t_vars *vars, t_raw *root)
 	}
 }
 
+// Доделать с кавычками парсер ls > "file kek" 
 int		choose_executor(t_vars *vars, t_raw *root)
 {
 	int status;
 
 	status = 0;
+
 	if (ft_strcmp(root->command, "echo") == 0)
 		status = my_echo(root);
 	else if (ft_strcmp(root->command, "pwd") == 0)
