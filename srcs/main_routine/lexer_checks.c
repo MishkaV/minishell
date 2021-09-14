@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 11:35:13 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/13 10:27:23 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/14 22:07:23 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int	lexer_check_command(t_raw *curr, t_vars *vars)
 	char *to_lower;
 	int	flag;
 	
-
 	flag = 0;
 	to_lower = ft_tolower_str(curr->command);
 	command_code = lexer_check_default_command(to_lower);
@@ -90,7 +89,10 @@ int	lexer_check_command(t_raw *curr, t_vars *vars)
 			flag = 1;
 		curr->command_info.is_default = COMMAND_NOT_DEFAULT;
 	}
-	curr->command_info.code = command_code;
+	if (!ft_strlen(curr->command))
+		curr->command_info.code = COMMAND_EMPTY;
+	else
+		curr->command_info.code = command_code;
 	free(to_lower);
 	return(flag);
 }

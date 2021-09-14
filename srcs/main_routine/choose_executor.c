@@ -37,7 +37,7 @@ void	executor_loop(t_vars *vars, t_raw *root)
 	}
 }
 
-// Доделать с кавычками парсер ls > "file kek" 
+// Доделать с кавычками парсер ls > "file kek"
 int		choose_executor(t_vars *vars, t_raw *root)
 {
 	int status;
@@ -58,7 +58,7 @@ int		choose_executor(t_vars *vars, t_raw *root)
 		status = my_cd(vars, root);
 	else if (ft_strcmp(root->command, "exit") == 0)
 		status = my_exit(vars, root);
-	else
+	else if (root->command_info.code != COMMAND_EMPTY)
 		status = my_nondefault(vars, root);
 
 	return (status);

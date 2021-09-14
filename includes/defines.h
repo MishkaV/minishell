@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 22:45:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 13:32:08 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/14 22:05:23 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define COMMAND_ENV 12
 # define COMMAND_EXIT 13
 # define COMMAND_IN_PWD -2
+# define COMMAND_EMPTY -3
 # define COMMAND_DEFAULT 15
 # define COMMAND_NOT_DEFAULT 16
 

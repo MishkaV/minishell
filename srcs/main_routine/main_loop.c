@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 16:39:40 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/14 21:56:59 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	main_loop(t_vars *vars)
 	{
 		signal(SIGINT, &signal_int);
 		signal(SIGQUIT, SIG_IGN);
-		str = readline(READLINE_WORDS);
+		str = readline(READLINE_WORDS); //Разобраться с переводом каретки
 		if (str)
 		{
 			if (check_quotes(str))
