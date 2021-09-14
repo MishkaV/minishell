@@ -41,7 +41,6 @@ int		choose_executor(t_vars *vars, t_raw *root)
 {
 	int status;
 
-	(void)vars;
 	status = 0;
 	if (ft_strcmp(root->command, "echo") == 0)
 		status = my_echo(root);
