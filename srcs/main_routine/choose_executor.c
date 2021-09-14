@@ -28,6 +28,7 @@ void	executor_loop(t_vars *vars, t_raw *root)
 			}
 			else
 			{
+				vars->status = 1;
 				root = root->next;
 				while (root && root->type == TYPE_PIPE)
 					root = root->next;

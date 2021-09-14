@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 10:39:11 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 14:43:01 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/14 14:45:08 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,5 @@ int my_nondefault(t_vars *vars, t_raw *root)
 	free(path);
 	free_list(envp);
 	free_list(argv);
-	return (0);
+	return (status);
 }

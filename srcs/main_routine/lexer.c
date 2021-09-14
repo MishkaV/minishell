@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 11:03:21 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/14 14:46:23 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*lexer_parse_text(t_raw *curr, t_vars *vars, char *str)
 	if(str[0] == '$')
 	{
 		if (!ft_strncmp(str, "$?", 2) && (!str[2] || is_space(str[2]) || str[2] == '\'' || str[2] == '\"' ))
-			result = lexer_get_text(str);
+			result = ft_itoa(vars->status);
 		else
 			result = lexer_get_dollar(vars->envp, str, 0);	
 	}
