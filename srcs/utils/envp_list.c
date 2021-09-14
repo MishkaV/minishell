@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 13:09:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/13 19:37:27 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/14 10:53:35 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,4 +152,48 @@ t_envp_list *envp_copy_list(t_envp_list *root)
 		root = root->next;	
 	}
 	return (new_list);
+}
+
+int		envp_get_len(t_envp_list *root)
+{
+	int count;
+
+	count = 0;
+	if (!root)
+		return (0);
+	while (root)
+	{
+		count++;
+		root = root->next;
+	}
+	return(count);
+}
+
+char	**envp_to_char(t_envp_list *root)
+{
+	char	**list;
+	int		len;
+	int		i;
+	char	*buff;
+	
+	if (!root)
+		return (0);
+	len = envp_get_len(root);
+	if (len)
+	{
+		list = malloc(sizeof(char *) * (len + 1));
+		if (!list)
+			return (0);
+		i = 0;
+		while (root)
+		{
+			buff = ft_concat(root->key, "=");
+			list[i++] = ft_concat(buff, root->data);
+			free(buff);
+			root = root->next;
+		}
+		list[i] = 0;
+		return (list);
+	}
+	return (0);
 }

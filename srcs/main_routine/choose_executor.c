@@ -56,6 +56,8 @@ int		choose_executor(t_vars *vars, t_raw *root)
 		status = my_cd(vars, root);
 	else if (ft_strcmp(root->command, "exit") == 0)
 		status = my_exit(vars, root);
+	else
+		status = my_nondefault(vars, root);
 
 	return (status);
 }

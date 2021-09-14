@@ -42,6 +42,7 @@ MY_FUNCTION		=	$(DIR_EXECUTOR)/my_echo.c \
 					$(DIR_EXECUTOR)/my_env.c \
 					$(DIR_EXECUTOR)/my_cd.c \
 					$(DIR_EXECUTOR)/my_exit.c \
+					$(DIR_EXECUTOR)/my_nondefault.c \
 					$(DIR_EXECUTOR)/my_unset.c \
 					$(DIR_EXECUTOR)/my_export.c
 
@@ -139,7 +140,7 @@ $(NAME): $(OBJS) $(HEADERS)
 	@echo "${MAGENTA} ${WORD_MINISHELL}${NORMAL}"
 	@echo "${YELLOW} ${WORD_LOADING}${NORMAL}"
 	@make -C ./${DIR_LIBFT}
-	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) $(INCLUDES_RLN) $(L_READLINE_LIB) $(RARMFLAG)  ${L_LIBFT} $(OBJS) $(OBJS_UTILS) -o $@
+	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) $(INCLUDES_RLN) $(L_READLINE_LIB) $(RFLAGS)  ${L_LIBFT} $(OBJS) $(OBJS_UTILS) -o $@
 	@echo "${GREEN} ${WORD_COMPl_MIN}${NORMAL}"
 
 clean:
