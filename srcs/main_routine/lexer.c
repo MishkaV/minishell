@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/15 18:18:41 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/15 23:42:22 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,42 @@ char	*lexer_get_dollar(t_envp_list *envp, char *str, int dquote)
 	return (result);
 }
 
+char	*lexer_get_with_space(char *str, int i)
+{
+	char *before;
+	char *after;
+
+	before = ft_strndup(str, i);
+	after = ft_strdup(str + i + 1);
+	str = ft_concat(before, after); 
+	free(before);
+	free(after);
+	return (str);
+}
+
 char	*lexer_get_text(char *str)
 {
 	int i;
+	int flag;
+	char	*curr;
 
 	i = 0;
+	flag = 0;
 	if (!str)
 		return (0);
 	while (str[i] && !is_space(str[i]) && str[i] != '\'' && str[i] != '\"')
+	{
+		if (str[i] == '\\' && str[i + 1] == ' ')
+		{
+			str = lexer_get_with_space(str, i);
+			i++;
+		}
 		i++;
-	return (ft_strndup(str, i));
+	}
+	curr = ft_strndup(str, i);
+	if (flag)
+		free(str);
+	return (curr);
 }
 
 char	*lexer_parse_text(t_raw *curr, t_vars *vars, char *str)
