@@ -6,12 +6,18 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:32:33 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 14:22:03 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/15 13:43:43 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
+
+typedef struct	s_pipes
+{
+	int			**fds;
+	int			*pids;
+}				t_pipes;
 
 typedef struct				s_treated_list
 {

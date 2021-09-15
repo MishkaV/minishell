@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 21:56:59 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/15 13:42:12 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	main_loop(t_vars *vars)
 				root = spliting_raw(str);
 				lexer_analysis(root, vars);
 				executor_loop(vars, root);
-				raw_print_list(root);
+				// raw_print_list(root);
 				raw_free_list(root);
 			}
 		}

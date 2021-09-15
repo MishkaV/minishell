@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 21:46:48 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/15 13:44:46 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
-// # include "../readline/history.h"
-// # include "../readline/readline.h"
-# include "readline/history.h"
-# include "readline/readline.h"
+# include "../readline/history.h"
+# include "../readline/readline.h"
+// # include "readline/history.h"
+// # include "readline/readline.h"
 # include <dirent.h>
 # include "defines.h"
 # include "structures.h"
@@ -65,6 +65,8 @@ void	main_loop(t_vars *vars);
 int		init_envp(t_vars *vars, char **envp);
 
 ///////////////////////////////////////////////////////////////
+
+int pipes_loop(t_vars *vars, t_raw *root);
 
 void	executor_loop(t_vars *vars, t_raw *root);
 int		choose_executor(t_vars *vars, t_raw *root);

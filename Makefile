@@ -27,6 +27,7 @@ SRCS			=	$(DIR_MAIN_RT)/minishell.c \
 					$(DIR_MAIN_RT)/exec_redirect.c \
 					$(DIR_MAIN_RT)/lexer_checks.c \
 					$(DIR_MAIN_RT)/parser.c \
+					$(DIR_MAIN_RT)/pipes.c \
 					$(DIR_MAIN_RT)/redirect_list.c \
 					$(DIR_MAIN_RT)/choose_executor.c
 
@@ -141,7 +142,7 @@ $(NAME): $(OBJS) $(HEADERS)
 	@echo "${MAGENTA} ${WORD_MINISHELL}${NORMAL}"
 	@echo "${YELLOW} ${WORD_LOADING}${NORMAL}"
 	@make -C ./${DIR_LIBFT}
-	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) $(INCLUDES_RLN) $(L_READLINE_LIB) $(RFLAGS)  ${L_LIBFT} $(OBJS) $(OBJS_UTILS) -o $@
+	@gcc $(CFLAGS) $(INCLUDES) $(INCLUDES_LIBFT) $(INCLUDES_RLN) $(L_READLINE_LIB) $(RARMFLAG)  ${L_LIBFT} $(OBJS) $(OBJS_UTILS) -o $@
 	@echo "${GREEN} ${WORD_COMPl_MIN}${NORMAL}"
 
 clean:
