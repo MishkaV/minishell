@@ -17,16 +17,29 @@ static int	lexer_before_exec_check(t_raw *root)
 
 void	executor_loop(t_vars *vars, t_raw *root)
 {
+	int old_in;
+	int old_out;
+
+
+	old_in = STDIN_FILENO;
+	old_out = STDOUT_FILENO;
 	if (root)
 	{
 		while (root)
 		{
 			if (!lexer_before_exec_check(root))
 			{
+				redirect_exec(root, &old_out, &old_in);
 				pipes_loop(vars, root);
 				root = root->next;
 				while (root && root->type == TYPE_PIPE)
 					root = root->next;
+				// close(STDIN_FILENO);
+				// close(STDOUT_FILENO);
+				// dup2(STDIN_FILENO, old_in);
+				// dup2(STDOUT_FILENO, old_out);
+				// close(STDIN_FILENO);
+				// close(STDOUT_FILENO);
 			}
 			else
 			{
@@ -39,7 +52,6 @@ void	executor_loop(t_vars *vars, t_raw *root)
 	}
 }
 
-// Доделать с кавычками парсер ls > "file kek"
 int		choose_executor(t_vars *vars, t_raw *root)
 {
 	int status;

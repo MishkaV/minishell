@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/15 18:16:57 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/15 18:18:41 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,27 +159,27 @@ void	lexer_parse_redirect(t_raw *root, t_vars *vars)
 		{
 			if (list->file && list->quote != 1)
 			{
-					while (ft_strchr(list->file, '$'))
-					{	
-						path = lexer_get_dollar(vars->envp, ft_strchr(list->file, '$'), 0);
-						before = ft_strndup(list->file, ft_strchr(list->file, '$') - list->file);
-						i = 0;
-						while (list->file[i] && list->file[i] != '$')
-							i++;
-						while (list->file[i] && !is_space(list->file[i]))
-							i++;
-						after = ft_strdup(list->file + i);
-						free(list->file);
-						
-						list->file = ft_concat(before, path);
-						free(path);
-						free(before);
-						
-						before = list->file;
-						list->file = ft_concat(list->file, after);
-						free(before);
-						free(after);
-					}
+				while (ft_strchr(list->file, '$'))
+				{	
+					path = lexer_get_dollar(vars->envp, ft_strchr(list->file, '$'), 0);
+					before = ft_strndup(list->file, ft_strchr(list->file, '$') - list->file);
+					i = 0;
+					while (list->file[i] && list->file[i] != '$')
+						i++;
+					while (list->file[i] && !is_space(list->file[i]))
+						i++;
+					after = ft_strdup(list->file + i);
+					free(list->file);
+					
+					list->file = ft_concat(before, path);
+					free(path);
+					free(before);
+					
+					before = list->file;
+					list->file = ft_concat(list->file, after);
+					free(before);
+					free(after);
+				}
 			}
 			list = list->next;
 		}

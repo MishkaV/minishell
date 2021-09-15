@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/15 16:11:24 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/15 18:46:18 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	main_loop(t_vars *vars);
 int		init_envp(t_vars *vars, char **envp);
 
 ///////////////////////////////////////////////////////////////
+int     redirect_exec(t_raw *root, int *old_out, int *old_in);
 
 int pipes_loop(t_vars *vars, t_raw *root);
 
