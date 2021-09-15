@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:34:18 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/15 18:52:01 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/15 22:06:26 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,18 @@ int     redirect_exec(t_raw *root, int *old_out, int *old_in)
 		if (file == -1)
 			status = 1;
 		else
-		{
-			// dup2(*old_in, STDIN_FILENO);
-			// dup2(*old_out, STDOUT_FILENO);
-			
+		{	
 			if (list->type == SINGLE_OUT || list->type == DOUBLE_OUT)
 			{
+				*old_out = dup(STDOUT_FILENO);
 				dup2(file, STDOUT_FILENO);
-				close(file);
 			}
-			// else
-			// 	dup2(file, STDIN_FILENO);
+			else
+			{
+				
+				*old_in = dup(STDIN_FILENO);
+				dup2(file, STDIN_FILENO);
+			}
 		}
 		list = list->next;
 	}

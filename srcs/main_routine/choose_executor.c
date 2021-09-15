@@ -21,8 +21,8 @@ void	executor_loop(t_vars *vars, t_raw *root)
 	int old_out;
 
 
-	old_in = STDIN_FILENO;
-	old_out = STDOUT_FILENO;
+	old_in = dup(STDIN_FILENO);
+	old_out = dup(STDOUT_FILENO);
 	if (root)
 	{
 		while (root)
@@ -34,12 +34,6 @@ void	executor_loop(t_vars *vars, t_raw *root)
 				root = root->next;
 				while (root && root->type == TYPE_PIPE)
 					root = root->next;
-				// close(STDIN_FILENO);
-				// close(STDOUT_FILENO);
-				// dup2(STDIN_FILENO, old_in);
-				// dup2(STDOUT_FILENO, old_out);
-				// close(STDIN_FILENO);
-				// close(STDOUT_FILENO);
 			}
 			else
 			{
@@ -50,6 +44,10 @@ void	executor_loop(t_vars *vars, t_raw *root)
 			}
 		}
 	}
+	dup2(old_in, STDIN_FILENO);
+	close(old_in);
+	dup2(old_out, STDOUT_FILENO);
+	close(old_out);
 }
 
 int		choose_executor(t_vars *vars, t_raw *root)
