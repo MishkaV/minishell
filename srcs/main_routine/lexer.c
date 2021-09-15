@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 14:46:23 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/15 18:16:57 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,48 @@ void	lexer_parse_arg(t_raw *curr, t_vars *vars)
 	}
 }
 
+void	lexer_parse_redirect(t_raw *root, t_vars *vars)
+{
+	t_redirect	*list;
+	char		*path;
+	char		*before;
+	char		*after;
+	int			i;
+
+	list = root->redirects; 
+	if (list)
+	{
+		while (list)
+		{
+			if (list->file && list->quote != 1)
+			{
+					while (ft_strchr(list->file, '$'))
+					{	
+						path = lexer_get_dollar(vars->envp, ft_strchr(list->file, '$'), 0);
+						before = ft_strndup(list->file, ft_strchr(list->file, '$') - list->file);
+						i = 0;
+						while (list->file[i] && list->file[i] != '$')
+							i++;
+						while (list->file[i] && !is_space(list->file[i]))
+							i++;
+						after = ft_strdup(list->file + i);
+						free(list->file);
+						
+						list->file = ft_concat(before, path);
+						free(path);
+						free(before);
+						
+						before = list->file;
+						list->file = ft_concat(list->file, after);
+						free(before);
+						free(after);
+					}
+			}
+			list = list->next;
+		}
+	}
+}
+
 void	lexer_analysis(t_raw *root, t_vars *vars)
 {
 	if (root)
@@ -151,6 +193,7 @@ void	lexer_analysis(t_raw *root, t_vars *vars)
 		{
 			lexer_check_command(root, vars);
 			lexer_parse_arg(root, vars);
+			lexer_parse_redirect(root, vars);
 			root = root->next;
 		}
 }

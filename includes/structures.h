@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:32:33 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/15 13:43:43 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/15 18:10:57 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct	s_command_info
 typedef struct			s_redirect
 {
 	int					type;
+	int					quote;
 	char				*file;
 	struct s_redirect	*next;
 

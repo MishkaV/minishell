@@ -24,10 +24,10 @@ SRCS			=	$(DIR_MAIN_RT)/minishell.c \
 					$(DIR_MAIN_RT)/signals.c \
 					$(DIR_MAIN_RT)/main_loop.c \
 					$(DIR_MAIN_RT)/lexer.c \
-					$(DIR_MAIN_RT)/exec_redirect.c \
 					$(DIR_MAIN_RT)/lexer_checks.c \
 					$(DIR_MAIN_RT)/parser.c \
 					$(DIR_MAIN_RT)/pipes.c \
+					$(DIR_MAIN_RT)/redirects.c \
 					$(DIR_MAIN_RT)/redirect_list.c \
 					$(DIR_MAIN_RT)/choose_executor.c
 

@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 16:24:50 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/03 12:07:37 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/15 18:11:54 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_redirect  *rct_new_node()
 	curr->file = 0;
 	curr->type = 0;
 	curr->next = 0;
+	curr->quote = 0;
 	return (curr);
 }
 
