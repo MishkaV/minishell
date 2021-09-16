@@ -30,7 +30,7 @@ void	executor_loop(t_vars *vars, t_raw *root)
 			if (!lexer_before_exec_check(root))
 			{
 				if (!redirect_exec(root, &old_out, &old_in))
-					pipes_loop(vars, root);
+					vars->status = pipes_loop(vars, root);
 				root = root->next;
 				while (root && root->type == TYPE_PIPE)
 					root = root->next;
@@ -44,7 +44,6 @@ void	executor_loop(t_vars *vars, t_raw *root)
 			}
 		}
 	}
-
 	dup2(old_in, STDIN_FILENO);
 	close(old_in);
 	dup2(old_out, STDOUT_FILENO);

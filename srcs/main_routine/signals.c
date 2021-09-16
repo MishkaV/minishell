@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 13:26:27 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/15 21:26:51 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 11:31:15 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	signal_int(int code)
 	
 	printf("\n");
 	rl_on_new_line();	
-	// rl_replace_line("", 0);
+	rl_replace_line("", 0);
 	rl_redisplay();	
 }

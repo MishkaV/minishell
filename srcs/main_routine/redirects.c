@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:34:18 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/16 10:49:15 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 11:30:14 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,37 +24,8 @@ static int	print_error_file(char *str)
 static int here_doc(t_redirect	*list)
 {
 	int file;
-	// int		pid;
-	// int		fd[2];
 	char	*str;
-	
-	// if (pipe(fd) == -1)
-	// 	return (-1);
-	// pid = fork();
-	// if (pid == -1)
-	// 	return (-1);
-	// if(!pid)
-	// {
-	// 	close(fd[0]);
-	// 	while (1)
-	// 	{
-	// 		str = readline("heredoc> ");
-	// 		if (!ft_strcmp(str, list->file))
-	// 		{
-	// 			free(str);
-	// 			exit(0);
-	// 		}
-	// 		ft_putstr_fd(str, fd[1]);
-	// 		free(str);
-	// 	}
-	// }
-	// 	close(fd[1]);
-	// 	dup2(fd[0], STDIN_FILENO);
-	// 	// waitpid(pid, 0, 0);
-	// 	// close(fd[0]);
-	// 	waitpid(pid, 0, 0);
-	// return (0);	
-	
+
 	file = open("./temporary/temp", O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (file == -1)
 		return (file);
@@ -104,7 +75,7 @@ int     redirect_exec(t_raw *root, int *old_out, int *old_in)
 		if (file == -1)
 			return (print_error_file(list->file));
 		else
-		{	
+		{
 			if (list->type == SINGLE_OUT || list->type == DOUBLE_OUT)
 			{
 				*old_out = dup(STDOUT_FILENO);
