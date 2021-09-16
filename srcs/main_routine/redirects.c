@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:34:18 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/16 11:30:14 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 13:10:29 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,19 @@ static int here_doc(t_redirect	*list)
 	while (1)
 	{
 		str = readline("heredoc> ");
-		if (!ft_strcmp(str, list->file))
-		{
-			free(str);
+		if (!str)
 			break ;
+		else
+		{
+			if (!ft_strcmp(str, list->file))
+			{
+				free(str);
+				break ;
+			}
+			ft_putstr_fd(str, file);
+			ft_putstr_fd("\n", file);
+			free(str);	
 		}
-		ft_putstr_fd(str, file);
-		ft_putstr_fd("\n", file);
-		free(str);
 	}
 	close(file);
 	return (open("./temporary/temp", O_RDONLY, 0777));
