@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 10:39:11 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/16 16:34:22 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 16:54:36 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,13 @@ static char *make_path(t_vars *vars, t_raw *root)
 	return (path);
 }
 
+int	is_minishell(t_raw *root)
+{
+	if (!ft_strcmp(root->command, "./minishell"))
+		return (1);
+	return (0);	
+}
+
 int my_nondefault(t_vars *vars, t_raw *root)
 {
 	char	**envp;
@@ -88,8 +95,11 @@ int my_nondefault(t_vars *vars, t_raw *root)
 	int		pid;
 	int		status;
 	char	*path;
-	
-	envp = envp_to_char(vars->envp);
+
+	if (is_minishell(root))	
+		envp = envp_to_char(vars->envp, 1);
+	else
+		envp = envp_to_char(vars->envp, 0);
 	argv = make_argv(root);
 	path = make_path(vars, root);
 	pid = fork();

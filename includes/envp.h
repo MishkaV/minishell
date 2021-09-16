@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 13:35:17 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 10:53:41 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 16:49:51 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_envp_list	*envp_pop_front(t_envp_list *root);
 t_envp_list *envp_pop_by_key(t_envp_list *root, char *key);
 void	    envp_print_list(t_envp_list	*root);
 t_envp_list *envp_copy_list(t_envp_list *root);
-char	    **envp_to_char(t_envp_list *root);
+char	    **envp_to_char(t_envp_list *root, int is_minishell);
 int         envp_get_len(t_envp_list *root);
 
 #endif
