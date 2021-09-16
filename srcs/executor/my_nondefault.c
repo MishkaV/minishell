@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 10:39:11 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 14:45:08 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 16:34:22 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static char *make_path(t_vars *vars, t_raw *root)
 	char	*path;
 	char	*buff;
 
+	if (check_is_full_path_command(root->command))
+		return(ft_strdup(root->command));
 	if (root->command_info.code == COMMAND_PWD)
 	{
 		if (envp_get_data(vars->envp, "PWD"))

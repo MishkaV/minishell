@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/27 22:45:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 22:05:23 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 16:36:03 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@
 # define COMMAND_EMPTY -3
 # define COMMAND_DEFAULT 15
 # define COMMAND_NOT_DEFAULT 16
+# define COMMAND_FULL -4
 
 #endif

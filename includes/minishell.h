@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/16 11:31:06 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 16:34:37 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int		lexer_check_command(t_raw *curr, t_vars *vars);
 int     lexer_check_flags(t_raw *curr);
 void    lexer_analysis(t_raw *root, t_vars *vars);
 char	*lexer_get_dollar(t_envp_list *envp, char *str, int dquote);
+int     check_is_full_path_command(char *command);
 
 void	main_loop(t_vars *vars);
 int		init_envp(t_vars *vars, char **envp);

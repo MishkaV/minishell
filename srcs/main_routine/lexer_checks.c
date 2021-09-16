@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 11:35:13 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 22:07:23 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 16:36:11 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,15 @@ int		lexer_check_path_command(char *command, t_vars *vars)
 	return (lexer_check_in_pwd(command));
 }
 
+int check_is_full_path_command(char *command)
+{
+	struct stat buff;
+	
+	if (stat(command, &buff) != -1)
+		return (1);
+	return (0);
+}
+
 int	lexer_check_command(t_raw *curr, t_vars *vars)
 {
 	int	command_code;
@@ -84,7 +93,10 @@ int	lexer_check_command(t_raw *curr, t_vars *vars)
 	command_code = lexer_check_default_command(to_lower);
 	if (command_code == -1)
 	{
-		command_code = lexer_check_path_command(to_lower, vars);
+		if (check_is_full_path_command(to_lower))
+			command_code = COMMAND_FULL;
+		else
+			command_code = lexer_check_path_command(to_lower, vars);
 		if (command_code == -1)
 			flag = 1;
 		curr->command_info.is_default = COMMAND_NOT_DEFAULT;
