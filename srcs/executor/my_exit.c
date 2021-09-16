@@ -30,7 +30,7 @@ int		my_exit(t_vars *vars, t_raw *root)
 			flag = ft_atoi(root->flags + 1);
 		my_exit_free_all(vars, root);
 		if (root->flags)
-			exit(255 - flag);
+			exit(255 - flag + 1);
 		exit(0);
 	}
 	while (ft_isdigit(root->treated_comnd->arg[i]))
