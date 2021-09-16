@@ -20,12 +20,17 @@ int		my_exit(t_vars *vars, t_raw *root)
 {
 	int	status;
 	int i;
+	int	flag;
 
 	i = 0;
 	if (!root->treated_comnd)
 	{
 		printf("exit\n");
+		if (root->flags)
+			flag = ft_atoi(root->flags + 1);
 		my_exit_free_all(vars, root);
+		if (root->flags)
+			exit(255 - flag);
 		exit(0);
 	}
 	while (ft_isdigit(root->treated_comnd->arg[i]))
@@ -36,7 +41,7 @@ int		my_exit(t_vars *vars, t_raw *root)
 	if (root->treated_comnd->arg[i] == '\0')
 	{
 		printf("exit\n");
-		my_exit_free_all(vars, root);
+		my_exit_free_all(vars, root);	
 		exit(status);
 	}
 	else

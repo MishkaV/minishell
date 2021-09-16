@@ -9,7 +9,7 @@ static int	lexer_before_exec_check(t_raw *root)
 	{
 		if (root->command_info.code == -1)
 			flag = print_error(ERROR_NOT_FOUND);
-		if (!flag && lexer_check_flags(root))
+		if (!flag && lexer_check_flags(root) && root->command_info.code != COMMAND_EXIT)
 			flag = print_error(ERROR_BAD_FLAG);
 	}
 	return (flag);
@@ -19,6 +19,7 @@ void	executor_loop(t_vars *vars, t_raw *root)
 {
 	int old_in;
 	int old_out;
+	t_raw *curr;
 
 	signal(SIGINT, &signal_int_child);
 	signal(SIGQUIT, &signal_exit_child);
@@ -27,11 +28,18 @@ void	executor_loop(t_vars *vars, t_raw *root)
 
 	if (root)
 	{
+		curr = root;
+		while (curr)
+		{
+			redirect_exec(curr, &old_out, &old_in);
+			curr = curr->next;
+		}
+
 		while (root)
 		{
 			if (!lexer_before_exec_check(root))
 			{
-				if (!redirect_exec(root, &old_out, &old_in))
+				// if (!redirect_exec(root, &old_out, &old_in))
 					vars->status = pipes_loop(vars, root);
 				root = root->next;
 				while (root && root->type == TYPE_PIPE)
@@ -55,7 +63,6 @@ void	executor_loop(t_vars *vars, t_raw *root)
 int		choose_executor(t_vars *vars, t_raw *root)
 {
 	int status;
-
 	status = 0;
 	if (ft_strcmp(root->command, "echo") == 0)
 		status = my_echo(root);
