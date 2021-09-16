@@ -14,7 +14,8 @@ int my_echo(t_raw *root)
 	{
 		while (list != NULL)
 		{
-			printf("%s", list->arg);
+			if (list->arg)
+				printf("%s", list->arg);
 			if (list->next != NULL)
 				printf(" ");
 			list = list->next;
@@ -25,7 +26,8 @@ int my_echo(t_raw *root)
 	{
 		while (list != NULL)
 		{
-			printf("%s", list->arg);
+			if (list->arg)
+				printf("%s", list->arg);
 			if (list->next != NULL)
 				printf(" ");
 			list = list->next;

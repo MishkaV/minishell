@@ -39,8 +39,7 @@ void	executor_loop(t_vars *vars, t_raw *root)
 		{
 			if (!lexer_before_exec_check(root))
 			{
-				// if (!redirect_exec(root, &old_out, &old_in))
-					vars->status = pipes_loop(vars, root);
+				vars->status = pipes_loop(vars, root);
 				root = root->next;
 				while (root && root->type == TYPE_PIPE)
 					root = root->next;
