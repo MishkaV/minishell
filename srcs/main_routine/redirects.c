@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:34:18 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/15 23:03:24 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 10:49:15 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,75 @@ static int	print_error_file(char *str)
 	return (1);
 }
 
+static int here_doc(t_redirect	*list)
+{
+	int file;
+	// int		pid;
+	// int		fd[2];
+	char	*str;
+	
+	// if (pipe(fd) == -1)
+	// 	return (-1);
+	// pid = fork();
+	// if (pid == -1)
+	// 	return (-1);
+	// if(!pid)
+	// {
+	// 	close(fd[0]);
+	// 	while (1)
+	// 	{
+	// 		str = readline("heredoc> ");
+	// 		if (!ft_strcmp(str, list->file))
+	// 		{
+	// 			free(str);
+	// 			exit(0);
+	// 		}
+	// 		ft_putstr_fd(str, fd[1]);
+	// 		free(str);
+	// 	}
+	// }
+	// 	close(fd[1]);
+	// 	dup2(fd[0], STDIN_FILENO);
+	// 	// waitpid(pid, 0, 0);
+	// 	// close(fd[0]);
+	// 	waitpid(pid, 0, 0);
+	// return (0);	
+	
+	file = open("./temporary/temp", O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (file == -1)
+		return (file);
+	while (1)
+	{
+		str = readline("heredoc> ");
+		if (!ft_strcmp(str, list->file))
+		{
+			free(str);
+			break ;
+		}
+		ft_putstr_fd(str, file);
+		ft_putstr_fd("\n", file);
+		free(str);
+	}
+	close(file);
+	return (open("./temporary/temp", O_RDONLY, 0777));
+}
+
+static int open_file(t_redirect	*list)
+{
+	int file;
+
+	file = -1;
+	if (list->type == SINGLE_IN)
+		file = open(list->file, O_RDONLY, 0777);
+	if (list->type == SINGLE_OUT)
+		file = open(list->file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (list->type == DOUBLE_IN)
+		file = here_doc(list);
+	if (list->type == DOUBLE_OUT)
+		file = open(list->file, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	return (file);
+}
+
 int     redirect_exec(t_raw *root, int *old_out, int *old_in)
 {
 	t_redirect	*list;
@@ -31,14 +100,7 @@ int     redirect_exec(t_raw *root, int *old_out, int *old_in)
 		return (0);
 	while (list)
 	{
-		if (list->type == SINGLE_IN)
-			file = open(list->file, O_RDONLY, 0777);
-		if (list->type == SINGLE_OUT)
-			file = open(list->file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-		// if (list->type == DOUBLE_IN)
-			// file = open(list->file, O_RDONLY, 0777); //here doc
-		if (list->type == DOUBLE_OUT)
-			file = open(list->file, O_WRONLY | O_CREAT | O_APPEND, 0777);
+		file = open_file(list);
 		if (file == -1)
 			return (print_error_file(list->file));
 		else
@@ -49,8 +111,7 @@ int     redirect_exec(t_raw *root, int *old_out, int *old_in)
 				dup2(file, STDOUT_FILENO);
 			}
 			else
-			{
-				
+			{	
 				*old_in = dup(STDIN_FILENO);
 				dup2(file, STDIN_FILENO);
 			}

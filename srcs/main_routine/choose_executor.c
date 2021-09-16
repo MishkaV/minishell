@@ -44,7 +44,7 @@ void	executor_loop(t_vars *vars, t_raw *root)
 			}
 		}
 	}
-	
+
 	dup2(old_in, STDIN_FILENO);
 	close(old_in);
 	dup2(old_out, STDOUT_FILENO);
@@ -56,7 +56,6 @@ int		choose_executor(t_vars *vars, t_raw *root)
 	int status;
 
 	status = 0;
-
 	if (ft_strcmp(root->command, "echo") == 0)
 		status = my_echo(root);
 	else if (ft_strcmp(root->command, "pwd") == 0)

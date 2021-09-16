@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:53:52 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/13 17:53:32 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 10:53:42 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int my_cd(t_vars *vars, t_raw *root)
     char    *to_change;
 
     status = 0;
-    to_change = root->treated_comnd->arg; 
+    if (root->treated_comnd)
+        to_change = root->treated_comnd->arg;
     if (trls_get_len(root->treated_comnd) >= 1)
     {
         if (!to_change)
