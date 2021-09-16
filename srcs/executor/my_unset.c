@@ -6,12 +6,6 @@ int		my_unset(t_vars *vars, t_raw *root)
 	int		flag;
 	
 	list = root->treated_comnd;
-	if (ft_strncmp(root->command, "unset", 6) == 0 && root->flags == NULL && root->treated_comnd == NULL)
-	{
-		ft_putstr_fd(ERROR_SYNTAX, STDERR_FILENO);
-		ft_putstr_fd("unset: not enough arguments\n", STDERR_FILENO);
-		return (1);
-	}
 	flag = 0;
 	while (list)
 	{

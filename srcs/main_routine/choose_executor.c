@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static int	lexer_before_exec_check(t_raw *root)
+static int	lexer_before_exec_check(t_raw *root, t_vars *vars)
 {
 	int flag;
 
@@ -8,7 +8,19 @@ static int	lexer_before_exec_check(t_raw *root)
 	if (root)
 	{
 		if (root->command_info.code == -1)
-			flag = print_error(ERROR_NOT_FOUND);
+		{
+			if (!ft_strcmp(root->command, "$?"))
+			{
+				ft_putstr_fd(ERROR_SYNTAX, STDERR_FILENO);
+				ft_putnbr_fd(vars->status, 2);
+				ft_putstr_fd(": command not found", STDERR_FILENO);
+				ft_putstr_fd("\n", STDERR_FILENO);
+				flag = 1;
+			}
+			else
+				flag = print_error(ERROR_NOT_FOUND);
+		
+		}
 		if (!flag && lexer_check_flags(root) && root->command_info.code != COMMAND_EXIT)
 			flag = print_error(ERROR_BAD_FLAG);
 	}
@@ -37,7 +49,7 @@ void	executor_loop(t_vars *vars, t_raw *root)
 
 		while (root)
 		{
-			if (!lexer_before_exec_check(root))
+			if (!lexer_before_exec_check(root, vars))
 			{
 				vars->status = pipes_loop(vars, root);
 				root = root->next;
