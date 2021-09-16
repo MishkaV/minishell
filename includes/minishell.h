@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/16 16:34:37 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 17:14:52 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 
 void	signal_int(int code);
 void	signal_quit(int code);
+void	signal_int_child(int code);
+void	signal_exit_child(int code);
 
 int	    check_quotes(char *str);
 int     is_dequote(char c);

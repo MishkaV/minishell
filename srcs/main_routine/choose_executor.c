@@ -20,9 +20,11 @@ void	executor_loop(t_vars *vars, t_raw *root)
 	int old_in;
 	int old_out;
 
-
+	signal(SIGINT, &signal_int_child);
+	signal(SIGQUIT, &signal_exit_child);
 	old_in = dup(STDIN_FILENO);
 	old_out = dup(STDOUT_FILENO);
+
 	if (root)
 	{
 		while (root)

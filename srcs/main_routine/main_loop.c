@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:36:47 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/16 12:48:24 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 18:45:08 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void	main_loop(t_vars *vars)
 		}
 		add_history(str);
 		free(str);
+		unlink("./temporary/temp");
 	}
 }
