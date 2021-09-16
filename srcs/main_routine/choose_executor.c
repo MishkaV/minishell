@@ -78,7 +78,7 @@ int		choose_executor(t_vars *vars, t_raw *root)
 	if (ft_strcmp(root->command, "echo") == 0)
 		status = my_echo(root);
 	else if (ft_strcmp(root->command, "pwd") == 0)
-		status = my_pwd(root);
+		status = my_pwd();
 	else if (ft_strcmp(root->command, "env") == 0)
 		status = my_env(*vars, root); 
 	else if (ft_strcmp(root->command, "unset") == 0)
