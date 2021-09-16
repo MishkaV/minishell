@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:53:52 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/16 10:53:42 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/16 13:26:44 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,28 @@ static int my_cd_no_such_file(char *str)
 	ft_putstr_fd(str, STDERR_FILENO);
 	ft_putstr_fd(": no such file or directory\n", STDERR_FILENO);
 	return (1);
+}
+
+static int change_to_home(t_vars *vars)
+{
+    char    *curr_pwd;
+    char    *old_pwd;
+    
+    if (!envp_get_data(vars->envp, "HOME"))
+        return (0);
+    if (chdir(envp_get_data(vars->envp, "HOME")) != -1)
+    {
+        curr_pwd = getcwd(NULL, PWD_BUFF);
+        if (!curr_pwd)
+	        exit(errno);
+        old_pwd = envp_get_data(vars->envp, "PWD");
+        if (old_pwd)
+            envp_change_data(vars->envp, "OLDPWD", ft_strdup(old_pwd));
+        envp_change_data(vars->envp, "PWD", curr_pwd);
+    }
+    else
+        return (my_cd_no_such_file(envp_get_data(vars->envp, "HOME")));
+    return (0);
 }
 
 int my_cd(t_vars *vars, t_raw *root)
@@ -61,5 +83,7 @@ int my_cd(t_vars *vars, t_raw *root)
         else
             return (my_cd_no_such_file(to_change));
     }
+    else
+        return (change_to_home(vars));
     return (status);
 }
