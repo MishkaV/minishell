@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 15:38:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/17 15:50:22 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 16:50:12 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,20 @@ static int	print_error_empty(void)
 	return (-2);
 }
 
+void	signal_int_here_doc(int code)
+{
+	(void)code;
+	g_check = 0;
+}
+
 static void	here_doc_more(t_redirect *list, int file)
 {
 	char	*str;
 
-	while (1)
+	g_check = 1;
+	while (g_check)
 	{
+		signal(SIGINT, &signal_int_here_doc);
 		str = readline("heredoc> ");
 		if (!str)
 			break ;

@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/17 15:54:43 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 16:49:18 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,7 @@ int		pipes_loop(t_vars *vars, t_raw *root);
 void	executor_loop(t_vars *vars, t_raw *root);
 int		choose_executor(t_vars *vars, t_raw *root);
 int		choose_executor_pipe(t_vars *vars, t_raw *root);
+
+int		g_check;
 
 #endif
