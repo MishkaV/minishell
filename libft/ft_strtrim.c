@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 15:11:00 by jbenjy            #+#    #+#             */
-/*   Updated: 2020/11/18 12:54:37 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:55:16 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!s1)
 		return (NULL);
 	if (!set)
-		return ((char*)s1);
-	start = (char*)s1;
-	tail = (char*)s1 + ft_strlen(s1);
+		return ((char *)s1);
+	start = (char *)s1;
+	tail = (char *)s1 + ft_strlen(s1);
 	while (ft_strchr(set, *start) && *start)
 		start++;
 	while (ft_strchr(set, *(tail - 1)) && start != tail)

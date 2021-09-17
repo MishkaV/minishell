@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 15:24:27 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/08 16:16:48 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:53:35 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t count;
+	size_t	count;
 
 	count = 0;
 	while (*s++)

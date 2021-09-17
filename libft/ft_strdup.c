@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 16:41:35 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/09 12:19:24 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:53:03 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strdup(const char *s1)
 {
-	char *str;
-	char *begin;
+	char	*str;
+	char	*begin;
 
 	if (!s1)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 12:30:46 by jbenjy            #+#    #+#             */
-/*   Updated: 2020/11/11 15:19:05 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:38:10 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t i;
+	size_t	i;
 
 	i = -1;
 	while (++i < n)
-		((unsigned char*)s)[i] = '\0';
+		((unsigned char *)s)[i] = '\0';
 }

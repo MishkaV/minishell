@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 14:58:51 by jbenjy            #+#    #+#             */
-/*   Updated: 2020/11/11 16:21:47 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:44:17 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list *list;
+	t_list	*list;
 
-	if (!(list = malloc(sizeof(t_list))))
+	list = malloc(sizeof(t_list));
+	if (!list)
 		return (0);
 	list->content = content;
 	list->next = NULL;

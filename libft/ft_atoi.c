@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:13:42 by jbenjy            #+#    #+#             */
-/*   Updated: 2020/11/11 16:21:26 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:37:22 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	check(char c)
 	return (1);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	unsigned long	num;
 	int				sign;

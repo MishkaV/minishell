@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 15:39:58 by jbenjy            #+#    #+#             */
-/*   Updated: 2020/11/11 15:44:08 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:41:27 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list *curr;
+	t_list	*curr;
 
 	curr = ft_lstlast(*lst);
 	if (!curr)

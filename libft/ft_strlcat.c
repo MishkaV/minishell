@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 16:02:15 by jbenjy            #+#    #+#             */
-/*   Updated: 2020/11/11 15:21:57 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:53:20 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t count;
-	size_t lens;
+	size_t	count;
+	size_t	lens;
 
 	count = 0;
 	while (dst[count] && count < dstsize)

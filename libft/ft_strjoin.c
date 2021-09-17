@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 15:03:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2020/11/11 15:21:50 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:53:12 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *str;
-	char *out;
+	char	*str;
+	char	*out;
 
 	if (!s1 || !s2)
 		return (0);

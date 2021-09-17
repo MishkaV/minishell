@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 15:36:53 by jbenjy            #+#    #+#             */
-/*   Updated: 2020/11/11 15:22:00 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:53:28 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t len;
+	size_t	len;
 
 	if (!src)
 		return (0);

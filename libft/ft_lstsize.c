@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 15:34:36 by jbenjy            #+#    #+#             */
-/*   Updated: 2020/11/11 15:35:51 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:44:28 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (lst)
