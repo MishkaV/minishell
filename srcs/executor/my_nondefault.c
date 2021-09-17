@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 10:39:11 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/16 16:54:36 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:16:32 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ int my_nondefault(t_vars *vars, t_raw *root)
 	char	*path;
 
 	if (is_minishell(root))	
-		envp = envp_to_char(vars->envp, 1);
+		envp = envp_to_char(vars->envp);
 	else
-		envp = envp_to_char(vars->envp, 0);
+		envp = envp_to_char(vars->envp);
 	argv = make_argv(root);
 	path = make_path(vars, root);
 	pid = fork();

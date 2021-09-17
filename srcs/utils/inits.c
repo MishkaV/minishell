@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:38:21 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/14 14:38:53 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:14:00 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ int init_envp(t_vars *vars, char **envp)
 		key = ft_strndup(envp[i], ft_find_chr(envp[i], '='));
 		if (!key)
 			return (0);
-		data = ft_strdup(ft_strchr(envp[i], '=') + 1);
+		if (!ft_strcmp(key, "SHLVL"))
+			data = ft_itoa(ft_atoi(ft_strchr(envp[i], '=') + 1) + 1);
+		else
+			data = ft_strdup(ft_strchr(envp[i], '=') + 1);
+		
 		if (!data)
 		{
 			free(key);

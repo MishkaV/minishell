@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 13:09:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/16 16:54:22 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:15:55 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,13 +169,13 @@ int		envp_get_len(t_envp_list *root)
 	return(count);
 }
 
-char	**envp_to_char(t_envp_list *root, int is_minishell)
+char	**envp_to_char(t_envp_list *root)
 {
 	char	**list;
 	int		len;
 	int		i;
 	char	*buff;
-	char	*shlv;
+	// char	*shlv;
 	
 	if (!root)
 		return (0);
@@ -189,14 +189,14 @@ char	**envp_to_char(t_envp_list *root, int is_minishell)
 		while (root)
 		{
 			buff = ft_concat(root->key, "=");
-			if (is_minishell && !ft_strcmp(root->key, "SHLVL") && root->data)
-			{
-				shlv = ft_itoa(ft_atoi(root->data) + 1);
-				list[i++] = ft_concat(buff, shlv);
-				free(shlv);
-			}
-			else
-				list[i++] = ft_concat(buff, root->data);
+			// if (is_minishell && !ft_strcmp(root->key, "SHLVL") && root->data)
+			// {
+			// 	shlv = ft_itoa(ft_atoi(root->data) + 1);
+			// 	list[i++] = ft_concat(buff, shlv);
+			// 	free(shlv);
+			// }
+			// else
+			list[i++] = ft_concat(buff, root->data);
 			free(buff);
 			root = root->next;
 		}
