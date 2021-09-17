@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 12:55:38 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/16 17:18:30 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 11:56:58 by lsinistr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static int error_free_fds(t_pipes *pipes, int len)
 			i++;
 		}
 		free(pipes->fds);
-	}    
-	return (1);   
+	}
+	return (1);
 }
 
 static int init_fds(t_pipes *pipes, int len)
@@ -90,12 +90,12 @@ static void close_all(t_pipes *pipes, int len)
 void    free_and_close(t_pipes *pipes, int len)
 {
 	int i;
-	
+
 	if (pipes->pids)
 		free(pipes->pids);
 	if (pipes->fds)
 	{
-		i = 0;	
+		i = 0;
 		while (i < len)
 		{
 			free(pipes->fds[i]);
@@ -122,9 +122,9 @@ int pipe_exec(t_pipes *pipes, t_vars *vars, t_raw *curr, int i, int len)
 			dup2(pipes->fds[i][1], STDOUT_FILENO);
 		}
 		close_all(pipes, len);
-		exit(choose_executor(vars, curr));
+		exit(choose_executor_pipe(vars, curr));
 	}
-	return (1);	
+	return (1);
 }
 
 int pipes_loop(t_vars *vars, t_raw *root)
@@ -141,8 +141,8 @@ int pipes_loop(t_vars *vars, t_raw *root)
 		pipes.pids = 0;
 		pipes.fds = 0;
 		status = init_fds(&pipes, len);
-		status |= init_pid(&pipes, len);
-		
+		status = init_pid(&pipes, len);
+
 		i = 0;
 		while (i < len)
 		{

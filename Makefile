@@ -45,6 +45,7 @@ MY_FUNCTION		=	$(DIR_EXECUTOR)/my_echo.c \
 					$(DIR_EXECUTOR)/my_cd.c \
 					$(DIR_EXECUTOR)/my_exit.c \
 					$(DIR_EXECUTOR)/my_nondefault.c \
+					$(DIR_EXECUTOR)/my_nondef_pipe.c \
 					$(DIR_EXECUTOR)/my_unset.c \
 					$(DIR_EXECUTOR)/my_export.c
 

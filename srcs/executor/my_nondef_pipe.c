@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_nondefault.c                                    :+:      :+:    :+:   */
+/*   my_nondef_pipe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 10:39:11 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/17 11:36:55 by lsinistr         ###   ########.fr       */
+/*   Updated: 2021/09/17 11:41:51 by lsinistr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	**make_argv(t_raw *root)
+static char	**make_argv_pipe(t_raw *root)
 {
 	int		len;
 	char	**argv;
@@ -38,7 +38,7 @@ static char	**make_argv(t_raw *root)
 	return (argv);
 }
 
-static void	free_list(char **list)
+static void	free_list_pipe(char **list)
 {
 	int i;
 
@@ -55,7 +55,7 @@ static void	free_list(char **list)
 	}
 }
 
-static char *make_path(t_vars *vars, t_raw *root)
+static char *make_path_pipe(t_vars *vars, t_raw *root)
 {
 	char	*path;
 	char	*buff;
@@ -81,36 +81,36 @@ static char *make_path(t_vars *vars, t_raw *root)
 	return (path);
 }
 
-int	is_minishell(t_raw *root)
+static int	is_minishell_pipe(t_raw *root)
 {
 	if (!ft_strcmp(root->command, "./minishell"))
 		return (1);
 	return (0);
 }
 
-int my_nondefault(t_vars *vars, t_raw *root)
+int my_nondefault_pipe(t_vars *vars, t_raw *root)
 {
 	char	**envp;
 	char	**argv;
-	int		pid;
+	// int		pid;
 	int		status;
 	char	*path;
 
-	if (is_minishell(root))
+	if (is_minishell_pipe(root))
 		envp = envp_to_char(vars->envp);
 	else
 		envp = envp_to_char(vars->envp);
-	argv = make_argv(root);
-	path = make_path(vars, root);
-	pid = fork();
+	argv = make_argv_pipe(root);
+	path = make_path_pipe(vars, root);
+	// pid = fork();
 	status = 0;
-	if (pid == -1)
-		return (1);
-	if (!pid)
+	// if (pid == -1)
+	// 	return (1);
+	// if (!pid)
 		execve(path, argv, envp);
-	waitpid(pid , &status, 0);
+	// waitpid(pid , &status, 0);
 	free(path);
-	free_list(envp);
-	free_list(argv);
+	free_list_pipe(envp);
+	free_list_pipe(argv);
 	return (status);
 }
