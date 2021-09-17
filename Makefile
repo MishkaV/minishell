@@ -47,6 +47,7 @@ MY_FUNCTION		=	$(DIR_EXECUTOR)/my_echo.c \
 					$(DIR_EXECUTOR)/my_nondefault.c \
 					$(DIR_EXECUTOR)/my_nondef_pipe.c \
 					$(DIR_EXECUTOR)/my_unset.c \
+					$(DIR_EXECUTOR)/my_export_more.c \
 					$(DIR_EXECUTOR)/my_export.c
 
 HEADERS			=	$(DIR_INCLUDE)/minishell.h \
