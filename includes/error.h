@@ -6,13 +6,13 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 19:48:10 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/13 10:28:47 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:27:21 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-int    print_error(char *error);
+int	print_error(char *error);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:41:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/10 11:55:07 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:30:20 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_raw	*raw_get_last(t_raw *root)
 	return (root); 
 }
 
-t_raw	*raw_new_node()
+t_raw	*raw_new_node(void)
 {
 	t_raw *curr;
 

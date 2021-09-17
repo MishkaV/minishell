@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/16 17:14:52 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 10:29:30 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,33 +45,30 @@ void	signal_quit(int code);
 void	signal_int_child(int code);
 void	signal_exit_child(int code);
 
-int	    check_quotes(char *str);
-int     is_dequote(char c);
-int	    is_space(char c);
-int	    is_special(char c);
+int		check_quotes(char *str);
+int		is_dequote(char c);
+int		is_space(char c);
+int		is_special(char c);
 char	*check_rct(t_redirect *curr_rct, char *str);
-
 
 char	*find_command(char *str, t_raw *commands);
 char	*find_flags(char *str, t_raw *command);
 char	*find_arg(char *str, t_raw *commands);
 char	*find_pipe(char *str, t_raw *command, int *check_type);
 
-int     lexer_check_default_command(char *command);
+int		lexer_check_default_command(char *command);
 int		lexer_check_path_command(char *command, t_vars *vars);
 int		lexer_check_command(t_raw *curr, t_vars *vars);
-int     lexer_check_flags(t_raw *curr);
-void    lexer_analysis(t_raw *root, t_vars *vars);
+int		lexer_check_flags(t_raw *curr);
+void	lexer_analysis(t_raw *root, t_vars *vars);
 char	*lexer_get_dollar(t_envp_list *envp, char *str, int dquote);
-int     check_is_full_path_command(char *command);
+int		check_is_full_path_command(char *command);
 
 void	main_loop(t_vars *vars);
 int		init_envp(t_vars *vars, char **envp);
 
-///////////////////////////////////////////////////////////////
-int     redirect_exec(t_raw *root, int *old_out, int *old_in);
-
-int pipes_loop(t_vars *vars, t_raw *root);
+int		redirect_exec(t_raw *root, int *old_out, int *old_in);
+int		pipes_loop(t_vars *vars, t_raw *root);
 
 void	executor_loop(t_vars *vars, t_raw *root);
 int		choose_executor(t_vars *vars, t_raw *root);
