@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_nondef_pipe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 10:39:11 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/17 11:41:51 by lsinistr         ###   ########.fr       */
+/*   Updated: 2021/09/17 12:53:46 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,13 @@ static char	**make_argv_pipe(t_raw *root)
 	int		i;
 	t_trls	*list;
 
-
 	len = trls_get_len(root->treated_comnd);
 	argv = malloc(sizeof(char *) * (len + 2));
 	if (!argv)
 		return (0);
-
 	argv[0] = ft_strdup(root->command);
 	list = root->treated_comnd;
 	i = 1;
-
 	while (list)
 	{
 		argv[i++] = ft_strdup(list->arg);
@@ -40,7 +37,7 @@ static char	**make_argv_pipe(t_raw *root)
 
 static void	free_list_pipe(char **list)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (list)
@@ -55,13 +52,13 @@ static void	free_list_pipe(char **list)
 	}
 }
 
-static char *make_path_pipe(t_vars *vars, t_raw *root)
+static char	*make_path_pipe(t_vars *vars, t_raw *root)
 {
 	char	*path;
 	char	*buff;
 
 	if (check_is_full_path_command(root->command))
-		return(ft_strdup(root->command));
+		return (ft_strdup(root->command));
 	if (root->command_info.code == COMMAND_PWD)
 	{
 		if (envp_get_data(vars->envp, "PWD"))
@@ -88,11 +85,10 @@ static int	is_minishell_pipe(t_raw *root)
 	return (0);
 }
 
-int my_nondefault_pipe(t_vars *vars, t_raw *root)
+int	my_nondefault_pipe(t_vars *vars, t_raw *root)
 {
 	char	**envp;
 	char	**argv;
-	// int		pid;
 	int		status;
 	char	*path;
 
@@ -102,13 +98,8 @@ int my_nondefault_pipe(t_vars *vars, t_raw *root)
 		envp = envp_to_char(vars->envp);
 	argv = make_argv_pipe(root);
 	path = make_path_pipe(vars, root);
-	// pid = fork();
 	status = 0;
-	// if (pid == -1)
-	// 	return (1);
-	// if (!pid)
-		execve(path, argv, envp);
-	// waitpid(pid , &status, 0);
+	execve(path, argv, envp);
 	free(path);
 	free_list_pipe(envp);
 	free_list_pipe(argv);
