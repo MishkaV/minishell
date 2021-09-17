@@ -33,11 +33,15 @@ SRCS			=	$(DIR_MAIN_RT)/minishell.c \
 
 UTILS			=	$(DIR_UTILS)/inits.c \
 					$(DIR_UTILS)/free_all.c \
+					$(DIR_UTILS)/free_all_2.c \
 					$(DIR_UTILS)/envp_list.c \
+					$(DIR_UTILS)/envp_list_2.c \
+					$(DIR_UTILS)/envp_list_3.c \
 					$(DIR_UTILS)/raw_list.c \
 					$(DIR_UTILS)/treated_list.c \
 					$(DIR_UTILS)/error.c \
-					$(DIR_UTILS)/libft_more.c
+					$(DIR_UTILS)/libft_more.c \
+					$(DIR_UTILS)/libft_more_2.c
 
 MY_FUNCTION		=	$(DIR_EXECUTOR)/my_echo.c \
 					$(DIR_EXECUTOR)/my_pwd.c \

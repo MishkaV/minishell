@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 21:16:07 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/10 18:57:54 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 12:35:43 by lsinistr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ int	envp_free_node(t_envp_list *node)
 int	envp_free_list(t_envp_list *root)
 {
 	t_envp_list	*next;
-	
+
 	if (!root)
 		return (0);
 	while (root)
 	{
 		next = root->next;
 		envp_free_node(root);
-		root = next;	
+		root = next;
 	}
 	return (1);
 }
@@ -59,15 +59,15 @@ void	raw_free_node(t_raw *node)
 
 void	raw_free_list(t_raw *root)
 {
-	t_raw *next;
-	
+	t_raw	*next;
+
 	if (!root)
 		return ;
 	while (root)
 	{
 		next = root->next;
 		raw_free_node(root);
-		root = next;		
+		root = next;
 	}
 }
 
@@ -78,36 +78,5 @@ void	rct_free_node(t_redirect *node)
 		if (node->file)
 			free(node->file);
 		free(node);
-	} 
-}
-
-void	rct_free_list(t_redirect *root)
-{
-	t_redirect *next;
-	
-	if (!root)
-		return ;
-	while (root)
-	{
-		next = root->next;
-		rct_free_node(root);
-		root = next;
 	}
-}
-
-void    trls_free_list(t_trls *root)
-{
-    t_trls *next;
-    
-    if (root)
-    {
-        while(root)
-        {
-            next = root->next;
-            if (root->arg)
-                free(root->arg);
-            free(root);
-            root = next;
-        }    
-    }
 }

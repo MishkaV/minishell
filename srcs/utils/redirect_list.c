@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 16:24:50 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/17 10:31:00 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 12:24:17 by lsinistr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_redirect  *rct_get_last(t_redirect  *root)
+t_redirect	*rct_get_last(t_redirect *root)
 {
 	if (!root)
 		return (0);
@@ -21,9 +21,9 @@ t_redirect  *rct_get_last(t_redirect  *root)
 	return (root);
 }
 
-t_redirect  *rct_new_node(void)
+t_redirect	*rct_new_node(void)
 {
-	t_redirect *curr;
+	t_redirect	*curr;
 
 	curr = malloc(sizeof(t_redirect));
 	if (!curr)
@@ -37,8 +37,8 @@ t_redirect  *rct_new_node(void)
 
 t_redirect	*rct_push(t_redirect *root, t_redirect *new_node)
 {
-	t_redirect *to_return;
-	
+	t_redirect	*to_return;
+
 	to_return = root;
 	if (!root)
 		return (new_node);
@@ -49,17 +49,16 @@ t_redirect	*rct_push(t_redirect *root, t_redirect *new_node)
 
 void	rct_print(t_redirect *root)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	if (root)
 	{
 		while (root)
 		{
-			
 			printf("#%d\nType: |%d|\n", i++, root->type);
 			printf("File: |%s|\n", root->file);
-			root = root->next;	
+			root = root->next;
 		}
 	}
 	else

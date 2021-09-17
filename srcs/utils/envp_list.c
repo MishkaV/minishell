@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   envp_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/23 13:09:43 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/17 10:15:55 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 12:30:14 by lsinistr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_envp_list *envp_new_node(char *key, char *data)
+t_envp_list	*envp_new_node(char *key, char *data)
 {
-	t_envp_list *curr;
+	t_envp_list	*curr;
 
 	curr = malloc(sizeof(t_envp_list));
 	if (!curr)
@@ -25,17 +25,16 @@ t_envp_list *envp_new_node(char *key, char *data)
 	return (curr);
 }
 
-
-t_envp_list *envp_push_node(t_envp_list *root, char *key, char *data)
+t_envp_list	*envp_push_node(t_envp_list *root, char *key, char *data)
 {
 	t_envp_list	*curr;
-	
+
 	if (!root)
 		root = envp_new_node(key, data);
 	else
 	{
 		curr = root;
-		while(curr->next)
+		while (curr->next)
 			curr = curr->next;
 		curr->next = envp_new_node(key, data);
 		if (!curr->next)
@@ -46,7 +45,6 @@ t_envp_list *envp_push_node(t_envp_list *root, char *key, char *data)
 
 char	*envp_get_data(t_envp_list *root, char *key)
 {
-	
 	if (!root)
 		return (0);
 	else
@@ -60,7 +58,6 @@ char	*envp_get_data(t_envp_list *root, char *key)
 	}
 	return (0);
 }
-
 
 int	envp_change_data(t_envp_list *root, char *key, char *data)
 {
@@ -82,9 +79,10 @@ int	envp_change_data(t_envp_list *root, char *key, char *data)
 	return (0);
 }
 
-t_envp_list *envp_pop_front(t_envp_list *root)
+t_envp_list	*envp_pop_front(t_envp_list *root)
 {
 	t_envp_list	*curr;
+
 	if (!root)
 		return (0);
 	else
@@ -94,114 +92,4 @@ t_envp_list *envp_pop_front(t_envp_list *root)
 		root = curr;
 	}
 	return (root);
-}
-
-t_envp_list *envp_pop_by_key(t_envp_list *root, char *key)
-{
-	t_envp_list	*to_return;
-	t_envp_list	*prev;
-	t_envp_list	*curr;
-
-	if (!root)
-		return (0);
-	else
-	{
-		to_return = root;
-		prev = 0;
-		curr = root;
-			
-		while (curr)
-		{
-			if (!ft_strcmp(curr->key, key))
-			{
-				if (!prev)
-					to_return = curr->next;
-				else
-					prev->next = curr->next;
-				envp_free_node(curr);
-				return (to_return);
-			}
-			prev = curr;
-			curr = curr->next;
-		}
-	}
-	return (to_return);
-}
-
-void	envp_print_list(t_envp_list	*root)
-{
-	if (!root)
-		return ;
-	while (root)
-	{
-		printf("Key: %s, data: %s\n", root->key, root->data);
-		root = root->next;
-	}
-}
-
-t_envp_list *envp_copy_list(t_envp_list *root)
-{
-	t_envp_list *new_list;
-
-	new_list = 0;
-	if (!root)
-		return (0);
-	while (root)
-	{
-		new_list = envp_push_node(new_list, ft_strdup(root->key), ft_strdup(root->data));
-		root = root->next;	
-	}
-	return (new_list);
-}
-
-int		envp_get_len(t_envp_list *root)
-{
-	int count;
-
-	count = 0;
-	if (!root)
-		return (0);
-	while (root)
-	{
-		count++;
-		root = root->next;
-	}
-	return(count);
-}
-
-char	**envp_to_char(t_envp_list *root)
-{
-	char	**list;
-	int		len;
-	int		i;
-	char	*buff;
-	// char	*shlv;
-	
-	if (!root)
-		return (0);
-	len = envp_get_len(root);
-	if (len)
-	{
-		list = malloc(sizeof(char *) * (len + 1));
-		if (!list)
-			return (0);
-		i = 0;
-		while (root)
-		{
-			buff = ft_concat(root->key, "=");
-			// if (is_minishell && !ft_strcmp(root->key, "SHLVL") && root->data)
-			// {
-			// 	shlv = ft_itoa(ft_atoi(root->data) + 1);
-			// 	list[i++] = ft_concat(buff, shlv);
-			// 	free(shlv);
-			// }
-			// else
-			list[i++] = ft_concat(buff, root->data);
-			free(buff);
-			root = root->next;
-		}
-		list[i] = 0;
-		return (list);
-	}
-	return (0);
 }

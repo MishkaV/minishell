@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raw_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 16:41:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/17 10:30:20 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 12:23:02 by lsinistr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ t_raw	*raw_get_last(t_raw *root)
 		return (0);
 	while (root->next)
 		root = root->next;
-	return (root); 
+	return (root);
 }
 
 t_raw	*raw_new_node(void)
 {
-	t_raw *curr;
+	t_raw	*curr;
 
 	curr = malloc(sizeof(t_raw));
 	if (!curr)
@@ -42,7 +42,7 @@ t_raw	*raw_new_node(void)
 
 t_raw	*raw_push(t_raw *root, t_raw *new_node)
 {
-	t_raw *to_return;
+	t_raw	*to_return;
 
 	to_return = root;
 	if (!root)
