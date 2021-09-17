@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 20:32:33 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/17 10:33:55 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 15:15:32 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ typedef struct s_pipes
 {
 	int			**fds;
 	int			*pids;
+	int			len;
+	int			i;
 }				t_pipes;
 
 typedef struct s_treated_list

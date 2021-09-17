@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 15:58:32 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/17 11:40:05 by lsinistr         ###   ########.fr       */
+/*   Updated: 2021/09/17 15:54:43 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ char	*find_flags(char *str, t_raw *command);
 char	*find_arg(char *str, t_raw *commands);
 char	*find_pipe(char *str, t_raw *command, int *check_type);
 
+void	lexer_parse_redirect(t_raw *root, t_vars *vars);
+void	lexer_parse_arg(t_raw *curr, t_vars *vars);
+char	*lexer_parse_text(t_raw *curr, t_vars *vars, char *str);
+char	*lexer_parse_dquote(t_raw *curr, t_vars *vars, char *str);
+char	*lexer_parse_quote(t_raw *curr, char *str);
 int		lexer_check_default_command(char *command);
 int		lexer_check_path_command(char *command, t_vars *vars);
 int		lexer_check_command(t_raw *curr, t_vars *vars);
@@ -66,6 +71,14 @@ int		check_is_full_path_command(char *command);
 
 void	main_loop(t_vars *vars);
 int		init_envp(t_vars *vars, char **envp);
+
+int		open_file(t_redirect	*list);
+int		here_doc(t_redirect	*list);
+int		count_pipes(t_raw *root);
+int		error_free_fds(t_pipes *pipes, int len);
+int		init_fds(t_pipes *pipes, int len);
+int		init_pid(t_pipes *pipes, int len);
+void	close_all(t_pipes *pipes, int len);
 
 int		redirect_exec(t_raw *root, int *old_out, int *old_in);
 int		pipes_loop(t_vars *vars, t_raw *root);
