@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lsinistr <lsinistr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 12:34:38 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/17 12:39:56 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 16:06:12 by lsinistr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,16 @@ int	my_exit(t_vars *vars, t_raw *root)
 	int	status;
 	int	i;
 
-	i = 0;
+	i = -1;
+	if (root->treated_comnd && trls_get_len(root->treated_comnd) > 1)
+	{
+		ft_putstr_fd("exit: too many arguments\n", STDERR_FILENO);
+		return (1);
+	}
 	if (!root->treated_comnd)
 		my_exit_no_command(vars, root);
-	while (ft_isdigit(root->treated_comnd->arg[i]))
-	{
-		i++;
+	while (ft_isdigit(root->treated_comnd->arg[++i]))
 		status = ft_atoi(root->treated_comnd->arg);
-	}
 	if (root->treated_comnd->arg[i] == '\0')
 	{
 		printf("exit\n");
