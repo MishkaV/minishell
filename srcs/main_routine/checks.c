@@ -6,7 +6,7 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 13:20:59 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/15 23:28:08 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 13:36:51 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_quotes(char *str)
 {
-	int flag_q;
-	int flag_dq;
+	int	flag_q;
+	int	flag_dq;
 
 	flag_q = 0;
 	flag_dq = 0;
@@ -28,7 +28,7 @@ int	check_quotes(char *str)
 			if (!flag_q)
 				flag_q = 1;
 			else
-				flag_q = 0;	
+				flag_q = 0;
 		}
 		else if (*str == '\"')
 			flag_dq++;
@@ -44,10 +44,9 @@ int	is_dequote(char c)
 
 int	is_space(char c)
 {
-	return (c == '\t' || c == '\v' || c == '\r' ||
-			c == '\f' || c == '\b' || c == ' ');
+	return (c == '\t' || c == '\v' || c == '\r'
+		|| c == '\f' || c == '\b' || c == ' ');
 }
-
 
 int	is_special(char c)
 {

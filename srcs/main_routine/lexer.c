@@ -6,109 +6,18 @@
 /*   By: jbenjy <jbenjy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 16:48:37 by jbenjy            #+#    #+#             */
-/*   Updated: 2021/09/16 12:37:26 by jbenjy           ###   ########.fr       */
+/*   Updated: 2021/09/17 14:44:27 by jbenjy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*lexer_get_dollar(t_envp_list *envp, char *str, int dquote)
-{
-	char	*curr;
-	char	*result;
-	int		i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	if(str[i] == '$')
-		str++;
-	if (dquote)
-		while (str[i] && !is_space(str[i]) && str[i] != '\"')
-			i++;
-	else
-		while (str[i] && !is_space(str[i]))
-			i++;
-	curr = ft_strndup(str, i);
-	result = ft_strdup(envp_get_data(envp, curr));
-	free(curr);
-	return (result);
-}
-
-char	*lexer_get_with_space(char *str, int i)
-{
-	char *before;
-	char *after;
-
-	before = ft_strndup(str, i);
-	after = ft_strdup(str + i + 1);
-	str = ft_concat(before, after); 
-	free(before);
-	free(after);
-	return (str);
-}
-
-char	*lexer_get_text(char *str)
-{
-	int i;
-	int flag;
-	char	*curr;
-
-	i = 0;
-	flag = 0;
-	if (!str)
-		return (0);
-	while (str[i] && !is_space(str[i]) && str[i] != '\'' && str[i] != '\"')
-	{
-		if (str[i] == '\\' && str[i + 1] == ' ')
-		{
-			str = lexer_get_with_space(str, i);
-			i++;
-		}
-		i++;
-	}
-	curr = ft_strndup(str, i);
-	if (flag)
-		free(str);
-	return (curr);
-}
-
-char	*lexer_parse_text(t_raw *curr, t_vars *vars, char *str)
-{
-	char	*result;
-	
-	if(str[0] == '$')
-	{
-		if (!ft_strncmp(str, "$?", 2) && (!str[2] || is_space(str[2]) || str[2] == '\'' || str[2] == '\"' ))
-			result = ft_itoa(vars->status);
-		else
-			result = lexer_get_dollar(vars->envp, str, 0);	
-	}
-	else
-		result = lexer_get_text(str);
-	curr->treated_comnd = trls_push_node(curr->treated_comnd, result);
-	return (skip_sym(str));
-}
-
-char	*lexer_parse_quote(t_raw *curr, char *str)
-{
-	int i;
-
-	i = 0;
-	if (*str == '\'')
-		str++;
-	while (str[i] && str[i] != '\'')
-		i++;
-	curr->treated_comnd = trls_push_node(curr->treated_comnd, ft_strndup(str, i));
-	return (str + i + 1);
-}
 
 static void	lexer_dquote_ret(t_trls *list, t_raw *curr)
 {
 	char	*result;
 	char	*prev;
 	t_trls	*begin;
-	
+
 	result = 0;
 	begin = list;
 	while (list)
@@ -127,7 +36,7 @@ char	*lexer_parse_dquote(t_raw *curr, t_vars *vars, char *str)
 {
 	t_trls	*list;
 	char	*path;
-	
+
 	list = 0;
 	while (*str && *str != '\"')
 	{
@@ -150,76 +59,56 @@ char	*lexer_parse_dquote(t_raw *curr, t_vars *vars, char *str)
 	return (str + 1);
 }
 
-void	lexer_parse_arg(t_raw *curr, t_vars *vars)
+static int	lexer_parse_redir_skip(t_redirect *list)
 {
-	char *str;
+	int	i;
 
-	str = curr->argument;
-	if (str)
-	{
-		while (*str)
-		{
-			str = skip_spaces(str);
-			if (*str == '\'')
-				str = lexer_parse_quote(curr, str);
-			else if (*str == '\"')
-				str = lexer_parse_dquote(curr, vars, str + 1);
-			else if (*str != '\0')
-				str = lexer_parse_text(curr, vars, str);
-		}
+	i = 0;
+	while (list->file[i] && list->file[i] != '$')
+		i++;
+	while (list->file[i] && !is_space(list->file[i]))
+		i++;
+	return (i);
+}
+
+static void	lexer_parse_redir_free(t_redirect *list, t_vars *vars)
+{
+	char		*path;
+	char		*before;
+	char		*after;
+	int			i;
+
+	while (ft_strchr(list->file, '$'))
+	{	
+		path = lexer_get_dollar(vars->envp,
+				ft_strchr(list->file, '$'), 0);
+		before = ft_strndup(list->file,
+				ft_strchr(list->file, '$') - list->file);
+		i = lexer_parse_redir_skip(list);
+		after = ft_strdup(list->file + i);
+		free(list->file);
+		list->file = ft_concat(before, path);
+		free(path);
+		free(before);
+		before = list->file;
+		list->file = ft_concat(list->file, after);
+		free(before);
+		free(after);
 	}
 }
 
 void	lexer_parse_redirect(t_raw *root, t_vars *vars)
 {
 	t_redirect	*list;
-	char		*path;
-	char		*before;
-	char		*after;
-	int			i;
 
-	list = root->redirects; 
+	list = root->redirects;
 	if (list)
 	{
 		while (list)
 		{
 			if (list->file && list->quote != 1)
-			{
-				while (ft_strchr(list->file, '$'))
-				{	
-					path = lexer_get_dollar(vars->envp, ft_strchr(list->file, '$'), 0);
-					before = ft_strndup(list->file, ft_strchr(list->file, '$') - list->file);
-					i = 0;
-					while (list->file[i] && list->file[i] != '$')
-						i++;
-					while (list->file[i] && !is_space(list->file[i]))
-						i++;
-					after = ft_strdup(list->file + i);
-					free(list->file);
-					
-					list->file = ft_concat(before, path);
-					free(path);
-					free(before);
-					
-					before = list->file;
-					list->file = ft_concat(list->file, after);
-					free(before);
-					free(after);
-				}
-			}
+				lexer_parse_redir_free(list, vars);
 			list = list->next;
 		}
 	}
-}
-
-void	lexer_analysis(t_raw *root, t_vars *vars)
-{
-	if (root)
-		while (root)
-		{
-			lexer_check_command(root, vars);
-			lexer_parse_arg(root, vars);
-			lexer_parse_redirect(root, vars);
-			root = root->next;
-		}
 }
